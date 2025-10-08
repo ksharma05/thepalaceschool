@@ -1,0 +1,27 @@
+# Global code owners - all files require approval from these users
+* @khushal
+
+# Frontend/client code - require frontend team approval
+/packages/client/ @khushal
+
+# Backend/server code - require backend team approval  
+/packages/server/ @khushal
+
+# Documentation files - require documentation team approval
+*.md @khushal
+/docs/ @khushal
+
+# Configuration files - require admin approval
+package.json @khushal
+package-lock.json @khushal
+tsconfig*.json @khushal
+tailwind.config.js @khushal
+vite.config.ts @khushal
+
+# GitHub workflows and templates - require admin approval
+/.github/ @khushal
+
+# Environment and security files - require admin approval
+.env* @khushal
+.gitignore @khushal
+.gitattributes @khushal
