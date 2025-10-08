@@ -7,6 +7,7 @@ import {
   ClockIcon,
   CheckCircleIcon
 } from '@heroicons/react/24/outline';
+import { API_ENDPOINTS, apiRequest } from '../config/api';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -38,11 +39,8 @@ const ContactPage: React.FC = () => {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await apiRequest(API_ENDPOINTS.CONTACT, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify(formData),
       });
 

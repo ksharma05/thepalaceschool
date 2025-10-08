@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from '../../components/ThemeToggle';
+import { API_ENDPOINTS, apiRequest } from '../../config/api';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -12,11 +13,8 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
     setError('');
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await apiRequest(API_ENDPOINTS.AUTH.LOGIN, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
         body: JSON.stringify({ email, password }),
       });
 

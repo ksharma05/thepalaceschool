@@ -12,6 +12,7 @@ import {
   PencilIcon
 } from '@heroicons/react/24/outline';
 import ThemeToggle from '../../components/ThemeToggle';
+import { API_ENDPOINTS, apiRequest } from '../../config/api';
 
 interface ContactSubmission {
   _id: string;
@@ -63,14 +64,14 @@ const DashboardPage: React.FC = () => {
   const fetchData = async () => {
     try {
       // Fetch contact submissions
-      const contactResponse = await fetch('/api/contact');
+      const contactResponse = await apiRequest(API_ENDPOINTS.CONTACT);
       if (contactResponse.ok) {
         const contactData = await contactResponse.json();
         setContactSubmissions(contactData);
       }
 
       // Fetch static content
-      const contentResponse = await fetch('/api/content');
+      const contentResponse = await apiRequest(API_ENDPOINTS.CONTENT);
       if (contentResponse.ok) {
         const contentData = await contentResponse.json();
         setStaticContent(contentData);
@@ -89,10 +90,9 @@ const DashboardPage: React.FC = () => {
 
   const handleSaveContent = async (page: string) => {
     try {
-      const response = await fetch('/api/content', {
+      const response = await apiRequest(API_ENDPOINTS.CONTENT, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify({
