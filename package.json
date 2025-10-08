@@ -1,0 +1,16 @@
+{
+  "name": "the-palace-school",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "client": "npm run dev --workspace=packages/client",
+    "server": "npm run dev --workspace=packages/server",
+    "dev": "npm run client & npm run server"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
