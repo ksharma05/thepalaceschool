@@ -27,8 +27,7 @@ export const useGSAP = (options: UseGSAPOptions = {}) => {
       delay = 0,
       duration = 1,
       stagger = 0.1,
-      speed = 0.5,
-      trigger
+      speed = 0.5
     } = options;
 
     let animationInstance: any;

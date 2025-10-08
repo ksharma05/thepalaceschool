@@ -1,14 +1,12 @@
 import React from 'react';
 import { useGSAP } from '../hooks/useGSAP';
 import { 
-  AcademicCapIcon, 
   HeartIcon, 
   LightBulbIcon, 
   UserGroupIcon,
   BookOpenIcon,
   SparklesIcon,
-  ShieldCheckIcon,
-  GlobeAltIcon
+  ShieldCheckIcon
 } from '@heroicons/react/24/outline';
 
 const AboutPage: React.FC = () => {
@@ -17,7 +15,7 @@ const AboutPage: React.FC = () => {
   const approachRef = useGSAP({ animation: 'slideInRight', delay: 0.4 });
   const montessoriRef = useGSAP({ animation: 'scaleIn', delay: 0.6 });
   const holisticRef = useGSAP({ animation: 'fadeIn', delay: 0.8 });
-  const inclusiveRef = useGSAP({ animation: 'slideInUp', delay: 1.0 });
+  const inclusiveRef = useGSAP({ animation: 'fadeIn', delay: 1.0 });
 
   const philosophyPoints = [
     {

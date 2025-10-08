@@ -6,7 +6,9 @@
     "build": "tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "start": "node dist/index.js",
-    "create-admin": "ts-node-dev --transpile-only scripts/createAdminUser.ts"
+    "create-admin": "ts-node-dev --transpile-only scripts/createAdminUser.ts",
+    "type-check": "tsc --noEmit",
+    "lint": "echo 'Linting not configured yet'"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
