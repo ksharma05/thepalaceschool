@@ -9,6 +9,7 @@ import LeadershipPage from "./pages/LeadershipPage";
 import PrincessGauravPage from "./pages/leadership/PrincessGauravPage";
 import HHMessagePage from "./pages/leadership/HHMessagePage";
 import RajmataSahibPage from "./pages/leadership/RajmataSahibPage";
+import HHMaharajaLakshrajPrakashPage from "./pages/leadership/HHMaharajaLakshrajPrakashPage";
 import SocialMediaPage from "./pages/SocialMediaPage";
 import AdminLayout from "./components/admin/AdminLayout";
 import LoginPage from "./pages/admin/LoginPage";
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "leadership/rajmata-sahib",
         element: <RajmataSahibPage />,
+      },
+      {
+        path: "leadership/maharaja-lakshraj-prakash",
+        element: <HHMaharajaLakshrajPrakashPage />,
       },
       {
         path: "social-media",

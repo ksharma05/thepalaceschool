@@ -7,6 +7,9 @@ import {
   HeartIcon,
   StarIcon
 } from '@heroicons/react/24/outline';
+import gauraviKumariImage from '../assets/Princess Gauravi Kumari.jpg';
+import lakshrajPrakashImage from '../assets/HH Maharaja Lakshraj Prakash.jpg';
+import rajmataPadminiDeviImage from '../assets/HH Rajmata Padmini Devi .jpg';
 
 const LeadershipPage: React.FC = () => {
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
@@ -16,11 +19,12 @@ const LeadershipPage: React.FC = () => {
   const leadershipMessages = [
     {
       id: 'princess-gaurav',
-      title: 'Princess Gaurav\'s Message',
-      name: 'Princess Gaurav',
-      role: 'Founder & Patron',
-      excerpt: 'A visionary message about the school\'s mission and values...',
-      image: '/api/placeholder/400/300',
+      title: 'Message From The Treasurer',
+      name: 'Princess Gauravi Kumari',
+      role: 'Treasurer',
+      excerpt: 'A heartfelt message from an alumna and treasurer about the school\'s remarkable growth and continued vision...',
+      image: gauraviKumariImage,
+      hasImage: true,
       link: '/leadership/princess-gaurav'
     },
     {
@@ -34,12 +38,23 @@ const LeadershipPage: React.FC = () => {
     },
     {
       id: 'rajmata-sahib',
-      title: 'Rajmata Sahib\'s Message',
-      name: 'Rajmata Sahib',
-      role: 'Honorary Patron',
-      excerpt: 'A message of love, care, and dedication to our students...',
-      image: '/api/placeholder/400/300',
+      title: 'Message from The Chairperson',
+      name: 'HH Rajmata Padmini Devi',
+      role: 'Chairperson',
+      excerpt: 'A message from the Chairperson about supporting her daughter\'s vision and the school\'s growth at The City Palace, Jaipur...',
+      image: rajmataPadminiDeviImage,
+      hasImage: true,
       link: '/leadership/rajmata-sahib'
+    },
+    {
+      id: 'maharaja-lakshraj-prakash',
+      title: 'Message from HH Maharaja Lakshraj Prakash',
+      name: 'HH Maharaja Lakshraj Prakash of Sirmour',
+      role: 'Member, Board of Governors & Alumnus',
+      excerpt: 'A heartfelt message from an alumnus and Board member about returning to The Palace School...',
+      image: lakshrajPrakashImage,
+      hasImage: true,
+      link: '/leadership/maharaja-lakshraj-prakash'
     }
   ];
 
@@ -107,14 +122,25 @@ const LeadershipPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {leadershipMessages.map((message) => {
               const IconComponent = UserCircleIcon;
+              const hasImage = message.hasImage && message.image && message.image !== '/api/placeholder/400/300';
               return (
                 <Link
                   key={message.id}
                   to={message.link}
                   className="group bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700 hover:border-indigo-500"
                 >
-                  <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-indigo-500 to-purple-600 p-8 flex items-center justify-center">
-                    <IconComponent className="h-24 w-24 text-white group-hover:scale-110 transition-transform duration-300" />
+                  <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-indigo-500 to-purple-600 overflow-hidden">
+                    {hasImage ? (
+                      <img
+                        src={message.image}
+                        alt={message.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                    ) : (
+                      <div className="p-8 flex items-center justify-center h-full">
+                        <IconComponent className="h-24 w-24 text-white group-hover:scale-110 transition-transform duration-300" />
+                      </div>
+                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">

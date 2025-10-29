@@ -10,9 +10,11 @@ import {
   ShieldCheckIcon,
   GlobeAltIcon
 } from '@heroicons/react/24/outline';
+import diyaKumariImage from '../assets/Diya Kumari 1.jpg';
 
 const AboutPage: React.FC = () => {
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
+  const founderMessageRef = useGSAP({ animation: 'fadeIn', delay: 0.15 });
   const philosophyRef = useGSAP({ animation: 'slideInLeft', delay: 0.2 });
   const approachRef = useGSAP({ animation: 'slideInRight', delay: 0.4 });
   const montessoriRef = useGSAP({ animation: 'scaleIn', delay: 0.6 });
@@ -81,6 +83,65 @@ const AboutPage: React.FC = () => {
               Founded with a bold vision by Princess Diya Kumari ji to go beyond 
               conventional academics and nurture the whole child.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Message From The Founder Section */}
+      <section ref={founderMessageRef} className="py-20 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Image Section */}
+                <div className="relative bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 p-8 lg:p-12 flex items-center justify-center">
+                  <div className="relative w-full max-w-md">
+                    <div className="absolute inset-0 bg-gradient-to-br from-indigo-400/20 to-purple-400/20 rounded-2xl blur-2xl"></div>
+                    <img
+                      src={diyaKumariImage}
+                      alt="Princess Diya Kumari ji"
+                      className="relative rounded-2xl shadow-2xl w-full h-auto object-cover border-4 border-white dark:border-gray-700"
+                    />
+                  </div>
+                </div>
+
+                {/* Message Section */}
+                <div className="p-8 lg:p-12 flex flex-col justify-center">
+                  <div className="mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+                      Message From The Founder
+                    </h2>
+                    <p className="text-xl text-indigo-600 dark:text-indigo-400 font-semibold">
+                      Princess Diya Kumari ji
+                    </p>
+                  </div>
+
+                  <div className="prose prose-lg dark:prose-invert max-w-none">
+                    <div className="space-y-4 text-gray-700 dark:text-gray-300 leading-relaxed">
+                      <p>
+                        The Palace School, founded in 2001 as a Montessori pre-school, has grown into a nationally recognized institution known for its excellence in education and values. It fills me with immense pride to see our vision of nurturing confident, compassionate, and creative learners come alive each day.
+                      </p>
+                      <p>
+                        Our pedagogy integrates the latest educational practices aligned with the tenets of NEP 2020, ensuring holistic development and experiential learning. At The Palace School, we believe in empowering every child to discover their innate potential and become a lifelong learner ready to contribute meaningfully to the nation and the world.
+                      </p>
+                    </div>
+
+                    {/* Signature Block */}
+                    <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                      <p className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                        Shrimati Diya Kumari
+                      </p>
+                      <p className="text-indigo-600 dark:text-indigo-400 font-medium">
+                        Deputy Chief Minister, Rajasthan
+                      </p>
+                      <p className="text-indigo-600 dark:text-indigo-400 font-medium">
+                        Founder, The Palace School
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

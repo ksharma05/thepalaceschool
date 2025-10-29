@@ -1,0 +1,402 @@
+---
+alwaysApply: true
+---
+
+# The Palace School - Cursor Development Rules
+
+## TypeScript & React Conventions
+
+- Use TypeScript strict mode with proper typing for all props, state, and function parameters
+- Use `React.FC` or functional component patterns for React components
+- Prefer `interface` over `type` for component props and object structures
+- Use named exports for utilities and helpers, default exports for components
+- Always type refs explicitly: `useRef<HTMLDivElement>(null)`
+- Avoid `any` type - use `unknown` or proper types instead
+- Use type assertions sparingly and only when necessary
+
+## Naming Patterns
+
+- **Components**: PascalCase (e.g., `HomePage.tsx`, `Header.tsx`, `AdminLayout.tsx`)
+- **Hooks**: camelCase starting with 'use' (e.g., `useGSAP.ts`, `useTheme.ts`)
+- **Utilities**: camelCase files (e.g., `gsap.ts`, `auth.ts`, `theme.ts`)
+- **Pages**: PascalCase in `pages/` directory with `Page` suffix (e.g., `AboutPage.tsx`)
+- **Components**: PascalCase in `components/` directory
+- **Constants**: UPPER_SNAKE_CASE for module-level constants, camelCase for local constants
+- **Interfaces/Types**: PascalCase with descriptive names (e.g., `ThemeContextType`, `UserProps`)
+- **Variables and functions**: camelCase
+- **CSS classes**: Use Tailwind utility classes, kebab-case for custom classes if needed
+
+## Component Structure
+
+- Use functional components with hooks exclusively
+- Import order (strict):
+  1. React imports (React, hooks)
+  2. Third-party libraries (@heroicons/react, react-router-dom, etc.)
+  3. Internal imports:
+     - Components (relative paths)
+     - Hooks (from hooks/)
+     - Utils (from utils/)
+     - Contexts (from contexts/)
+     - Types/Interfaces
+- Component structure:
+  ```typescript
+  // Props interface
+  interface ComponentProps {
+    // props definition
+  }
+
+  // Component function
+  const ComponentName: React.FC<ComponentProps> = ({ prop1, prop2 }) => {
+    // Hooks
+    // State declarations
+    // Effects
+    // Helper functions
+    
+    // Return JSX
+    return (
+      // JSX
+    );
+  };
+
+  export default ComponentName;
+  ```
+- Extract reusable logic to custom hooks
+- Keep components focused and single-responsibility
+- Maximum component size: ~300 lines (extract sub-components or hooks if needed)
+
+## Hooks Usage
+
+- Use `useEffect` for GSAP animations, API calls, subscriptions, and side effects
+- Always include dependency arrays in `useEffect`, `useCallback`, and `useMemo`
+- Clean up animations, subscriptions, and timers in `useEffect` cleanup function
+- Prefer custom hooks (e.g., `useGSAP`, `useTheme`) over inline logic for reusability
+- Use `useRef` for DOM element references and mutable values that don't trigger re-renders
+- Use `useState` for component-local state
+- Use Context API for theme and global state that needs to be shared
+
+## GSAP Patterns
+
+- Use `GSAPScrollUtils` static methods for all scroll-triggered animations
+- Initialize smooth scroll in Layout component only
+- Clean up ScrollTriggers on component unmount in useEffect cleanup
+- Use refs to attach animations to DOM elements: `const elementRef = useRef<HTMLDivElement>(null)`
+- Prefer scroll triggers over onMount animations for page elements
+- Use elegant easing functions: 'power2.out', 'power2.inOut', 'power3.out'
+- Animation durations should be 0.8s - 2s for elegant, classic feel
+- Scroll trigger start points should typically be 'top 85%' for earlier activation
+- For count-up animations, parse numbers from text content with proper suffix handling
+- For split text reveals, wrap words in spans only if not already wrapped
+
+## File Organization
+
+```
+src/
+  components/         - Reusable UI components
+    admin/           - Admin-specific components
+    [ComponentName].tsx
+  pages/             - Route components (page-level)
+    admin/           - Admin pages
+    leadership/      - Leadership-related pages
+    [PageName]Page.tsx
+  hooks/             - Custom React hooks
+    use[HookName].ts
+  utils/             - Utility functions
+    [utilityName].ts
+  contexts/          - React contexts
+    [ContextName].tsx
+  config/            - Configuration files
+    [configName].ts
+  docs/              - Documentation
+    [docName].md
+```
+
+## Standard Look & Feel
+
+- **Spacing**: Use Tailwind spacing scale consistently
+  - Section padding: `py-20` (80px vertical)
+  - Section margins: `mb-16` (64px) for titles
+  - Grid gaps: `gap-8` (32px) for cards/grids
+  - Internal padding: `p-8` (32px) for cards
+- **Color scheme**: Follow existing indigo/purple gradients, maintain dark mode compatibility
+  - Primary gradients: `from-indigo-900 via-purple-900 to-indigo-900`
+  - CTA gradients: `from-indigo-600 to-purple-600`
+  - Dark mode: Use `dark:` variants for all colors
+- **Typography**: 
+  - Headings: `text-3xl md:text-4xl` for h2, `text-4xl md:text-6xl lg:text-7xl` for h1
+  - Body: `text-xl md:text-2xl` for large text, `text-gray-600 dark:text-gray-300` for readable text
+  - Font weights: `font-bold` for headings, `font-semibold` for subheadings, `font-medium` for labels
+- **Borders**: 
+  - Cards: `rounded-xl` (12px)
+  - Buttons: `rounded-lg` (8px)
+  - Border width: `border` (1px) for subtle borders
+- **Shadows**: 
+  - Cards: `shadow-lg` default, `shadow-xl` on hover
+  - Buttons: `shadow-lg hover:shadow-xl`
+- **Transitions**: 
+  - Standard: `duration-300` (300ms)
+  - Hover effects: `duration-500` (500ms)
+  - GSAP animations: 0.8s - 2s durations
+
+## Component Reusability
+
+- Extract common patterns into reusable components
+- Create shared UI components for repeated elements:
+  - Card components for similar card layouts
+  - Button components for consistent button styles
+  - Section components for repeated section structures
+- Use composition over configuration where possible
+- Share TypeScript interfaces for common data structures across components
+- Avoid prop drilling - use Context API when appropriate
+- Keep component props minimal and focused
+
+## Phase-Wise Development
+
+- Follow the phase structure outlined in `TODO.md` and `PHASE1_COMPLETION_REPORT.md`
+- Maintain backward compatibility when adding new features
+- Test existing functionality when making changes
+- Document new features in appropriate docs (create/update `docs/` files)
+- Incrementally build features according to phase requirements
+- Ensure each phase is complete and tested before moving to the next
+
+## Code Quality Standards
+
+- Use ESLint and Prettier configurations as defined in the project
+- Write meaningful variable and function names that describe their purpose
+- Add comments for complex logic, especially GSAP animation setups
+- Ensure responsive design using mobile-first approach
+- Test dark mode compatibility for all new components
+- Verify GSAP animations work on all screen sizes
+- Use semantic HTML elements appropriately
+- Ensure accessibility: proper ARIA labels, keyboard navigation support
+- Optimize images and assets for web performance
+
+## Animation Guidelines
+
+- All animations should feel elegant and classy, not jarring or aggressive
+- Timing should be slower (1-2s durations) for classic, refined feel
+- Use smooth easing functions ('power2.out' variants)
+- Maintain consistent animation patterns across similar elements
+- Ensure animations respect user preferences (reduced motion)
+- Use scroll triggers for page elements, not instant animations
+- Stagger animations for grids/lists for elegant sequential reveals
+- Test animations on slower devices to ensure performance
+
+## Git & Version Control
+
+- Follow Conventional Commits format: `<type>[optional scope]: <description>`
+- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+- Use descriptive commit messages that explain what and why
+- Create feature branches from `develop` branch
+- Keep commits atomic and focused on single changes
+- Reference issues or tasks in commit messages when applicable
+
+## Testing & Quality Assurance
+
+- Test all new features thoroughly before committing
+- Ensure existing functionality still works after changes
+- Test on multiple devices and browsers when possible
+- Verify responsive design at different breakpoints
+- Check dark mode functionality
+- Validate GSAP animations trigger correctly
+- Test form validations and error handling
+- Verify API integrations work as expected
+
+# The Palace School - Cursor Development Rules
+
+## TypeScript & React Conventions
+
+- Use TypeScript strict mode with proper typing for all props, state, and function parameters
+- Use `React.FC` or functional component patterns for React components
+- Prefer `interface` over `type` for component props and object structures
+- Use named exports for utilities and helpers, default exports for components
+- Always type refs explicitly: `useRef<HTMLDivElement>(null)`
+- Avoid `any` type - use `unknown` or proper types instead
+- Use type assertions sparingly and only when necessary
+
+## Naming Patterns
+
+- **Components**: PascalCase (e.g., `HomePage.tsx`, `Header.tsx`, `AdminLayout.tsx`)
+- **Hooks**: camelCase starting with 'use' (e.g., `useGSAP.ts`, `useTheme.ts`)
+- **Utilities**: camelCase files (e.g., `gsap.ts`, `auth.ts`, `theme.ts`)
+- **Pages**: PascalCase in `pages/` directory with `Page` suffix (e.g., `AboutPage.tsx`)
+- **Components**: PascalCase in `components/` directory
+- **Constants**: UPPER_SNAKE_CASE for module-level constants, camelCase for local constants
+- **Interfaces/Types**: PascalCase with descriptive names (e.g., `ThemeContextType`, `UserProps`)
+- **Variables and functions**: camelCase
+- **CSS classes**: Use Tailwind utility classes, kebab-case for custom classes if needed
+
+## Component Structure
+
+- Use functional components with hooks exclusively
+- Import order (strict):
+  1. React imports (React, hooks)
+  2. Third-party libraries (@heroicons/react, react-router-dom, etc.)
+  3. Internal imports:
+     - Components (relative paths)
+     - Hooks (from hooks/)
+     - Utils (from utils/)
+     - Contexts (from contexts/)
+     - Types/Interfaces
+- Component structure:
+  ```typescript
+  // Props interface
+  interface ComponentProps {
+    // props definition
+  }
+
+  // Component function
+  const ComponentName: React.FC<ComponentProps> = ({ prop1, prop2 }) => {
+    // Hooks
+    // State declarations
+    // Effects
+    // Helper functions
+    
+    // Return JSX
+    return (
+      // JSX
+    );
+  };
+
+  export default ComponentName;
+  ```
+- Extract reusable logic to custom hooks
+- Keep components focused and single-responsibility
+- Maximum component size: ~300 lines (extract sub-components or hooks if needed)
+
+## Hooks Usage
+
+- Use `useEffect` for GSAP animations, API calls, subscriptions, and side effects
+- Always include dependency arrays in `useEffect`, `useCallback`, and `useMemo`
+- Clean up animations, subscriptions, and timers in `useEffect` cleanup function
+- Prefer custom hooks (e.g., `useGSAP`, `useTheme`) over inline logic for reusability
+- Use `useRef` for DOM element references and mutable values that don't trigger re-renders
+- Use `useState` for component-local state
+- Use Context API for theme and global state that needs to be shared
+
+## GSAP Patterns
+
+- Use `GSAPScrollUtils` static methods for all scroll-triggered animations
+- Initialize smooth scroll in Layout component only
+- Clean up ScrollTriggers on component unmount in useEffect cleanup
+- Use refs to attach animations to DOM elements: `const elementRef = useRef<HTMLDivElement>(null)`
+- Prefer scroll triggers over onMount animations for page elements
+- Use elegant easing functions: 'power2.out', 'power2.inOut', 'power3.out'
+- Animation durations should be 0.8s - 2s for elegant, classic feel
+- Scroll trigger start points should typically be 'top 85%' for earlier activation
+- For count-up animations, parse numbers from text content with proper suffix handling
+- For split text reveals, wrap words in spans only if not already wrapped
+
+## File Organization
+
+```
+src/
+  components/         - Reusable UI components
+    admin/           - Admin-specific components
+    [ComponentName].tsx
+  pages/             - Route components (page-level)
+    admin/           - Admin pages
+    leadership/      - Leadership-related pages
+    [PageName]Page.tsx
+  hooks/             - Custom React hooks
+    use[HookName].ts
+  utils/             - Utility functions
+    [utilityName].ts
+  contexts/          - React contexts
+    [ContextName].tsx
+  config/            - Configuration files
+    [configName].ts
+  docs/              - Documentation
+    [docName].md
+```
+
+## Standard Look & Feel
+
+- **Spacing**: Use Tailwind spacing scale consistently
+  - Section padding: `py-20` (80px vertical)
+  - Section margins: `mb-16` (64px) for titles
+  - Grid gaps: `gap-8` (32px) for cards/grids
+  - Internal padding: `p-8` (32px) for cards
+- **Color scheme**: Follow existing indigo/purple gradients, maintain dark mode compatibility
+  - Primary gradients: `from-indigo-900 via-purple-900 to-indigo-900`
+  - CTA gradients: `from-indigo-600 to-purple-600`
+  - Dark mode: Use `dark:` variants for all colors
+- **Typography**: 
+  - Headings: `text-3xl md:text-4xl` for h2, `text-4xl md:text-6xl lg:text-7xl` for h1
+  - Body: `text-xl md:text-2xl` for large text, `text-gray-600 dark:text-gray-300` for readable text
+  - Font weights: `font-bold` for headings, `font-semibold` for subheadings, `font-medium` for labels
+- **Borders**: 
+  - Cards: `rounded-xl` (12px)
+  - Buttons: `rounded-lg` (8px)
+  - Border width: `border` (1px) for subtle borders
+- **Shadows**: 
+  - Cards: `shadow-lg` default, `shadow-xl` on hover
+  - Buttons: `shadow-lg hover:shadow-xl`
+- **Transitions**: 
+  - Standard: `duration-300` (300ms)
+  - Hover effects: `duration-500` (500ms)
+  - GSAP animations: 0.8s - 2s durations
+
+## Component Reusability
+
+- Extract common patterns into reusable components
+- Create shared UI components for repeated elements:
+  - Card components for similar card layouts
+  - Button components for consistent button styles
+  - Section components for repeated section structures
+- Use composition over configuration where possible
+- Share TypeScript interfaces for common data structures across components
+- Avoid prop drilling - use Context API when appropriate
+- Keep component props minimal and focused
+
+## Phase-Wise Development
+
+- Follow the phase structure outlined in `TODO.md` and `PHASE1_COMPLETION_REPORT.md`
+- Maintain backward compatibility when adding new features
+- Test existing functionality when making changes
+- Document new features in appropriate docs (create/update `docs/` files)
+- Incrementally build features according to phase requirements
+- Ensure each phase is complete and tested before moving to the next
+
+## Code Quality Standards
+
+- Use ESLint and Prettier configurations as defined in the project
+- Write meaningful variable and function names that describe their purpose
+- Add comments for complex logic, especially GSAP animation setups
+- Ensure responsive design using mobile-first approach
+- Test dark mode compatibility for all new components
+- Verify GSAP animations work on all screen sizes
+- Use semantic HTML elements appropriately
+- Ensure accessibility: proper ARIA labels, keyboard navigation support
+- Optimize images and assets for web performance
+
+## Animation Guidelines
+
+- All animations should feel elegant and classy, not jarring or aggressive
+- Timing should be slower (1-2s durations) for classic, refined feel
+- Use smooth easing functions ('power2.out' variants)
+- Maintain consistent animation patterns across similar elements
+- Ensure animations respect user preferences (reduced motion)
+- Use scroll triggers for page elements, not instant animations
+- Stagger animations for grids/lists for elegant sequential reveals
+- Test animations on slower devices to ensure performance
+
+## Git & Version Control
+
+- Follow Conventional Commits format: `<type>[optional scope]: <description>`
+- Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+- Use descriptive commit messages that explain what and why
+- Create feature branches from `develop` branch
+- Keep commits atomic and focused on single changes
+- Reference issues or tasks in commit messages when applicable
+
+## Testing & Quality Assurance
+
+- Test all new features thoroughly before committing
+- Ensure existing functionality still works after changes
+- Test on multiple devices and browsers when possible
+- Verify responsive design at different breakpoints
+- Check dark mode functionality
+- Validate GSAP animations trigger correctly
+- Test form validations and error handling
+- Verify API integrations work as expected
+

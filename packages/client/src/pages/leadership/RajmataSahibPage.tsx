@@ -2,6 +2,7 @@ import React from 'react';
 import { useGSAP } from '../../hooks/useGSAP';
 import { Link } from 'react-router-dom';
 import { HeartIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
+import rajmataPadminiDeviImage from '../../assets/HH Rajmata Padmini Devi .jpg';
 
 const RajmataSahibPage: React.FC = () => {
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
@@ -14,14 +15,18 @@ const RajmataSahibPage: React.FC = () => {
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-full w-32 h-32 mx-auto mb-6 flex items-center justify-center">
-              <HeartIcon className="h-20 w-20 text-white" />
+            <div className="bg-white/10 backdrop-blur-sm rounded-full w-32 h-32 mx-auto mb-6 flex items-center justify-center overflow-hidden">
+              <img 
+                src={rajmataPadminiDeviImage} 
+                alt="HH Rajmata Padmini Devi" 
+                className="w-full h-full object-cover rounded-full"
+              />
             </div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Rajmata Sahib's Message
+              Message from The Chairperson
             </h1>
             <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
-              A message of love, care, and dedication to our students
+              HH Rajmata Padmini Devi
             </p>
           </div>
         </div>
@@ -42,72 +47,52 @@ const RajmataSahibPage: React.FC = () => {
 
             {/* Message Content */}
             <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 md:p-12 border border-gray-100 dark:border-gray-700">
-              <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                  A Message from Rajmata Sahib
-                </h2>
-                <p className="text-xl text-rose-600 dark:text-rose-400 font-semibold">
-                  Honorary Patron
-                </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div className="md:col-span-1">
+                  <img
+                    src={rajmataPadminiDeviImage}
+                    alt="HH Rajmata Padmini Devi"
+                    className="w-full rounded-xl shadow-lg object-cover"
+                  />
+                </div>
+                <div className="md:col-span-2 flex items-center">
+                  <div>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                      Message from The Chairperson
+                    </h2>
+                    <p className="text-xl text-rose-600 dark:text-rose-400 font-semibold">
+                      HH Rajmata Padmini Devi
+                    </p>
+                    <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
+                      Chairperson, The Palace School
+                    </p>
+                  </div>
+                </div>
               </div>
 
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
-                  <p className="text-xl font-medium text-rose-600 dark:text-rose-400">
-                    "Education is the greatest gift we can give to our children. It is the 
-                    foundation upon which they build their dreams and achieve their aspirations."
+                  <p>
+                    As Chairperson of The Palace School, it gives me immense joy to see the vision of my daughter, Diya Kumari, flourish into a nationally acclaimed institution. From its beginnings in 2001, the school has grown with dedication, values, and a commitment to excellence.
                   </p>
 
                   <p>
-                    With a heart full of love and hope, I welcome you to The Palace School, 
-                    a place where every child is cherished and every dream is nurtured. As 
-                    a mother and grandmother, I understand the deep love parents have for 
-                    their children and their desire to provide them with the best possible 
-                    education.
+                    My late husband, <span className="font-semibold">HH Maharaja Sawai Bhawani Singh MVC</span>, and I were proud to support this endeavour and chose to make The City Palace, Jaipur, its home. We believed that the royal heritage, serene surroundings, and inspiring architecture would provide children with an environment that nurtures discipline, creativity, and pride in their culture.
                   </p>
 
                   <p>
-                    At The Palace School, we believe that education should touch not just 
-                    the mind, but also the heart and soul. Our approach combines academic 
-                    rigor with emotional intelligence, ensuring that our students grow into 
-                    compassionate, confident, and capable individuals.
+                    Today, seeing young minds thrive here reaffirms that decision, as the Palace's rich history blends seamlessly with modern education, shaping confident and well-rounded individuals.
                   </p>
 
-                  <p>
-                    I have always believed that the true measure of a school's success lies 
-                    not just in the achievements of its students, but in the values they 
-                    carry with them throughout their lives. Our students learn not only 
-                    mathematics and science, but also kindness, empathy, and respect for 
-                    others.
-                  </p>
-
-                  <p>
-                    The teachers at The Palace School are not just educators; they are 
-                    mentors, guides, and often, second parents to our students. They 
-                    understand that each child is unique and deserves individual attention 
-                    and care. This personalized approach has been the cornerstone of our 
-                    success.
-                  </p>
-
-                  <p>
-                    To our dear students, I say: You are the future, and the future is 
-                    bright. Believe in yourselves, work hard, and never forget to be kind. 
-                    To the parents who have entrusted us with their most precious treasures, 
-                    I promise that we will care for your children as if they were our own.
-                  </p>
-
-                  <p>
-                    May The Palace School continue to be a place where dreams take flight, 
-                    where character is built, and where the leaders of tomorrow are shaped 
-                    with love and wisdom.
-                  </p>
-
-                  <div className="text-right mt-8">
-                    <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                      Rajmata Sahib
+                  <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+                    <p className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                      HH Rajmata Padmini Devi
                     </p>
-                    <p className="text-rose-600 dark:text-rose-400">
-                      Honorary Patron
+                    <p className="text-rose-600 dark:text-rose-400 font-medium">
+                      Chairperson
+                    </p>
+                    <p className="text-rose-600 dark:text-rose-400 font-medium">
+                      The Palace School
                     </p>
                   </div>
                 </div>
@@ -117,25 +102,27 @@ const RajmataSahibPage: React.FC = () => {
             {/* Additional Info */}
             <div className="mt-12 bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                A Mother's Touch
+                About HH Rajmata Padmini Devi
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
                   <h4 className="text-lg font-semibold text-rose-600 dark:text-rose-400 mb-3">
-                    Nurturing Environment
+                    Visionary Leadership
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">
-                    Rajmata Sahib has ensured that The Palace School provides a nurturing, 
-                    caring environment where every child feels valued and supported.
+                    As Chairperson, HH Rajmata Padmini Devi has been instrumental in supporting 
+                    her daughter's vision and ensuring The Palace School maintains its commitment 
+                    to excellence while honoring its royal heritage.
                   </p>
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-rose-600 dark:text-rose-400 mb-3">
-                    Values Education
+                    Royal Heritage & Modern Education
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">
-                    Her influence has helped shape our values-based education program, 
-                    emphasizing character development alongside academic achievement.
+                    Together with her late husband HH Maharaja Sawai Bhawani Singh MVC, she 
+                    made the visionary decision to establish The Palace School at The City Palace, 
+                    Jaipur, blending rich history with modern educational practices.
                   </p>
                 </div>
               </div>

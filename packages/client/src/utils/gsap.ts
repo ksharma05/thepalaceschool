@@ -169,6 +169,276 @@ export class GSAPScrollUtils {
     });
   }
 
+  // Create elegant fade-in with smooth easing (more classic feel)
+  static elegantFadeIn(element: string | Element, options: {
+    delay?: number;
+    duration?: number;
+    y?: number;
+    ease?: string;
+  } = {}) {
+    const {
+      delay = 0,
+      duration = 1.2,
+      y = 40,
+      ease = 'power2.out'
+    } = options;
+
+    return gsap.fromTo(element, 
+      {
+        opacity: 0,
+        y: y,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: duration,
+        delay: delay,
+        ease: ease,
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 85%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none reverse',
+        }
+      }
+    );
+  }
+
+  // Split text reveal animation (very elegant for headings)
+  static splitTextReveal(element: string | Element, options: {
+    delay?: number;
+    duration?: number;
+    stagger?: number;
+  } = {}) {
+    const {
+      delay = 0,
+      duration = 0.8,
+      stagger = 0.05
+    } = options;
+
+    const target = typeof element === 'string' 
+      ? document.querySelector(element) 
+      : element;
+
+    if (!target || !(target instanceof HTMLElement)) return null;
+
+    const text = target.textContent || '';
+    const words = text.split(' ');
+    
+    // Store original content if not already wrapped
+    if (!target.querySelector('span')) {
+      target.innerHTML = words.map(word => 
+        `<span style="display: inline-block; opacity: 0; transform: translateY(20px);">${word}</span>`
+      ).join(' ');
+    }
+
+    const spans = target.querySelectorAll('span');
+
+    return gsap.to(spans, {
+      opacity: 1,
+      y: 0,
+      duration: duration,
+      stagger: stagger,
+      delay: delay,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse',
+      }
+    });
+  }
+
+  // Count up animation for numbers (classic stat reveal)
+  static countUp(element: string | Element, options: {
+    endValue: number;
+    duration?: number;
+    prefix?: string;
+    suffix?: string;
+    delay?: number;
+  }) {
+    const {
+      endValue,
+      duration = 2,
+      prefix = '',
+      suffix = '',
+      delay = 0
+    } = options;
+
+    const obj = { value: 0 };
+    const textElement = typeof element === 'string' 
+      ? document.querySelector(element) 
+      : element;
+
+    return ScrollTrigger.create({
+      trigger: element,
+      start: 'top 80%',
+      onEnter: () => {
+        gsap.to(obj, {
+          value: endValue,
+          duration: duration,
+          delay: delay,
+          ease: 'power2.out',
+          onUpdate: () => {
+            if (textElement) {
+              const rounded = Math.round(obj.value);
+              if (textElement instanceof HTMLElement) {
+                textElement.textContent = `${prefix}${rounded}${suffix}`;
+              }
+            }
+          }
+        });
+      }
+    });
+  }
+
+  // Elegant scale reveal with rotation (sophisticated entrance)
+  static elegantScaleIn(element: string | Element, options: {
+    delay?: number;
+    duration?: number;
+    scale?: number;
+  } = {}) {
+    const {
+      delay = 0,
+      duration = 1,
+      scale = 0.9
+    } = options;
+
+    return gsap.fromTo(element,
+      {
+        opacity: 0,
+        scale: scale,
+        rotation: -2,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: duration,
+        delay: delay,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        }
+      }
+    );
+  }
+
+  // Staggered children reveal (elegant for lists/grids)
+  static staggerChildren(element: string | Element, options: {
+    delay?: number;
+    duration?: number;
+    stagger?: number;
+    from?: 'start' | 'center' | 'end' | 'random';
+  } = {}) {
+    const {
+      delay = 0,
+      duration = 0.6,
+      stagger = 0.1,
+      from = 'start'
+    } = options;
+
+    const target = typeof element === 'string' 
+      ? document.querySelector(element) 
+      : element;
+
+    if (!target) return null;
+
+    const children = Array.from(target.children);
+
+    return gsap.fromTo(children,
+      {
+        opacity: 0,
+        y: 30,
+        scale: 0.95,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: duration,
+        stagger: {
+          amount: stagger * children.length,
+          from: from,
+        },
+        delay: delay,
+        ease: 'power2.out',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        }
+      }
+    );
+  }
+
+  // Parallax with elegant easing
+  static elegantParallax(element: string | Element, options: {
+    speed?: number;
+    direction?: 'up' | 'down';
+  } = {}) {
+    const {
+      speed = 0.5,
+      direction = 'down'
+    } = options;
+
+    const yPercent = direction === 'up' ? -50 * speed : 50 * speed;
+
+    return gsap.to(element, {
+      yPercent: yPercent,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: element,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1, // Smooth scrubbing
+      }
+    });
+  }
+
+  // Clip path reveal (very sophisticated)
+  static clipReveal(element: string | Element, options: {
+    delay?: number;
+    duration?: number;
+    direction?: 'left' | 'right' | 'top' | 'bottom';
+  } = {}) {
+    const {
+      delay = 0,
+      duration = 1.2,
+      direction = 'left'
+    } = options;
+
+    const clipMap = {
+      left: ['inset(0 100% 0 0)', 'inset(0 0% 0 0)'],
+      right: ['inset(0 0 0 100%)', 'inset(0 0 0 0%)'],
+      top: ['inset(100% 0 0 0)', 'inset(0% 0 0 0)'],
+      bottom: ['inset(0 0 100% 0)', 'inset(0 0 0% 0)'],
+    };
+
+    const [fromClip, toClip] = clipMap[direction];
+
+    return gsap.fromTo(element,
+      {
+        opacity: 0,
+        clipPath: fromClip,
+      },
+      {
+        opacity: 1,
+        clipPath: toClip,
+        duration: duration,
+        delay: delay,
+        ease: 'power2.inOut',
+        scrollTrigger: {
+          trigger: element,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        }
+      }
+    );
+  }
+
   // Create timeline with multiple animations
   static createTimeline(elements: {
     selector: string | Element;

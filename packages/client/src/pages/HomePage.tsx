@@ -12,37 +12,105 @@ import {
 
 const HomePage: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
+  const heroTitleRef = useRef<HTMLHeadingElement>(null);
+  const heroSubtitleRef = useRef<HTMLParagraphElement>(null);
+  const videoRef = useRef<HTMLDivElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
+  const featuresTitleRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
+  const statsNumbersRef = useRef<HTMLDivElement>(null);
+  const linksRef = useRef<HTMLDivElement>(null);
+  const linksTitleRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
+  const ctaTitleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    // Animate hero section
+    // Hero section - elegant fade with parallax background
     if (heroRef.current) {
-      GSAPScrollUtils.fadeInOnScroll(heroRef.current, { duration: 1.5 });
+      GSAPScrollUtils.elegantFadeIn(heroRef.current, { duration: 1.8, y: 30 });
     }
 
-    // Animate features section
+    // Hero title - split text reveal
+    if (heroTitleRef.current) {
+      GSAPScrollUtils.splitTextReveal(heroTitleRef.current, { delay: 0.2, stagger: 0.08 });
+    }
+
+    // Hero subtitle - elegant fade
+    if (heroSubtitleRef.current) {
+      GSAPScrollUtils.elegantFadeIn(heroSubtitleRef.current, { delay: 0.6, duration: 1.2, y: 20 });
+    }
+
+    // Video section - clip reveal from bottom
+    if (videoRef.current) {
+      GSAPScrollUtils.clipReveal(videoRef.current, { delay: 0.3, duration: 1.5, direction: 'bottom' });
+    }
+
+    // Features section title - split reveal
+    if (featuresTitleRef.current) {
+      GSAPScrollUtils.splitTextReveal(featuresTitleRef.current, { delay: 0.1, stagger: 0.06 });
+    }
+
+    // Features grid - staggered children reveal
     if (featuresRef.current) {
-      const features = featuresRef.current.querySelectorAll('.feature-card');
-      GSAPScrollUtils.createTimeline(
-        Array.from(features).map((feature, index) => ({
-          selector: feature,
-          animation: 'scaleIn',
-          delay: index * 0.2,
-          duration: 0.8
-        }))
-      );
+      GSAPScrollUtils.staggerChildren(featuresRef.current, { 
+        delay: 0.2, 
+        stagger: 0.1, 
+        duration: 0.7 
+      });
     }
 
-    // Animate stats section
+    // Stats section - elegant fade
     if (statsRef.current) {
-      GSAPScrollUtils.fadeInOnScroll(statsRef.current, { duration: 1 });
+      GSAPScrollUtils.elegantFadeIn(statsRef.current, { duration: 1.2 });
     }
 
-    // Animate CTA section
+    // Stats numbers - count up animation
+    if (statsNumbersRef.current) {
+      const stats = statsNumbersRef.current.querySelectorAll('.stat-number');
+      stats.forEach((stat, index) => {
+        const text = stat.textContent || '';
+        const number = parseInt(text.replace(/\D/g, ''));
+        const suffix = text.includes('%') ? '%' : text.includes('+') ? '+' : '';
+        
+        if (!isNaN(number)) {
+          GSAPScrollUtils.countUp(stat, {
+            endValue: number,
+            duration: 2,
+            delay: index * 0.15,
+            suffix: suffix
+          });
+        }
+      });
+    }
+
+    // Links section title - elegant fade
+    if (linksTitleRef.current) {
+      GSAPScrollUtils.elegantFadeIn(linksTitleRef.current, { duration: 1 });
+    }
+
+    // Links cards - staggered elegant scale
+    if (linksRef.current) {
+      GSAPScrollUtils.staggerChildren(linksRef.current, { 
+        delay: 0.2, 
+        stagger: 0.12, 
+        duration: 0.8 
+      });
+    }
+
+    // CTA title - split text reveal
+    if (ctaTitleRef.current) {
+      GSAPScrollUtils.splitTextReveal(ctaTitleRef.current, { delay: 0.1, stagger: 0.08 });
+    }
+
+    // CTA section - elegant fade
     if (ctaRef.current) {
-      GSAPScrollUtils.fadeInOnScroll(ctaRef.current, { duration: 1 });
+      GSAPScrollUtils.elegantFadeIn(ctaRef.current, { duration: 1.5, y: 30 });
+    }
+
+    // Parallax effect on hero background elements
+    const heroBg = heroRef.current?.querySelector('.hero-bg-decorative');
+    if (heroBg) {
+      GSAPScrollUtils.elegantParallax(heroBg, { speed: 0.3, direction: 'up' });
     }
   }, []);
 
@@ -97,15 +165,20 @@ const HomePage: React.FC = () => {
       {/* Hero Section */}
       <section ref={heroRef} className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-20"></div>
+        
+        {/* Decorative parallax element */}
+        <div className="hero-bg-decorative absolute top-20 right-10 w-96 h-96 bg-gradient-to-br from-yellow-400/20 to-orange-500/20 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 left-10 w-80 h-80 bg-gradient-to-br from-indigo-400/20 to-purple-500/20 rounded-full blur-3xl"></div>
+        
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <h1 ref={heroTitleRef} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               Welcome to
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
                 The Palace School
               </span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
+            <p ref={heroSubtitleRef} className="text-xl md:text-2xl mb-8 text-gray-200 leading-relaxed">
               Nurturing young minds for a brighter tomorrow through excellence in education, 
               character building, and holistic development.
             </p>
@@ -129,7 +202,7 @@ const HomePage: React.FC = () => {
         {/* Video placeholder for TRAILER - HOMEPAGE */}
         <div className="relative -mt-20 pb-20">
           <div className="container mx-auto px-6">
-            <div className="bg-gray-900 rounded-2xl shadow-2xl overflow-hidden">
+            <div ref={videoRef} className="bg-gray-900 rounded-2xl shadow-2xl overflow-hidden">
               <div className="aspect-video bg-gradient-to-r from-gray-800 to-gray-700 flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-20 h-20 bg-indigo-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -147,9 +220,9 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Features Section */}
-      <section ref={featuresRef} className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div ref={featuresTitleRef} className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Why Choose The Palace School?
             </h2>
@@ -159,7 +232,7 @@ const HomePage: React.FC = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={featuresRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => {
               const IconComponent = feature.icon;
               return (
@@ -186,10 +259,10 @@ const HomePage: React.FC = () => {
       {/* Stats Section */}
       <section ref={statsRef} className="py-20 bg-indigo-600 dark:bg-indigo-700">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div ref={statsNumbersRef} className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-white mb-2">
+                <div className="stat-number text-4xl md:text-5xl font-bold text-white mb-2">
                   {stat.number}
                 </div>
                 <div className="text-indigo-100 text-lg font-medium">
@@ -204,7 +277,7 @@ const HomePage: React.FC = () => {
       {/* Quick Links Section */}
       <section className="py-20 bg-gray-50 dark:bg-gray-800">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+          <div ref={linksTitleRef} className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Explore Our School
             </h2>
@@ -213,7 +286,7 @@ const HomePage: React.FC = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={linksRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Link
               to="/history"
               className="group bg-white dark:bg-gray-900 p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-indigo-500"
@@ -265,7 +338,7 @@ const HomePage: React.FC = () => {
       {/* Call to Action Section */}
       <section ref={ctaRef} className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 ref={ctaTitleRef} className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Join Our Community?
           </h2>
           <p className="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
