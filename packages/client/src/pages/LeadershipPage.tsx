@@ -27,15 +27,15 @@ const LeadershipPage: React.FC = () => {
       hasImage: true,
       link: '/leadership/princess-gaurav'
     },
-    {
-      id: 'hh-message',
-      title: 'His Highness\'s Message',
-      name: 'His Highness',
-      role: 'Royal Patron',
-      excerpt: 'Words of wisdom and guidance for our educational journey...',
-      image: '/api/placeholder/400/300',
-      link: '/leadership/hh-message'
-    },
+    // {
+    //   id: 'hh-message',
+    //   title: 'His Highness\'s Message',
+    //   name: 'His Highness',
+    //   role: 'Royal Patron',
+    //   excerpt: 'Words of wisdom and guidance for our educational journey...',
+    //   image: '/api/placeholder/400/300',
+    //   link: '/leadership/hh-message'
+    // },
     {
       id: 'rajmata-sahib',
       title: 'Message from The Chairperson',

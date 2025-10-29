@@ -25,6 +25,9 @@ const HomePage: React.FC = () => {
   const ctaTitleRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
+    // Cleanup: kill any existing scroll triggers before creating new ones
+    GSAPScrollUtils.cleanup();
+    
     // Hero section - elegant fade with parallax background
     if (heroRef.current) {
       GSAPScrollUtils.elegantFadeIn(heroRef.current, { duration: 1.8, y: 30 });
@@ -40,9 +43,15 @@ const HomePage: React.FC = () => {
       GSAPScrollUtils.elegantFadeIn(heroSubtitleRef.current, { delay: 0.6, duration: 1.2, y: 20 });
     }
 
-    // Video section - clip reveal from bottom
+    // Video section - scroll width scale animation
     if (videoRef.current) {
-      GSAPScrollUtils.clipReveal(videoRef.current, { delay: 0.3, duration: 1.5, direction: 'bottom' });
+      GSAPScrollUtils.scrollWidthScale(videoRef.current, {
+        startWidth: '50vw',
+        endWidth: '100vw',
+        scrub: true,
+        start: 'top bottom',
+        end: 'center center'
+      });
     }
 
     // Features section title - split reveal
@@ -112,6 +121,11 @@ const HomePage: React.FC = () => {
     if (heroBg) {
       GSAPScrollUtils.elegantParallax(heroBg, { speed: 0.3, direction: 'up' });
     }
+    
+    // Cleanup function
+    return () => {
+      GSAPScrollUtils.cleanup();
+    };
   }, []);
 
   const features = [

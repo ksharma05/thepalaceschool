@@ -439,6 +439,130 @@ export class GSAPScrollUtils {
     );
   }
 
+  // Scroll-based width scale animation (for trailer/hero elements)
+  static scrollWidthScale(element: string | Element, options: {
+    startWidth?: string;
+    endWidth?: string;
+    scrub?: boolean;
+    start?: string;
+    end?: string;
+    ease?: string;
+  } = {}) {
+    const {
+      startWidth = 'auto',
+      endWidth = '100vw',
+      scrub = true,
+      start = 'top bottom',
+      end = 'center center',
+      ease = 'none'
+    } = options;
+
+    const target = typeof element === 'string' 
+      ? document.querySelector(element) 
+      : element;
+
+    if (!target || !(target instanceof HTMLElement)) return null;
+
+    // Calculate initial width based on viewport units
+    let initialWidth: number;
+    if (startWidth === '50vw') {
+      // For 50vw, calculate 50% of viewport width directly
+      initialWidth = window.innerWidth * 0.5;
+    } else if (startWidth.endsWith('vw')) {
+      // Handle other viewport width units
+      const vwValue = parseFloat(startWidth);
+      initialWidth = (window.innerWidth * vwValue) / 100;
+    } else if (startWidth === 'auto') {
+      // For auto, get the element's natural width
+      initialWidth = target.offsetWidth;
+    } else {
+      // For pixel or other units, parse directly
+      initialWidth = parseInt(startWidth) || target.offsetWidth;
+    }
+
+    // Get final width
+    let finalWidth: number;
+    if (endWidth === '100vw') {
+      finalWidth = window.innerWidth;
+    } else if (endWidth.endsWith('vw')) {
+      const vwValue = parseFloat(endWidth);
+      finalWidth = (window.innerWidth * vwValue) / 100;
+    } else {
+      finalWidth = parseInt(endWidth) || window.innerWidth;
+    }
+
+    // Reset and set initial state - ensure clean start with no transforms
+    gsap.set(target, { 
+      clearProps: 'all',
+      width: `${initialWidth}px`,
+      x: 0
+    });
+
+    // Get the initial centered position of the element (within its container)
+    const container = target.parentElement;
+    if (!container) return null;
+
+    // Wait one frame for layout to settle, then calculate and create animation
+    let animationInstance: gsap.core.Tween | null = null;
+    
+    requestAnimationFrame(() => {
+      // Position relative to viewport, not container
+      // We want the element to be centered in the viewport at all times
+      
+      // At start (50vw): element should be centered in viewport
+      // So left edge should be at: viewportCenter - initialWidth/2
+      const viewportCenter = window.innerWidth / 2;
+      const initialLeftEdge = viewportCenter - (initialWidth / 2);
+      
+      // Get the container's position to calculate relative shift
+      const container = target.parentElement;
+      if (!container) return null;
+      
+      const containerRect = container.getBoundingClientRect();
+      const containerPadding = parseInt(window.getComputedStyle(container).paddingLeft || '0');
+      
+      // The element starts at 0 within the container (after margin auto)
+      // We need to shift it to the left to position it at initialLeftEdge
+      const containerLeftEdge = containerRect.left + containerPadding;
+      const initialShift = initialLeftEdge - containerLeftEdge;
+      
+      // Width increases by (finalWidth - initialWidth)
+      // To keep center fixed, we need to move left by half the increase
+      const widthIncrease = finalWidth - initialWidth;
+      
+      // As the element expands from 50vw to 100vw, it grows equally on both sides
+      // from its center. To maintain the center at viewport center, we need to
+      // shift left by half the width increase
+      const adjustedFinalShift = initialShift - (widthIncrease / 2);
+
+      // Create animation with proper initial state
+      animationInstance = gsap.fromTo(target, 
+        {
+          width: initialWidth,
+          x: initialShift,
+          immediateRender: false
+        },
+        {
+          width: finalWidth,
+          x: adjustedFinalShift,
+          ease: ease,
+          scrollTrigger: {
+            trigger: target,
+            start: start,
+            end: end,
+            scrub: scrub,
+            markers: false,
+            invalidateOnRefresh: false,
+          }
+        }
+      );
+    });
+
+    // Return a placeholder that will be replaced, or just return the target set operation
+    // The actual animation will be created in the next frame
+    return animationInstance || gsap.set(target, {}) as any;
+  }
+
   // Create timeline with multiple animations
   static createTimeline(elements: {
     selector: string | Element;
