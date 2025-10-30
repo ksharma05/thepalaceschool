@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGSAP } from '../../hooks/useGSAP';
 import { Link } from 'react-router-dom';
-import { HeartIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import rajmataPadminiDeviImage from '../../assets/HH Rajmata Padmini Devi .jpg';
 
 const RajmataSahibPage: React.FC = () => {

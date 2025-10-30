@@ -4,8 +4,6 @@ import {
   ShareIcon, 
   ChatBubbleLeftRightIcon,
   PhotoIcon,
-  VideoCameraIcon,
-  DocumentTextIcon,
   UserGroupIcon
 } from '@heroicons/react/24/outline';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useGSAP } from '../../hooks/useGSAP';
 import { Link } from 'react-router-dom';
-import { UserCircleIcon, ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import lakshrajPrakashImage from '../../assets/HH Maharaja Lakshraj Prakash.jpg';
 
 const HHMaharajaLakshrajPrakashPage: React.FC = () => {
