@@ -8,9 +8,9 @@ const HHMessagePage: React.FC = () => {
   const contentRef = useGSAP({ animation: 'slideInLeft', delay: 0.2 });
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-amber-900 via-yellow-900 to-amber-900 text-white py-24">
+      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
@@ -20,7 +20,7 @@ const HHMessagePage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               His Highness's Message
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
               Words of wisdom and guidance for our educational journey
             </p>
           </div>
@@ -28,115 +28,98 @@ const HHMessagePage: React.FC = () => {
       </section>
 
       {/* Content Section */}
-      <section ref={contentRef} className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section ref={contentRef} className="py-20 bg-bg-secondary">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             {/* Back Button */}
             <Link
               to="/leadership"
-              className="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 mb-8 transition-colors"
+              className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-8 transition-colors"
             >
               <ArrowLeftIcon className="h-5 w-5 mr-2" />
               Back to Leadership
             </Link>
 
             {/* Message Content */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 md:p-12 border border-gray-100 dark:border-gray-700">
+            <div className="bg-surface-primary rounded-xl shadow-lg p-8 md:p-12 border border-border-primary">
               <div className="text-center mb-12">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
                   A Message from His Highness
                 </h2>
-                <p className="text-xl text-amber-600 dark:text-amber-400 font-semibold">
+                <p className="text-xl text-primary-600 font-semibold">
                   Royal Patron
                 </p>
               </div>
 
-              <div className="prose prose-lg dark:prose-invert max-w-none">
-                <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
-                  <p className="text-xl font-medium text-amber-600 dark:text-amber-400">
-                    "True leadership is not about power, but about service; not about ruling, 
-                    but about inspiring others to reach their highest potential."
+              <div className="prose prose-lg max-w-none">
+                <div className="space-y-6 text-text-secondary leading-relaxed">
+                  <p>
+                    Dear Students, Parents, and Faculty,
+                  </p>
+                  
+                  <p>
+                    It is with great pride and joy that I address the extended family of The Palace School. 
+                    Education has always been the cornerstone of progress and development, and it is our 
+                    collective responsibility to ensure that we provide the best possible learning environment 
+                    for our students.
                   </p>
 
                   <p>
-                    It is with great pride and joy that I extend my warmest greetings to the 
-                    students, parents, faculty, and staff of The Palace School. This institution 
-                    represents not just a place of learning, but a sanctuary where young minds 
-                    are nurtured to become the leaders of tomorrow.
+                    The Palace School stands as a testament to our commitment to excellence in education. 
+                    We believe in nurturing not just academic brilliance, but also character, values, and 
+                    a sense of responsibility towards society. Our students are the future leaders, 
+                    innovators, and change-makers, and it is our duty to equip them with the knowledge 
+                    and wisdom they need to make a positive impact on the world.
                   </p>
 
                   <p>
-                    Education has always been the cornerstone of progress and prosperity. At 
-                    The Palace School, we have created an environment where traditional values 
-                    meet modern innovation, where character development goes hand in hand with 
-                    academic excellence. Our commitment is to provide an education that prepares 
-                    students not just for examinations, but for life itself.
+                    As we continue on this journey of educational excellence, I encourage each student to 
+                    embrace every opportunity for learning and growth. Challenge yourselves, pursue your 
+                    passions, and always remember that true success lies not just in personal achievement, 
+                    but in contributing to the betterment of society.
                   </p>
 
                   <p>
-                    In today's rapidly changing world, it is essential that our students develop 
-                    not only knowledge and skills, but also wisdom, compassion, and a strong 
-                    moral compass. These qualities, combined with academic excellence, will 
-                    enable them to contribute meaningfully to society and to lead with integrity.
+                    To the parents and guardians, I thank you for entrusting us with the education and 
+                    development of your children. Your support and involvement in their educational journey 
+                    is invaluable, and together, we can create an environment where every child can thrive.
                   </p>
 
                   <p>
-                    I am proud of the achievements of our students and the dedication of our 
-                    faculty. Together, they have created a legacy of excellence that continues 
-                    to inspire and motivate. The Palace School stands as a testament to what 
-                    can be achieved when we combine vision with action, tradition with innovation.
+                    To our dedicated faculty and staff, I express my deepest gratitude for your unwavering 
+                    commitment to educational excellence. Your passion, dedication, and hard work shape the 
+                    future of our students and, by extension, our society.
                   </p>
 
                   <p>
-                    To our students, I say: Dream big, work hard, and never lose sight of your 
-                    values. To our parents, I express my gratitude for entrusting us with your 
-                    most precious treasures. To our faculty, I commend your dedication and 
-                    commitment to excellence.
+                    May The Palace School continue to be a beacon of knowledge, wisdom, and values for 
+                    generations to come.
                   </p>
+                </div>
 
-                  <p>
-                    May The Palace School continue to be a beacon of light, guiding young minds 
-                    towards a future filled with promise and possibility.
+                {/* Signature Block */}
+                <div className="mt-12 pt-8 border-t border-border-primary">
+                  <p className="text-lg font-semibold text-text-primary mb-1">
+                    With warm regards,
                   </p>
-
-                  <div className="text-right mt-8">
-                    <p className="text-lg font-semibold text-gray-900 dark:text-white">
-                      His Highness
-                    </p>
-                    <p className="text-amber-600 dark:text-amber-400">
-                      Royal Patron
-                    </p>
-                  </div>
+                  <p className="text-xl font-bold text-primary-600">
+                    His Highness
+                  </p>
+                  <p className="text-primary-600 font-medium">
+                    Royal Patron, The Palace School
+                  </p>
                 </div>
               </div>
             </div>
 
-            {/* Additional Info */}
-            <div className="mt-12 bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Royal Patronage
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                  <h4 className="text-lg font-semibold text-amber-600 dark:text-amber-400 mb-3">
-                    Visionary Leadership
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    His Highness has been instrumental in establishing The Palace School as 
-                    a center of educational excellence, providing guidance and support for 
-                    our mission.
-                  </p>
-                </div>
-                <div>
-                  <h4 className="text-lg font-semibold text-amber-600 dark:text-amber-400 mb-3">
-                    Community Service
-                  </h4>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    Under royal patronage, the school has undertaken numerous community 
-                    service initiatives and educational outreach programs.
-                  </p>
-                </div>
-              </div>
+            {/* Call to Action */}
+            <div className="mt-12 text-center">
+              <Link
+                to="/contact"
+                className="inline-block bg-primary-600 hover:bg-primary-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl"
+              >
+                Get in Touch
+              </Link>
             </div>
           </div>
         </div>

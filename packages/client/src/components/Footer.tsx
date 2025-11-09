@@ -28,37 +28,37 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 dark:bg-black text-white">
+    <footer className="bg-bg-tertiary text-text-inverse">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* School Info */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="h-12 w-12 bg-indigo-600 rounded-lg flex items-center justify-center">
+              <div className="h-12 w-12 bg-primary-600 rounded-lg flex items-center justify-center">
                 <AcademicCapIcon className="h-8 w-8 text-white" />
               </div>
               <div>
                 <h3 className="text-2xl font-bold">The Palace School</h3>
-                <p className="text-gray-400">Excellence in Education</p>
+                <p className="text-text-secondary">Excellence in Education</p>
               </div>
             </div>
-            <p className="text-gray-300 mb-6 max-w-md">
+            <p className="text-text-secondary mb-6 max-w-md">
               Nurturing young minds for a brighter tomorrow through excellence in education, 
               character building, and holistic development.
             </p>
             
             {/* Contact Info */}
             <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-gray-300">
-                <MapPinIcon className="h-5 w-5 text-indigo-400" />
+              <div className="flex items-center space-x-3 text-text-secondary">
+                <MapPinIcon className="h-5 w-5 text-primary-400" />
                 <span>Palace School Campus, City, State</span>
               </div>
-              <div className="flex items-center space-x-3 text-gray-300">
-                <PhoneIcon className="h-5 w-5 text-indigo-400" />
+              <div className="flex items-center space-x-3 text-text-secondary">
+                <PhoneIcon className="h-5 w-5 text-primary-400" />
                 <span>+1 (555) 123-4567</span>
               </div>
-              <div className="flex items-center space-x-3 text-gray-300">
-                <EnvelopeIcon className="h-5 w-5 text-indigo-400" />
+              <div className="flex items-center space-x-3 text-text-secondary">
+                <EnvelopeIcon className="h-5 w-5 text-primary-400" />
                 <span>info@palaceschool.edu</span>
               </div>
             </div>
@@ -66,13 +66,13 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-6 text-text-primary">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.href}
-                    className="text-gray-300 hover:text-indigo-400 transition-colors duration-200"
+                    className="text-text-secondary hover:text-primary-400 transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -83,17 +83,17 @@ const Footer: React.FC = () => {
 
           {/* Social Media */}
           <div>
-            <h4 className="text-lg font-semibold mb-6">Follow Us</h4>
+            <h4 className="text-lg font-semibold mb-6 text-text-primary">Follow Us</h4>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
-                  className="bg-gray-800 hover:bg-indigo-600 p-3 rounded-lg transition-colors duration-200 group"
+                  className="bg-surface-secondary hover:bg-primary-600 p-3 rounded-lg transition-colors duration-200 group"
                   aria-label={social.name}
                 >
                   <svg
-                    className="h-5 w-5 text-gray-400 group-hover:text-white"
+                    className="h-5 w-5 text-text-tertiary group-hover:text-white"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -105,14 +105,14 @@ const Footer: React.FC = () => {
             
             {/* Newsletter Signup */}
             <div className="mt-6">
-              <h5 className="text-sm font-semibold mb-3">Stay Updated</h5>
+              <h5 className="text-sm font-semibold mb-3 text-text-primary">Stay Updated</h5>
               <div className="flex">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-3 py-2 bg-gray-800 border border-gray-700 rounded-l-lg text-white placeholder-gray-400 focus:outline-none focus:border-indigo-500"
+                  className="flex-1 px-3 py-2 bg-surface-secondary border border-border-secondary rounded-l-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:border-border-focus"
                 />
-                <button className="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-r-lg transition-colors duration-200">
+                <button className="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-r-lg transition-colors duration-200 text-white">
                   Subscribe
                 </button>
               </div>
@@ -121,16 +121,16 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-800 mt-12 pt-8">
+        <div className="border-t border-border-secondary mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
+            <p className="text-text-tertiary text-sm">
               &copy; {currentYear} The Palace School. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-gray-400 hover:text-indigo-400 text-sm transition-colors">
+              <Link to="/privacy" className="text-text-tertiary hover:text-primary-400 text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-gray-400 hover:text-indigo-400 text-sm transition-colors">
+              <Link to="/terms" className="text-text-tertiary hover:text-primary-400 text-sm transition-colors">
                 Terms of Service
               </Link>
             </div>

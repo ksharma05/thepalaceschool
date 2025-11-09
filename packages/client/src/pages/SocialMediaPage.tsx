@@ -114,9 +114,9 @@ const SocialMediaPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white py-24">
+      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
@@ -124,7 +124,7 @@ const SocialMediaPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Our Social Media
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
               Stay connected with The Palace School community across all platforms
             </p>
           </div>
@@ -132,20 +132,20 @@ const SocialMediaPage: React.FC = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section className="py-20 bg-bg-secondary">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {socialMediaStats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
                 <div key={index} className="text-center">
-                  <div className="bg-indigo-600 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-primary-600 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <IconComponent className="h-8 w-8 text-white" />
                   </div>
-                  <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                  <div className="text-3xl font-bold text-text-primary mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-gray-600 dark:text-gray-300 text-sm">
+                  <div className="text-text-secondary text-sm">
                     {stat.label}
                   </div>
                 </div>
@@ -156,13 +156,13 @@ const SocialMediaPage: React.FC = () => {
       </section>
 
       {/* Social Platforms Section */}
-      <section ref={platformsRef} className="py-20 bg-white dark:bg-gray-900">
+      <section ref={platformsRef} className="py-20 bg-bg-primary">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Follow Us on Social Media
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
+            <p className="text-xl text-text-secondary">
               Connect with us across all major platforms
             </p>
           </div>
@@ -174,7 +174,7 @@ const SocialMediaPage: React.FC = () => {
                 href={platform.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-gray-50 dark:bg-gray-800 p-6 rounded-xl hover:shadow-lg transition-all duration-300 border border-gray-100 dark:border-gray-700 hover:border-indigo-500"
+                className="group bg-surface-secondary p-6 rounded-xl hover:shadow-lg transition-all duration-300 border border-border-primary hover:border-primary-500"
               >
                 <div className="flex items-center mb-4">
                   <div className={`${platform.color} w-12 h-12 rounded-lg flex items-center justify-center mr-4`}>
@@ -183,22 +183,22 @@ const SocialMediaPage: React.FC = () => {
                     </svg>
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                    <h3 className="text-lg font-bold text-text-primary group-hover:text-primary-600 transition-colors">
                       {platform.name}
                     </h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                    <p className="text-sm text-text-secondary">
                       {platform.handle}
                     </p>
                   </div>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mb-3">
+                <p className="text-text-secondary text-sm mb-3">
                   {platform.description}
                 </p>
                 <div className="flex justify-between items-center">
-                  <span className="text-indigo-600 dark:text-indigo-400 font-semibold text-sm">
+                  <span className="text-primary-600 font-semibold text-sm">
                     {platform.followers} followers
                   </span>
-                  <span className="text-gray-500 dark:text-gray-400 text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  <span className="text-text-tertiary text-sm group-hover:text-primary-600 transition-colors">
                     Follow →
                   </span>
                 </div>
@@ -209,13 +209,13 @@ const SocialMediaPage: React.FC = () => {
       </section>
 
       {/* Recent Posts Section */}
-      <section ref={galleryRef} className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section ref={galleryRef} className="py-20 bg-bg-secondary">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Recent Posts
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
+            <p className="text-xl text-text-secondary">
               Latest updates from our social media channels
             </p>
           </div>
@@ -224,31 +224,31 @@ const SocialMediaPage: React.FC = () => {
             {recentPosts.map((post, index) => (
               <div
                 key={index}
-                className="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-gray-100 dark:border-gray-700"
+                className="bg-surface-primary rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-border-primary"
               >
-                <div className="aspect-w-16 aspect-h-9 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-600 dark:to-gray-700 p-8 flex items-center justify-center">
-                  <PhotoIcon className="h-16 w-16 text-gray-400 dark:text-gray-500" />
+                <div className="aspect-w-16 aspect-h-9 bg-gradient-to-br from-primary-200 to-secondary-200 p-8 flex items-center justify-center">
+                  <PhotoIcon className="h-16 w-16 text-primary-400" />
                 </div>
                 <div className="p-6">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-sm font-semibold text-indigo-600 dark:text-indigo-400">
+                    <span className="text-sm font-semibold text-primary-600">
                       {post.platform}
                     </span>
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                    <span className="text-xs text-text-tertiary">
                       {post.date}
                     </span>
                   </div>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm mb-4">
+                  <p className="text-text-primary text-sm mb-4">
                     {post.content}
                   </p>
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                    <div className="flex items-center text-text-tertiary text-sm">
                       <svg className="h-4 w-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" />
                       </svg>
                       {post.likes}
                     </div>
-                    <span className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer">
+                    <span className="text-xs text-primary-600 hover:underline cursor-pointer">
                       View Post →
                     </span>
                   </div>
@@ -260,12 +260,12 @@ const SocialMediaPage: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section ref={updatesRef} className="py-20 bg-gradient-to-r from-indigo-600 to-purple-600">
+      <section ref={updatesRef} className="py-20 bg-gradient-to-r from-cta-gradient-start to-cta-gradient-end">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Stay Connected
           </h2>
-          <p className="text-xl text-indigo-100 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-stats-accent mb-8 max-w-2xl mx-auto">
             Follow us on social media to stay updated with school news, events, 
             and student achievements.
           </p>
@@ -274,7 +274,7 @@ const SocialMediaPage: React.FC = () => {
               href="https://instagram.com/thepalaceschool"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl"
+              className="bg-white text-primary-600 hover:bg-bg-secondary px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl"
             >
               Follow on Instagram
             </a>
@@ -282,7 +282,7 @@ const SocialMediaPage: React.FC = () => {
               href="https://facebook.com/ThePalaceSchool"
               target="_blank"
               rel="noopener noreferrer"
-              className="border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300"
+              className="border-2 border-white text-white hover:bg-white hover:text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold transition-colors duration-300"
             >
               Like on Facebook
             </a>

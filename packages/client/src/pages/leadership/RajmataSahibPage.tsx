@@ -9,9 +9,9 @@ const RajmataSahibPage: React.FC = () => {
   const contentRef = useGSAP({ animation: 'slideInLeft', delay: 0.2 });
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-rose-900 via-pink-900 to-rose-900 text-white py-24">
+      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
@@ -33,20 +33,20 @@ const RajmataSahibPage: React.FC = () => {
       </section>
 
       {/* Content Section */}
-      <section ref={contentRef} className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section ref={contentRef} className="py-20 bg-bg-secondary">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             {/* Back Button */}
             <Link
               to="/leadership"
-              className="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 mb-8 transition-colors"
+              className="inline-flex items-center text-primary-600 hover:text-indigo-800 dark:hover:text-indigo-300 mb-8 transition-colors"
             >
               <ArrowLeftIcon className="h-5 w-5 mr-2" />
               Back to Leadership
             </Link>
 
             {/* Message Content */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 md:p-12 border border-gray-100 dark:border-gray-700">
+            <div className="bg-surface-primary rounded-xl shadow-lg p-8 md:p-12 border border-border-primary">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div className="md:col-span-1">
                   <img
@@ -57,13 +57,13 @@ const RajmataSahibPage: React.FC = () => {
                 </div>
                 <div className="md:col-span-2 flex items-center">
                   <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
                       Message from The Chairperson
                     </h2>
-                    <p className="text-xl text-rose-600 dark:text-rose-400 font-semibold">
+                    <p className="text-xl text-primary-600 font-semibold">
                       HH Rajmata Padmini Devi
                     </p>
-                    <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
+                    <p className="text-lg text-text-secondary mt-2">
                       Chairperson, The Palace School
                     </p>
                   </div>
@@ -71,7 +71,7 @@ const RajmataSahibPage: React.FC = () => {
               </div>
 
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+                <div className="space-y-6 text-text-secondary leading-relaxed">
                   <p>
                     As Chairperson of The Palace School, it gives me immense joy to see the vision of my daughter, Diya Kumari, flourish into a nationally acclaimed institution. From its beginnings in 2001, the school has grown with dedication, values, and a commitment to excellence.
                   </p>
@@ -84,14 +84,14 @@ const RajmataSahibPage: React.FC = () => {
                     Today, seeing young minds thrive here reaffirms that decision, as the Palace's rich history blends seamlessly with modern education, shaping confident and well-rounded individuals.
                   </p>
 
-                  <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                    <p className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                  <div className="mt-8 pt-6 border-t border-border-primary">
+                    <p className="text-lg font-semibold text-text-primary mb-1">
                       HH Rajmata Padmini Devi
                     </p>
-                    <p className="text-rose-600 dark:text-rose-400 font-medium">
+                    <p className="text-primary-600 font-medium">
                       Chairperson
                     </p>
-                    <p className="text-rose-600 dark:text-rose-400 font-medium">
+                    <p className="text-primary-600 font-medium">
                       The Palace School
                     </p>
                   </div>
@@ -100,13 +100,13 @@ const RajmataSahibPage: React.FC = () => {
             </div>
 
             {/* Additional Info */}
-            <div className="mt-12 bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <div className="mt-12 bg-surface-primary rounded-xl shadow-lg p-8 border border-border-primary">
+              <h3 className="text-2xl font-bold text-text-primary mb-6">
                 About HH Rajmata Padmini Devi
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="text-lg font-semibold text-rose-600 dark:text-rose-400 mb-3">
+                  <h4 className="text-lg font-semibold text-primary-600 mb-3">
                     Visionary Leadership
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">
@@ -116,7 +116,7 @@ const RajmataSahibPage: React.FC = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-rose-600 dark:text-rose-400 mb-3">
+                  <h4 className="text-lg font-semibold text-primary-600 mb-3">
                     Royal Heritage & Modern Education
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">

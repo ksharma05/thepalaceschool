@@ -55,16 +55,16 @@ const HistoryPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 text-white py-24">
+      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Our Rich Heritage
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
               Discover the journey that has shaped The Palace School into a beacon of 
               educational excellence and character building.
             </p>
@@ -73,13 +73,13 @@ const HistoryPage: React.FC = () => {
       </section>
 
       {/* Timeline Section */}
-      <section ref={timelineRef} className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section ref={timelineRef} className="py-20 bg-bg-secondary">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Our Journey Through Time
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
               From humble beginnings to becoming a premier educational institution, 
               our journey has been marked by continuous growth and excellence.
             </p>
@@ -87,7 +87,7 @@ const HistoryPage: React.FC = () => {
 
           <div className="relative">
             {/* Timeline line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-indigo-200 dark:bg-indigo-800"></div>
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-primary-200"></div>
             
             <div className="space-y-12">
               {milestones.map((milestone, index) => {
@@ -97,26 +97,26 @@ const HistoryPage: React.FC = () => {
                 return (
                   <div key={index} className={`flex items-center ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}>
                     <div className={`w-1/2 ${isLeft ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                      <div className="bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700">
+                      <div className="bg-surface-primary p-6 rounded-lg shadow-lg border border-border-primary">
                         <div className={`flex items-center ${isLeft ? 'justify-end' : 'justify-start'} mb-4`}>
-                          <div className="bg-indigo-600 p-3 rounded-lg mr-3">
+                          <div className="bg-primary-600 p-3 rounded-lg mr-3">
                             <IconComponent className="h-6 w-6 text-white" />
                           </div>
-                          <span className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+                          <span className="text-2xl font-bold text-primary-600">
                             {milestone.year}
                           </span>
                         </div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                        <h3 className="text-xl font-bold text-text-primary mb-2">
                           {milestone.title}
                         </h3>
-                        <p className="text-gray-600 dark:text-gray-300">
+                        <p className="text-text-secondary">
                           {milestone.description}
                         </p>
                       </div>
                     </div>
                     
                     {/* Timeline dot */}
-                    <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-indigo-600 rounded-full border-4 border-white dark:border-gray-900"></div>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-primary-600 rounded-full border-4 border-bg-primary"></div>
                     
                     <div className="w-1/2"></div>
                   </div>
@@ -128,13 +128,13 @@ const HistoryPage: React.FC = () => {
       </section>
 
       {/* Values Section */}
-      <section ref={valuesRef} className="py-20 bg-white dark:bg-gray-900">
+      <section ref={valuesRef} className="py-20 bg-bg-primary">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Our Core Values
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+            <p className="text-xl text-text-secondary max-w-3xl mx-auto">
               These fundamental principles guide everything we do and shape the character 
               of our students and community.
             </p>
@@ -144,12 +144,12 @@ const HistoryPage: React.FC = () => {
             {values.map((value, index) => (
               <div
                 key={index}
-                className="bg-gray-50 dark:bg-gray-800 p-8 rounded-xl border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300"
+                className="bg-surface-secondary p-8 rounded-xl border border-border-primary hover:shadow-lg transition-shadow duration-300"
               >
-                <h3 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-4">
+                <h3 className="text-2xl font-bold text-primary-600 mb-4">
                   {value.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-text-secondary leading-relaxed">
                   {value.description}
                 </p>
               </div>
@@ -159,13 +159,13 @@ const HistoryPage: React.FC = () => {
       </section>
 
       {/* Achievements Section */}
-      <section ref={achievementsRef} className="py-20 bg-indigo-600 dark:bg-indigo-700">
+      <section ref={achievementsRef} className="py-20 bg-stats-bg">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Our Achievements
             </h2>
-            <p className="text-xl text-indigo-100 max-w-3xl mx-auto">
+            <p className="text-xl text-stats-accent max-w-3xl mx-auto">
               Over the years, we have achieved numerous milestones and recognitions 
               that reflect our commitment to excellence.
             </p>
@@ -174,15 +174,15 @@ const HistoryPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <div className="text-5xl font-bold text-white mb-2">25+</div>
-              <div className="text-indigo-100 text-lg">Years of Excellence</div>
+              <div className="text-stats-accent text-lg">Years of Excellence</div>
             </div>
             <div className="text-center">
               <div className="text-5xl font-bold text-white mb-2">2000+</div>
-              <div className="text-indigo-100 text-lg">Successful Alumni</div>
+              <div className="text-stats-accent text-lg">Successful Alumni</div>
             </div>
             <div className="text-center">
               <div className="text-5xl font-bold text-white mb-2">95%</div>
-              <div className="text-indigo-100 text-lg">Board Exam Success</div>
+              <div className="text-stats-accent text-lg">Board Exam Success</div>
             </div>
           </div>
         </div>

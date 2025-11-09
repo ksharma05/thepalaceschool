@@ -9,9 +9,9 @@ const PrincessGauravPage: React.FC = () => {
   const contentRef = useGSAP({ animation: 'slideInLeft', delay: 0.2 });
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-purple-900 via-indigo-900 to-purple-900 text-white py-24">
+      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
@@ -25,7 +25,7 @@ const PrincessGauravPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Message From The Treasurer
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
               Princess Gauravi Kumari
             </p>
           </div>
@@ -33,20 +33,20 @@ const PrincessGauravPage: React.FC = () => {
       </section>
 
       {/* Content Section */}
-      <section ref={contentRef} className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section ref={contentRef} className="py-20 bg-bg-secondary">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             {/* Back Button */}
             <Link
               to="/leadership"
-              className="inline-flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 mb-8 transition-colors"
+              className="inline-flex items-center text-primary-600 hover:text-indigo-800 dark:hover:text-indigo-300 mb-8 transition-colors"
             >
               <ArrowLeftIcon className="h-5 w-5 mr-2" />
               Back to Leadership
             </Link>
 
             {/* Message Content */}
-            <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 md:p-12 border border-gray-100 dark:border-gray-700">
+            <div className="bg-surface-primary rounded-xl shadow-lg p-8 md:p-12 border border-border-primary">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div className="md:col-span-1">
                   <img
@@ -57,13 +57,13 @@ const PrincessGauravPage: React.FC = () => {
                 </div>
                 <div className="md:col-span-2 flex items-center">
                   <div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
                       Message From The Treasurer
                     </h2>
-                    <p className="text-xl text-indigo-600 dark:text-indigo-400 font-semibold">
+                    <p className="text-xl text-primary-600 font-semibold">
                       Princess Gauravi Kumari
                     </p>
-                    <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
+                    <p className="text-lg text-text-secondary mt-2">
                       Treasurer, School Management Committee
                     </p>
                   </div>
@@ -71,7 +71,7 @@ const PrincessGauravPage: React.FC = () => {
               </div>
 
               <div className="prose prose-lg dark:prose-invert max-w-none">
-                <div className="space-y-6 text-gray-700 dark:text-gray-300 leading-relaxed">
+                <div className="space-y-6 text-text-secondary leading-relaxed">
                   <p>
                     As an alumna of The Palace School and now serving as Treasurer of its School Management Committee, I feel immense pride and joy in witnessing the school's remarkable growth. Having studied here till Class 3, when the school offered only pre-primary and early primary classes, it is truly heartwarming to see how far this institution—founded by my mother, Diya Kumari—has advanced in both scale and spirit.
                   </p>
@@ -80,17 +80,17 @@ const PrincessGauravPage: React.FC = () => {
                     The Palace School continues to embody her vision of holistic education rooted in values, creativity, and excellence. I am deeply committed to contributing to its ongoing journey and look forward to being an active part of its continued progress and success.
                   </p>
 
-                  <div className="text-right mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-                    <p className="text-lg font-semibold text-gray-900 dark:text-white">
+                  <div className="text-right mt-8 pt-6 border-t border-border-primary">
+                    <p className="text-lg font-semibold text-text-primary">
                       Princess Gauravi Kumari
                     </p>
-                    <p className="text-indigo-600 dark:text-indigo-400 font-medium">
+                    <p className="text-primary-600 font-medium">
                       Treasurer
                     </p>
-                    <p className="text-indigo-600 dark:text-indigo-400 font-medium">
+                    <p className="text-primary-600 font-medium">
                       The Palace School
                     </p>
-                    <p className="text-indigo-600 dark:text-indigo-400 font-medium">
+                    <p className="text-primary-600 font-medium">
                       School Management Committee
                     </p>
                   </div>
@@ -99,13 +99,13 @@ const PrincessGauravPage: React.FC = () => {
             </div>
 
             {/* Additional Info */}
-            <div className="mt-12 bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border border-gray-100 dark:border-gray-700">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+            <div className="mt-12 bg-surface-primary rounded-xl shadow-lg p-8 border border-border-primary">
+              <h3 className="text-2xl font-bold text-text-primary mb-6">
                 About Princess Gauravi Kumari
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                  <h4 className="text-lg font-semibold text-primary-600 mb-3">
                     Alumna & Treasurer
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">
@@ -115,7 +115,7 @@ const PrincessGauravPage: React.FC = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                  <h4 className="text-lg font-semibold text-primary-600 mb-3">
                     Continuing the Vision
                   </h4>
                   <p className="text-gray-600 dark:text-gray-300">

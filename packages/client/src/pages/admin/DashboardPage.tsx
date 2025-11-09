@@ -142,7 +142,7 @@ const DashboardPage: React.FC = () => {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-indigo-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600 dark:text-gray-300">Loading dashboard...</p>
+          <p className="mt-4 text-text-secondary">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -365,7 +365,7 @@ const DashboardPage: React.FC = () => {
           <span className="sr-only">Open sidebar</span>
           <Bars3Icon aria-hidden="true" className="size-6" />
         </button>
-        <div className="flex-1 text-sm/6 font-semibold text-gray-900 dark:text-white">Dashboard</div>
+        <div className="flex-1 text-sm/6 font-semibold text-text-primary">Dashboard</div>
         <div className="flex items-center gap-x-3">
           <ThemeToggle />
           <a href="#">
@@ -383,10 +383,10 @@ const DashboardPage: React.FC = () => {
         <div className="px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+            <h1 className="text-3xl font-bold text-text-primary mb-2">
               Admin Dashboard
             </h1>
-            <p className="text-gray-600 dark:text-gray-300">
+            <p className="text-text-secondary">
               Manage content and view submissions
             </p>
           </div>
@@ -398,17 +398,17 @@ const DashboardPage: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700"
+                  className="bg-surface-primary p-6 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700"
                 >
                   <div className="flex items-center">
                     <div className={`${stat.color} p-3 rounded-lg`}>
                       <IconComponent className="h-6 w-6 text-white" />
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
+                      <p className="text-sm font-medium text-text-secondary">
                         {stat.name}
                       </p>
-                      <p className="text-2xl font-bold text-gray-900 dark:text-white">
+                      <p className="text-2xl font-bold text-text-primary">
                         {stat.value}
                       </p>
                     </div>
@@ -420,15 +420,15 @@ const DashboardPage: React.FC = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {/* Contact Submissions */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700">
-              <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <div className="bg-surface-primary rounded-lg shadow-lg border border-gray-100 dark:border-gray-700">
+              <div className="p-6 border-b border-border-primary">
+                <h2 className="text-xl font-bold text-text-primary">
                   Recent Contact Submissions
                 </h2>
               </div>
               <div className="p-6">
                 {contactSubmissions.length === 0 ? (
-                  <p className="text-gray-500 dark:text-gray-400 text-center py-8">
+                  <p className="text-text-tertiary text-center py-8">
                     No contact submissions yet
                   </p>
                 ) : (
@@ -436,23 +436,23 @@ const DashboardPage: React.FC = () => {
                     {contactSubmissions.slice(0, 5).map((submission) => (
                       <div
                         key={submission._id}
-                        className="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+                        className="border border-border-primary rounded-lg p-4"
                       >
                         <div className="flex justify-between items-start mb-2">
-                          <h3 className="font-semibold text-gray-900 dark:text-white">
+                          <h3 className="font-semibold text-text-primary">
                             {submission.name}
                           </h3>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                          <span className="text-xs text-text-tertiary">
                             {new Date(submission.createdAt).toLocaleDateString()}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-1">
+                        <p className="text-sm text-text-secondary mb-1">
                           {submission.email}
                         </p>
-                        <p className="text-sm text-indigo-600 dark:text-indigo-400 mb-2">
+                        <p className="text-sm text-primary-600 mb-2">
                           {submission.subject}
                         </p>
-                        <p className="text-sm text-gray-700 dark:text-gray-300">
+                        <p className="text-sm text-text-secondary">
                           {submission.message.substring(0, 100)}...
                         </p>
                       </div>
@@ -463,15 +463,15 @@ const DashboardPage: React.FC = () => {
             </div>
 
             {/* Static Content Management */}
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-100 dark:border-gray-700">
-              <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                <h2 className="text-xl font-bold text-gray-900 dark:text-white">
+            <div className="bg-surface-primary rounded-lg shadow-lg border border-gray-100 dark:border-gray-700">
+              <div className="p-6 border-b border-border-primary">
+                <h2 className="text-xl font-bold text-text-primary">
                   Static Content Management
                 </h2>
               </div>
               <div className="p-6">
                 {staticContent.length === 0 ? (
-                  <p className="text-gray-500 dark:text-gray-400 text-center py-8">
+                  <p className="text-text-tertiary text-center py-8">
                     No static content available
                   </p>
                 ) : (
@@ -479,22 +479,22 @@ const DashboardPage: React.FC = () => {
                     {staticContent.map((content) => (
                       <div
                         key={content._id}
-                        className="border border-gray-200 dark:border-gray-700 rounded-lg p-4"
+                        className="border border-border-primary rounded-lg p-4"
                       >
                         <div className="flex justify-between items-start mb-2">
-                          <h3 className="font-semibold text-gray-900 dark:text-white capitalize">
+                          <h3 className="font-semibold text-text-primary capitalize">
                             {content.page.replace('-', ' ')}
                           </h3>
-                          <span className="text-xs text-gray-500 dark:text-gray-400">
+                          <span className="text-xs text-text-tertiary">
                             {new Date(content.updatedAt).toLocaleDateString()}
                           </span>
                         </div>
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+                        <p className="text-sm text-text-secondary mb-3">
                           {content.content.substring(0, 100)}...
                         </p>
                         <button
                           onClick={() => handleEditContent(content.page, content.content)}
-                          className="flex items-center text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 text-sm font-medium"
+                          className="flex items-center text-primary-600 hover:text-indigo-800 dark:hover:text-indigo-300 text-sm font-medium"
                         >
                           <PencilIcon className="h-4 w-4 mr-1" />
                           Edit Content
@@ -510,9 +510,9 @@ const DashboardPage: React.FC = () => {
           {/* Edit Content Modal */}
           {editingContent && (
             <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
-                <div className="p-6 border-b border-gray-200 dark:border-gray-700">
-                  <h3 className="text-lg font-bold text-gray-900 dark:text-white">
+              <div className="bg-surface-primary rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-hidden">
+                <div className="p-6 border-b border-border-primary">
+                  <h3 className="text-lg font-bold text-text-primary">
                     Edit Content: {editingContent.replace('-', ' ')}
                   </h3>
                 </div>
@@ -520,20 +520,20 @@ const DashboardPage: React.FC = () => {
                   <textarea
                     value={editContent}
                     onChange={(e) => setEditContent(e.target.value)}
-                    className="w-full h-64 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full h-64 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-text-primary"
                     placeholder="Enter content..."
                   />
                 </div>
-                <div className="p-6 border-t border-gray-200 dark:border-gray-700 flex justify-end space-x-3">
+                <div className="p-6 border-t border-border-primary flex justify-end space-x-3">
                   <button
                     onClick={handleCancelEdit}
-                    className="px-4 py-2 text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100"
+                    className="px-4 py-2 text-text-secondary hover:text-gray-800 dark:hover:text-gray-100"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => handleSaveContent(editingContent)}
-                    className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition-colors"
+                    className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg transition-colors"
                   >
                     Save Changes
                   </button>

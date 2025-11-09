@@ -104,16 +104,16 @@ const ContactPage: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
+    <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-900 text-white py-24">
+      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Get in Touch
             </h1>
-            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
+            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
               We'd love to hear from you. Send us a message and we'll respond as soon as possible.
             </p>
           </div>
@@ -121,13 +121,13 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* Contact Information */}
-      <section ref={contactInfoRef} className="py-20 bg-gray-50 dark:bg-gray-800">
+      <section ref={contactInfoRef} className="py-20 bg-bg-secondary">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Contact Information
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">
+            <p className="text-xl text-text-secondary">
               Multiple ways to reach us
             </p>
           </div>
@@ -138,17 +138,17 @@ const ContactPage: React.FC = () => {
               return (
                 <div
                   key={index}
-                  className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-100 dark:border-gray-700 text-center"
+                  className="bg-surface-primary p-6 rounded-xl shadow-lg border border-border-primary text-center"
                 >
-                  <div className="bg-indigo-600 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
+                  <div className="bg-primary-600 w-16 h-16 rounded-lg flex items-center justify-center mx-auto mb-4">
                     <IconComponent className="h-8 w-8 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+                  <h3 className="text-xl font-bold text-text-primary mb-4">
                     {info.title}
                   </h3>
                   <div className="space-y-2">
                     {info.details.map((detail, detailIndex) => (
-                      <p key={detailIndex} className="text-gray-600 dark:text-gray-300 text-sm">
+                      <p key={detailIndex} className="text-text-secondary text-sm">
                         {detail}
                       </p>
                     ))}
@@ -161,32 +161,32 @@ const ContactPage: React.FC = () => {
       </section>
 
       {/* Contact Form and Map */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section className="py-20 bg-bg-primary">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Form */}
             <div ref={formRef}>
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                <h2 className="text-3xl font-bold text-text-primary mb-4">
                   Send us a Message
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-text-secondary">
                   Fill out the form below and we'll get back to you as soon as possible.
                 </p>
               </div>
 
               {submitStatus === 'success' && (
-                <div className="mb-6 p-4 bg-green-100 dark:bg-green-900 border border-green-400 dark:border-green-600 rounded-lg flex items-center">
-                  <CheckCircleIcon className="h-6 w-6 text-green-600 dark:text-green-400 mr-3" />
-                  <span className="text-green-800 dark:text-green-200">
+                <div className="mb-6 p-4 bg-success-500 border border-success-600 rounded-lg flex items-center">
+                  <CheckCircleIcon className="h-6 w-6 text-white mr-3" />
+                  <span className="text-white">
                     Thank you! Your message has been sent successfully.
                   </span>
                 </div>
               )}
 
               {submitStatus === 'error' && (
-                <div className="mb-6 p-4 bg-red-100 dark:bg-red-900 border border-red-400 dark:border-red-600 rounded-lg">
-                  <span className="text-red-800 dark:text-red-200">
+                <div className="mb-6 p-4 bg-error-500 border border-error-600 rounded-lg">
+                  <span className="text-white">
                     Sorry, there was an error sending your message. Please try again.
                   </span>
                 </div>
@@ -195,7 +195,7 @@ const ContactPage: React.FC = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-text-primary mb-2">
                       Full Name *
                     </label>
                     <input
@@ -205,11 +205,11 @@ const ContactPage: React.FC = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-bg-primary text-text-primary"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-2">
                       Email Address *
                     </label>
                     <input
@@ -219,14 +219,14 @@ const ContactPage: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-bg-primary text-text-primary"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="phone" className="block text-sm font-medium text-text-primary mb-2">
                       Phone Number
                     </label>
                     <input
@@ -235,11 +235,11 @@ const ContactPage: React.FC = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-bg-primary text-text-primary"
                     />
                   </div>
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label htmlFor="subject" className="block text-sm font-medium text-text-primary mb-2">
                       Subject *
                     </label>
                     <select
@@ -248,7 +248,7 @@ const ContactPage: React.FC = () => {
                       value={formData.subject}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-bg-primary text-text-primary"
                     >
                       <option value="">Select a subject</option>
                       <option value="admissions">Admissions Inquiry</option>
@@ -261,7 +261,7 @@ const ContactPage: React.FC = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-text-primary mb-2">
                     Message *
                   </label>
                   <textarea
@@ -271,7 +271,7 @@ const ContactPage: React.FC = () => {
                     onChange={handleInputChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white resize-none"
+                    className="w-full px-4 py-3 border border-border-primary rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-bg-primary text-text-primary resize-none"
                     placeholder="Tell us how we can help you..."
                   />
                 </div>
@@ -279,7 +279,7 @@ const ContactPage: React.FC = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
+                  className="w-full bg-primary-600 hover:bg-primary-700 disabled:bg-primary-400 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
@@ -289,34 +289,34 @@ const ContactPage: React.FC = () => {
             {/* Map */}
             <div ref={mapRef}>
               <div className="mb-8">
-                <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                <h2 className="text-3xl font-bold text-text-primary mb-4">
                   Find Us
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300">
+                <p className="text-text-secondary">
                   Visit our campus and experience the Palace School difference.
                 </p>
               </div>
 
               {/* Map placeholder - Replace with actual map integration */}
-              <div className="bg-gray-200 dark:bg-gray-700 rounded-xl overflow-hidden shadow-lg">
-                <div className="aspect-video bg-gradient-to-br from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 flex items-center justify-center">
+              <div className="bg-bg-secondary rounded-xl overflow-hidden shadow-lg">
+                <div className="aspect-video bg-gradient-to-br from-bg-secondary to-bg-tertiary flex items-center justify-center">
                   <div className="text-center">
-                    <MapPinIcon className="h-16 w-16 text-gray-500 dark:text-gray-400 mx-auto mb-4" />
-                    <p className="text-gray-600 dark:text-gray-300 text-lg font-semibold">
+                    <MapPinIcon className="h-16 w-16 text-text-tertiary mx-auto mb-4" />
+                    <p className="text-text-primary text-lg font-semibold">
                       Interactive Map
                     </p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">
+                    <p className="text-text-tertiary text-sm">
                       Coming Soon
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-6 bg-gray-50 dark:bg-gray-800 p-6 rounded-xl">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              <div className="mt-6 bg-bg-secondary p-6 rounded-xl">
+                <h3 className="text-lg font-semibold text-text-primary mb-4">
                   Directions
                 </h3>
-                <div className="space-y-2 text-gray-600 dark:text-gray-300 text-sm">
+                <div className="space-y-2 text-text-secondary text-sm">
                   <p>• Located in the heart of Academic City</p>
                   <p>• 5 minutes from City Center</p>
                   <p>• Public transportation available</p>

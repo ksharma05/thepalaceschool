@@ -8,17 +8,109 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Primary brand colors (Indigo scale) - using CSS variables
         primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+          50: 'rgb(var(--color-primary-50) / <alpha-value>)',
+          100: 'rgb(var(--color-primary-100) / <alpha-value>)',
+          200: 'rgb(var(--color-primary-200) / <alpha-value>)',
+          300: 'rgb(var(--color-primary-300) / <alpha-value>)',
+          400: 'rgb(var(--color-primary-400) / <alpha-value>)',
+          500: 'rgb(var(--color-primary-500) / <alpha-value>)',
+          600: 'rgb(var(--color-primary-600) / <alpha-value>)',
+          700: 'rgb(var(--color-primary-700) / <alpha-value>)',
+          800: 'rgb(var(--color-primary-800) / <alpha-value>)',
+          900: 'rgb(var(--color-primary-900) / <alpha-value>)',
+        },
+        // Secondary brand colors (Purple scale) - using CSS variables
+        secondary: {
+          50: 'rgb(var(--color-secondary-50) / <alpha-value>)',
+          100: 'rgb(var(--color-secondary-100) / <alpha-value>)',
+          200: 'rgb(var(--color-secondary-200) / <alpha-value>)',
+          300: 'rgb(var(--color-secondary-300) / <alpha-value>)',
+          400: 'rgb(var(--color-secondary-400) / <alpha-value>)',
+          500: 'rgb(var(--color-secondary-500) / <alpha-value>)',
+          600: 'rgb(var(--color-secondary-600) / <alpha-value>)',
+          700: 'rgb(var(--color-secondary-700) / <alpha-value>)',
+          800: 'rgb(var(--color-secondary-800) / <alpha-value>)',
+          900: 'rgb(var(--color-secondary-900) / <alpha-value>)',
+        },
+        // Accent colors
+        accent: {
+          yellow: {
+            400: 'rgb(var(--color-accent-yellow-400) / <alpha-value>)',
+            500: 'rgb(var(--color-accent-yellow-500) / <alpha-value>)',
+          },
+          orange: {
+            400: 'rgb(var(--color-accent-orange-400) / <alpha-value>)',
+            500: 'rgb(var(--color-accent-orange-500) / <alpha-value>)',
+          },
+        },
+        // Background colors (theme-aware)
+        bg: {
+          primary: 'rgb(var(--color-bg-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-bg-secondary) / <alpha-value>)',
+          tertiary: 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
+          'gradient-start': 'rgb(var(--color-bg-gradient-start) / <alpha-value>)',
+          'gradient-middle': 'rgb(var(--color-bg-gradient-middle) / <alpha-value>)',
+          'gradient-end': 'rgb(var(--color-bg-gradient-end) / <alpha-value>)',
+        },
+        // Text colors (theme-aware)
+        text: {
+          primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
+          tertiary: 'rgb(var(--color-text-tertiary) / <alpha-value>)',
+          inverse: 'rgb(var(--color-text-inverse) / <alpha-value>)',
+        },
+        // Surface colors for cards and panels (theme-aware)
+        surface: {
+          primary: 'rgb(var(--color-surface-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-surface-secondary) / <alpha-value>)',
+          elevated: 'rgb(var(--color-surface-elevated) / <alpha-value>)',
+        },
+        // Border colors (theme-aware)
+        border: {
+          primary: 'rgb(var(--color-border-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-border-secondary) / <alpha-value>)',
+          focus: 'rgb(var(--color-border-focus) / <alpha-value>)',
+        },
+        // Semantic colors
+        success: {
+          500: 'rgb(var(--color-success-500) / <alpha-value>)',
+          600: 'rgb(var(--color-success-600) / <alpha-value>)',
+        },
+        warning: {
+          500: 'rgb(var(--color-warning-500) / <alpha-value>)',
+          600: 'rgb(var(--color-warning-600) / <alpha-value>)',
+        },
+        error: {
+          500: 'rgb(var(--color-error-500) / <alpha-value>)',
+          600: 'rgb(var(--color-error-600) / <alpha-value>)',
+        },
+        info: {
+          500: 'rgb(var(--color-info-500) / <alpha-value>)',
+          600: 'rgb(var(--color-info-600) / <alpha-value>)',
+        },
+        // Feature-specific colors (for icons, badges, etc.)
+        feature: {
+          blue: 'rgb(var(--color-feature-blue) / <alpha-value>)',
+          green: 'rgb(var(--color-feature-green) / <alpha-value>)',
+          purple: 'rgb(var(--color-feature-purple) / <alpha-value>)',
+          orange: 'rgb(var(--color-feature-orange) / <alpha-value>)',
+          red: 'rgb(var(--color-feature-red) / <alpha-value>)',
+          pink: 'rgb(var(--color-feature-pink) / <alpha-value>)',
+        },
+        // CTA (Call to Action) specific colors
+        cta: {
+          'gradient-start': 'rgb(var(--color-cta-gradient-start) / <alpha-value>)',
+          'gradient-end': 'rgb(var(--color-cta-gradient-end) / <alpha-value>)',
+          hover: 'rgb(var(--color-cta-hover) / <alpha-value>)',
+          text: 'rgb(var(--color-cta-text) / <alpha-value>)',
+        },
+        // Stats section specific colors
+        stats: {
+          bg: 'rgb(var(--color-stats-bg) / <alpha-value>)',
+          text: 'rgb(var(--color-stats-text) / <alpha-value>)',
+          accent: 'rgb(var(--color-stats-accent) / <alpha-value>)',
         },
       },
       fontFamily: {
