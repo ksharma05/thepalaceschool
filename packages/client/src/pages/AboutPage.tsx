@@ -70,7 +70,7 @@ const AboutPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
+      <section ref={heroRef} className="relative bg-primary-600 text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
@@ -92,9 +92,8 @@ const AboutPage: React.FC = () => {
             <div className="bg-surface-primary rounded-2xl shadow-2xl overflow-hidden border border-border-primary">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
                 {/* Image Section */}
-                <div className="relative bg-gradient-to-br from-primary-100 to-secondary-100 p-8 lg:p-12 flex items-center justify-center">
+                <div className="relative bg-bg-primary p-8 lg:p-12 flex items-center justify-center">
                   <div className="relative w-full max-w-md">
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-400/20 to-secondary-400/20 rounded-2xl blur-2xl"></div>
                     <img
                       src={diyaKumariImage}
                       alt="Princess Diya Kumari ji"
@@ -210,7 +209,7 @@ const AboutPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-r from-primary-50 to-secondary-50 p-8 rounded-xl border border-primary-100">
+            <div className="bg-bg-primary p-8 rounded-xl border border-border-primary">
               <div className="flex items-start space-x-4">
                 <div className="bg-primary-600 p-3 rounded-lg flex-shrink-0">
                   <BookOpenIcon className="h-8 w-8 text-white" />
@@ -267,7 +266,7 @@ const AboutPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="bg-gradient-to-br from-secondary-50 to-primary-50 p-8 rounded-xl border border-secondary-100">
+              <div className="bg-bg-primary p-8 rounded-xl border border-border-primary">
                 <div className="text-center">
                   <div className="bg-secondary-600 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
                     <HeartIcon className="h-8 w-8 text-white" />
@@ -308,7 +307,7 @@ const AboutPage: React.FC = () => {
               {holisticPrograms.map((program, index) => (
                 <div
                   key={index}
-                  className="bg-gradient-to-br from-secondary-50 to-primary-50 p-6 rounded-xl border border-secondary-100 hover:shadow-lg transition-shadow duration-300"
+                  className="bg-bg-primary p-6 rounded-xl border border-border-primary hover:shadow-lg transition-shadow duration-300"
                 >
                   <div className="flex items-center space-x-3 mb-3">
                     <div className="bg-secondary-600 p-2 rounded-lg">
@@ -322,7 +321,7 @@ const AboutPage: React.FC = () => {
               ))}
             </div>
 
-            <div className="mt-12 bg-gradient-to-r from-cta-gradient-start to-cta-gradient-end p-8 rounded-xl text-white text-center">
+            <div className="mt-12 bg-cta-bg p-8 rounded-xl text-white text-center">
               <h3 className="text-2xl font-bold mb-4">
                 Innovative Pedagogies
               </h3>
@@ -376,7 +375,7 @@ const AboutPage: React.FC = () => {
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-primary-50 to-secondary-50 p-8 rounded-xl border border-primary-100">
+              <div className="bg-bg-primary p-8 rounded-xl border border-border-primary">
                 <div className="text-center">
                   <div className="bg-primary-600 p-4 rounded-full w-16 h-16 mx-auto mb-6 flex items-center justify-center">
                     <UserGroupIcon className="h-8 w-8 text-white" />
@@ -398,7 +397,7 @@ const AboutPage: React.FC = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-20 bg-gradient-to-r from-cta-gradient-start to-cta-gradient-end">
+      <section className="py-20 bg-cta-bg">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Join Our Educational Journey

@@ -42,9 +42,8 @@ interface ThemeColors {
   'color-feature-red': string;
   'color-feature-pink': string;
 
-  // CTA colors
-  'color-cta-gradient-start': string;
-  'color-cta-gradient-end': string;
+  // CTA colors - solid only
+  'color-cta-bg': string;
   'color-cta-hover': string;
 
   // Stats colors
@@ -92,8 +91,7 @@ const defaultTheme: ThemeColors = {
   'color-feature-pink': '#ec4899',
 
   // CTA
-  'color-cta-gradient-start': '#2563eb',
-  'color-cta-gradient-end': '#9333ea',
+  'color-cta-bg': '#2563eb',
   'color-cta-hover': '#1d4ed8',
 
   // Stats
@@ -140,9 +138,8 @@ const royalPurpleTheme: ThemeColors = {
   'color-feature-red': '#a855f7',
   'color-feature-pink': '#c084fc',
 
-  // CTA: Purple to Violet
-  'color-cta-gradient-start': '#9333ea',
-  'color-cta-gradient-end': '#7c3aed',
+  // CTA: Purple solid
+  'color-cta-bg': '#9333ea',
   'color-cta-hover': '#7e22ce',
 
   // Stats
@@ -189,9 +186,8 @@ const oceanBlueTheme: ThemeColors = {
   'color-feature-red': '#0284c7',
   'color-feature-pink': '#22d3ee',
 
-  // CTA: Blue to Teal
-  'color-cta-gradient-start': '#0284c7',
-  'color-cta-gradient-end': '#14b8a6',
+  // CTA: Blue solid
+  'color-cta-bg': '#0284c7',
   'color-cta-hover': '#0369a1',
 
   // Stats
@@ -238,9 +234,8 @@ const forestGreenTheme: ThemeColors = {
   'color-feature-red': '#16a34a',
   'color-feature-pink': '#4ade80',
 
-  // CTA: Emerald to Green
-  'color-cta-gradient-start': '#059669',
-  'color-cta-gradient-end': '#22c55e',
+  // CTA: Emerald solid
+  'color-cta-bg': '#059669',
   'color-cta-hover': '#047857',
 
   // Stats
@@ -288,62 +283,60 @@ const sunsetOrangeTheme: ThemeColors = {
   'color-feature-red': '#c2410c',
   'color-feature-pink': '#fb923c',
 
-  // CTA: Orange to Amber
-  'color-cta-gradient-start': '#ea580c',
-  'color-cta-gradient-end': '#d97706',
+  // CTA: Orange solid
+  'color-cta-bg': '#ea580c',
   'color-cta-hover': '#c2410c',
 
   // Stats
   'color-stats-bg': '#ea580c',
 };
 
-// Palace Flag Theme - Inspired by the school flag colors (Crimson, Golden Yellow, Cream, Teal, Navy)
+// Palace Flag Theme - JEF 2025 Brand Colors (Pachranga Flag Colors)
 const palaceFlagTheme: ThemeColors = {
-  // Primary: Deep Crimson/Burgundy (from flag top stripe - REGAL & AUTHORITATIVE)
+  // Primary: JEF 2025 Red (#C5202F) - REGAL & AUTHORITATIVE
   'color-primary-50': '#fef2f2',
   'color-primary-100': '#fee2e2',
   'color-primary-200': '#fecaca',
   'color-primary-300': '#fca5a5',
   'color-primary-400': '#f87171',
   'color-primary-500': '#ef4444',
-  'color-primary-600': '#dc2626',
-  'color-primary-700': '#b91c1c',
-  'color-primary-800': '#991b1b',
-  'color-primary-900': '#7f1d1d',
+  'color-primary-600': '#C5202F',  // JEF 2025 Red
+  'color-primary-700': '#a01a26',
+  'color-primary-800': '#7b141d',
+  'color-primary-900': '#560e14',
 
-  // Secondary: Navy Blue (from flag bottom stripe - TRADITIONAL & STABLE)
-  'color-secondary-50': '#eff6ff',
-  'color-secondary-100': '#dbeafe',
-  'color-secondary-200': '#bfdbfe',
-  'color-secondary-300': '#93c5fd',
-  'color-secondary-400': '#60a5fa',
-  'color-secondary-500': '#3b82f6',
-  'color-secondary-600': '#1e40af',
-  'color-secondary-700': '#1e3a8a',
-  'color-secondary-800': '#1e293b',
-  'color-secondary-900': '#172554',
+  // Secondary: JEF 2025 Blue (#2B2860) - TRADITIONAL & STABLE
+  'color-secondary-50': '#f0f0f5',
+  'color-secondary-100': '#e0e0eb',
+  'color-secondary-200': '#c1c1d7',
+  'color-secondary-300': '#a2a2c3',
+  'color-secondary-400': '#8383af',
+  'color-secondary-500': '#64649b',
+  'color-secondary-600': '#2B2860',  // JEF 2025 Blue
+  'color-secondary-700': '#221f4d',
+  'color-secondary-800': '#1a173a',
+  'color-secondary-900': '#120f27',
 
-  // Accents: Golden Yellow (PROSPERITY) and warm tones
-  'color-accent-yellow-400': '#fbbf24',
-  'color-accent-yellow-500': '#f59e0b',
-  'color-accent-orange-400': '#fb923c',
-  'color-accent-orange-500': '#d97706',
+  // Accents: JEF 2025 Yellow (#F9A11B) - PROSPERITY
+  'color-accent-yellow-400': '#F9A11B',  // JEF 2025 Yellow
+  'color-accent-yellow-500': '#d88716',
+  'color-accent-orange-400': '#F9A11B',
+  'color-accent-orange-500': '#d88716',
 
-  // Feature colors - distributed from flag palette
-  'color-feature-blue': '#1e40af',      // Navy - authority
-  'color-feature-green': '#0f766e',     // Teal - wisdom
-  'color-feature-purple': '#991b1b',    // Crimson - passion
-  'color-feature-orange': '#f59e0b',    // Gold - prosperity
-  'color-feature-red': '#b91c1c',       // Deep red - energy
-  'color-feature-pink': '#0f766e',      // Teal alternate
+  // Feature colors - JEF 2025 Palette
+  'color-feature-blue': '#2B2860',      // JEF 2025 Blue - authority
+  'color-feature-green': '#225657',     // JEF 2025 Green - wisdom
+  'color-feature-purple': '#C5202F',    // JEF 2025 Red - passion
+  'color-feature-orange': '#F9A11B',    // JEF 2025 Yellow - prosperity
+  'color-feature-red': '#C5202F',       // JEF 2025 Red - energy
+  'color-feature-pink': '#225657',      // JEF 2025 Green alternate
 
-  // CTA: Crimson to Gold gradient (warm, inviting, action-oriented)
-  'color-cta-gradient-start': '#b91c1c',
-  'color-cta-gradient-end': '#f59e0b',
-  'color-cta-hover': '#991b1b',
+  // CTA: JEF 2025 Red (solid, warm, inviting, action-oriented)
+  'color-cta-bg': '#C5202F',  // JEF 2025 Red
+  'color-cta-hover': '#a01a26',
 
-  // Stats: Teal (sophisticated, distinguished)
-  'color-stats-bg': '#0f766e',
+  // Stats: JEF 2025 Green (sophisticated, distinguished)
+  'color-stats-bg': '#225657',  // JEF 2025 Green
 };
 
 // Color preset configurations
@@ -389,13 +382,13 @@ export const initializeColorPreset = (): void => {
 export const presetMetadata: Record<ColorPreset, { name: string; description: string; preview: string }> = {
   'palace-flag': {
     name: 'Palace Flag',
-    description: 'Inspired by our heritage - regal crimson, navy, golden, and cream',
-    preview: 'linear-gradient(135deg, #b91c1c, #1e3a8a, #f59e0b)',
+    description: 'JEF 2025 Brand Colors - Pachranga flag colors: red, yellow, green, blue, and araish',
+    preview: '#C5202F',  // Solid JEF 2025 Red
   },
   'default': {
     name: 'Royal Classic',
     description: 'Traditional indigo and purple - elegant and timeless',
-    preview: 'linear-gradient(135deg, rgb(37 99 235), rgb(147 51 234))',
+    preview: '#2563eb',  // Solid blue
   },
   'royal-purple': {
     name: 'Royal Purple',

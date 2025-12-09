@@ -92,7 +92,7 @@ const LeadershipPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
+      <section ref={heroRef} className="relative bg-primary-600 text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
@@ -129,7 +129,7 @@ const LeadershipPage: React.FC = () => {
                   to={message.link}
                   className="group bg-surface-primary rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border-primary hover:border-primary-500"
                 >
-                  <div className="aspect-w-16 aspect-h-12 bg-gradient-to-br from-primary-600 to-secondary-600 overflow-hidden">
+                  <div className="aspect-w-16 aspect-h-12 bg-primary-600 overflow-hidden">
                     {hasImage ? (
                       <img
                         src={message.image}
@@ -209,7 +209,7 @@ const LeadershipPage: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-gradient-to-r from-cta-gradient-start to-cta-gradient-end">
+      <section className="py-20 bg-cta-bg">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Join Our Educational Journey

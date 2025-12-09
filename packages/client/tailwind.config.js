@@ -50,9 +50,6 @@ export default {
           primary: 'rgb(var(--color-bg-primary) / <alpha-value>)',
           secondary: 'rgb(var(--color-bg-secondary) / <alpha-value>)',
           tertiary: 'rgb(var(--color-bg-tertiary) / <alpha-value>)',
-          'gradient-start': 'rgb(var(--color-bg-gradient-start) / <alpha-value>)',
-          'gradient-middle': 'rgb(var(--color-bg-gradient-middle) / <alpha-value>)',
-          'gradient-end': 'rgb(var(--color-bg-gradient-end) / <alpha-value>)',
         },
         // Text colors (theme-aware)
         text: {
@@ -99,12 +96,11 @@ export default {
           red: 'rgb(var(--color-feature-red) / <alpha-value>)',
           pink: 'rgb(var(--color-feature-pink) / <alpha-value>)',
         },
-        // CTA (Call to Action) specific colors
+        // CTA (Call to Action) specific colors - solid only
         cta: {
-          'gradient-start': 'rgb(var(--color-cta-gradient-start) / <alpha-value>)',
-          'gradient-end': 'rgb(var(--color-cta-gradient-end) / <alpha-value>)',
-          hover: 'rgb(var(--color-cta-hover) / <alpha-value>)',
-          text: 'rgb(var(--color-cta-text) / <alpha-value>)',
+          bg: 'var(--color-cta-bg)',
+          hover: 'var(--color-cta-hover)',
+          text: 'var(--color-cta-text)',
         },
         // Stats section specific colors
         stats: {
@@ -114,7 +110,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Jost Variable', 'Jost', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

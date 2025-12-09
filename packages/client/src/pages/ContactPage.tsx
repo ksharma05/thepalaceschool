@@ -106,7 +106,7 @@ const ContactPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
+      <section ref={heroRef} className="relative bg-primary-600 text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
@@ -299,7 +299,7 @@ const ContactPage: React.FC = () => {
 
               {/* Map placeholder - Replace with actual map integration */}
               <div className="bg-bg-secondary rounded-xl overflow-hidden shadow-lg">
-                <div className="aspect-video bg-gradient-to-br from-bg-secondary to-bg-tertiary flex items-center justify-center">
+                <div className="aspect-video bg-bg-secondary flex items-center justify-center">
                   <div className="text-center">
                     <MapPinIcon className="h-16 w-16 text-text-tertiary mx-auto mb-4" />
                     <p className="text-text-primary text-lg font-semibold">

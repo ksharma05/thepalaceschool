@@ -201,18 +201,13 @@ const HomePage: React.FC = () => {
             alt="The Palace School Campus" 
             className="w-full h-full object-cover"
           />
-          {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-bg-gradient-start/80 via-bg-gradient-middle/70 to-bg-gradient-end/80"></div>
         </div>
-        {/* Decorative parallax element */}
-        <div className="hero-bg-decorative absolute top-20 right-10 w-96 h-96 bg-gradient-to-br from-accent-yellow-400/10 to-accent-orange-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-10 w-80 h-80 bg-gradient-to-br from-primary-400/10 to-secondary-500/10 rounded-full blur-3xl"></div>
         
         <div className="relative container mx-auto px-6 py-24 lg:py-32">
           <div className="max-w-4xl mx-auto text-center">
             <h1 ref={heroTitleRef} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               Welcome to
-              <span className="block bg-clip-text bg-gradient-to-r from-accent-yellow-400 to-accent-orange-500">
+              <span className="block text-accent-yellow-400">
                 The Palace School
               </span>
             </h1>
@@ -241,7 +236,7 @@ const HomePage: React.FC = () => {
         <div className="relative -mt-20 pb-20">
           <div className="container mx-auto px-6">
             <div ref={videoRef} className="bg-surface-secondary rounded-2xl shadow-2xl overflow-hidden opacity-0">
-              <div className="aspect-video bg-gradient-to-r from-bg-secondary to-bg-tertiary flex items-center justify-center">
+              <div className="aspect-video bg-bg-secondary flex items-center justify-center">
                 <div className="text-center">
                   <div className="w-20 h-20 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -374,7 +369,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section ref={ctaRef} className="py-20 bg-gradient-to-r from-cta-gradient-start to-cta-gradient-end">
+      <section ref={ctaRef} className="py-20 bg-cta-bg">
         <div className="container mx-auto px-6 text-center">
           <h2 ref={ctaTitleRef} className="text-3xl md:text-4xl font-bold text-cta-text mb-6">
             Ready to Join Our Community?

@@ -30,7 +30,7 @@ const SocialMediaPage: React.FC = () => {
       icon: 'instagram',
       followers: '3.2K',
       description: 'See daily moments, student achievements, and campus life',
-      color: 'bg-gradient-to-r from-purple-500 to-pink-500'
+      color: 'bg-primary-600'
     },
     {
       name: 'Twitter',
@@ -116,7 +116,7 @@ const SocialMediaPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-bg-primary">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative bg-gradient-to-br from-bg-gradient-start via-bg-gradient-middle to-bg-gradient-end text-white py-24">
+      <section ref={heroRef} className="relative bg-primary-600 text-white py-24">
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
@@ -226,7 +226,7 @@ const SocialMediaPage: React.FC = () => {
                 key={index}
                 className="bg-surface-primary rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 border border-border-primary"
               >
-                <div className="aspect-w-16 aspect-h-9 bg-gradient-to-br from-primary-200 to-secondary-200 p-8 flex items-center justify-center">
+                <div className="aspect-w-16 aspect-h-9 bg-bg-primary p-8 flex items-center justify-center">
                   <PhotoIcon className="h-16 w-16 text-primary-400" />
                 </div>
                 <div className="p-6">
@@ -260,7 +260,7 @@ const SocialMediaPage: React.FC = () => {
       </section>
 
       {/* Call to Action */}
-      <section ref={updatesRef} className="py-20 bg-gradient-to-r from-cta-gradient-start to-cta-gradient-end">
+      <section ref={updatesRef} className="py-20 bg-cta-bg">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Stay Connected

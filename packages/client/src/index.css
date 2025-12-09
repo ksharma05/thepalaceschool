@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
+
 
 /* ============================================
    Tailwind v4 Theme Configuration
@@ -6,54 +8,53 @@
    ============================================ */
 
 @theme {
-  /* Primary Brand Colors (Crimson/Red Scale - from flag top stripe) */
+  /* Primary Brand Colors - JEF 2025 Red (#C5202F) */
   --color-primary-50: #fef2f2;
   --color-primary-100: #fee2e2;
   --color-primary-200: #fecaca;
   --color-primary-300: #fca5a5;
   --color-primary-400: #f87171;
   --color-primary-500: #ef4444;
-  --color-primary-600: #dc2626;
-  --color-primary-700: #b91c1c;
-  --color-primary-800: #991b1b;
-  --color-primary-900: #7f1d1d;
+  --color-primary-600: #C5202F;  /* JEF 2025 Red */
+  --color-primary-700: #a01a26;
+  --color-primary-800: #7b141d;
+  --color-primary-900: #560e14;
 
-  /* Secondary Brand Colors (Navy Blue Scale - from flag bottom stripe) */
-  --color-secondary-50: #eff6ff;
-  --color-secondary-100: #dbeafe;
-  --color-secondary-200: #bfdbfe;
-  --color-secondary-300: #93c5fd;
-  --color-secondary-400: #60a5fa;
-  --color-secondary-500: #3b82f6;
-  --color-secondary-600: #1e40af;
-  --color-secondary-700: #1e3a8a;
-  --color-secondary-800: #1e293b;
-  --color-secondary-900: #172554;
+  /* Secondary Brand Colors - JEF 2025 Blue (#2B2860) */
+  --color-secondary-50: #f0f0f5;
+  --color-secondary-100: #e0e0eb;
+  --color-secondary-200: #c1c1d7;
+  --color-secondary-300: #a2a2c3;
+  --color-secondary-400: #8383af;
+  --color-secondary-500: #64649b;
+  --color-secondary-600: #2B2860;  /* JEF 2025 Blue */
+  --color-secondary-700: #221f4d;
+  --color-secondary-800: #1a173a;
+  --color-secondary-900: #120f27;
 
-  /* Accent Colors (Golden Yellow and warm tones from flag) */
-  --color-accent-yellow-400: #fbbf24;
-  --color-accent-yellow-500: #f59e0b;
-  --color-accent-orange-400: #fb923c;
-  --color-accent-orange-500: #d97706;
+  /* Accent Colors - JEF 2025 Yellow (#F9A11B) */
+  --color-accent-yellow-400: #F9A11B;  /* JEF 2025 Yellow */
+  --color-accent-yellow-500: #d88716;
+  --color-accent-orange-400: #F9A11B;
+  --color-accent-orange-500: #d88716;
 
-  /* Feature/Component Specific Colors (distributed flag palette) */
-  --color-feature-blue: #1e40af;
-  --color-feature-green: #0f766e;
-  --color-feature-purple: #991b1b;
-  --color-feature-orange: #f59e0b;
-  --color-feature-red: #b91c1c;
-  --color-feature-pink: #0f766e;
+  /* Feature/Component Specific Colors - JEF 2025 Palette */
+  --color-feature-blue: #2B2860;  /* JEF 2025 Blue */
+  --color-feature-green: #225657;  /* JEF 2025 Green */
+  --color-feature-purple: #C5202F;  /* JEF 2025 Red */
+  --color-feature-orange: #F9A11B;  /* JEF 2025 Yellow */
+  --color-feature-red: #C5202F;  /* JEF 2025 Red */
+  --color-feature-pink: #225657;  /* JEF 2025 Green */
 
-  /* CTA (Call to Action) Colors (Crimson to Gold gradient) */
-  --color-cta-gradient-start: #b91c1c;
-  --color-cta-gradient-end: #f59e0b;
-  --color-cta-hover: #991b1b;
+  /* CTA (Call to Action) Colors - Solid colors only */
+  --color-cta-bg: #C5202F;  /* JEF 2025 Red */
+  --color-cta-hover: #a01a26;
   --color-cta-text: #ffffff;
 
-  /* Stats Section Colors (Teal from flag) */
-  --color-stats-bg: #0f766e;
+  /* Stats Section Colors - JEF 2025 Green (#225657) */
+  --color-stats-bg: #225657;  /* JEF 2025 Green */
   --color-stats-text: #ffffff;
-  --color-stats-accent: #fef3c7;
+  --color-stats-accent: #F9A11B;  /* JEF 2025 Yellow */
 
   /* Semantic Colors */
   --color-success-500: #22c55e;
@@ -83,58 +84,52 @@
 
 /* Additional CSS Variables for theme-aware colors */
 :root {
-  /* Background Colors - Light Mode (WARM CREAM THEME) */
-  --color-bg-primary: 254 243 199;      /* Warm cream - main background */
-  --color-bg-secondary: 250 245 255;    /* Light lavender cream - alternate sections */
-  --color-bg-tertiary: 254 252 232;     /* Subtle yellow cream - subtle variation */
-  --color-bg-gradient-start: 185 28 28;     /* Deep crimson */
-  --color-bg-gradient-middle: 153 27 27;    /* Darker crimson */
-  --color-bg-gradient-end: 30 58 138;       /* Navy blue */
+  /* Background Colors - Light Mode (JEF 2025 Araish Backdrop #F7F1E5) */
+  --color-bg-primary: 247 241 229;      /* JEF 2025 Araish - main background */
+  --color-bg-secondary: 255 255 255;    /* White - alternate sections */
+  --color-bg-tertiary: 250 248 242;     /* Slightly lighter araish - subtle variation */
 
-  /* Text Colors - Light Mode (NAVY ON CREAM) */
-  --color-text-primary: 30 58 138;      /* Navy - main headings (11:1 contrast on cream) */
-  --color-text-secondary: 23 37 84;     /* Darker navy - body text (13:1 contrast) */
-  --color-text-tertiary: 127 29 29;     /* Crimson - accents (7.8:1 contrast) */
-  --color-text-inverse: 254 243 199;    /* Cream - on dark backgrounds */
+  /* Text Colors - Light Mode (JEF 2025 Blue on Araish) */
+  --color-text-primary: 43 40 96;       /* JEF 2025 Blue - main headings */
+  --color-text-secondary: 34 86 87;     /* JEF 2025 Green - body text */
+  --color-text-tertiary: 197 32 47;     /* JEF 2025 Red - accents */
+  --color-text-inverse: 255 255 255;    /* White - on dark backgrounds */
 
   /* Surface Colors (Cards, Panels) - Light Mode */
   --color-surface-primary: 255 255 255;     /* Pure white cards */
-  --color-surface-secondary: 254 252 232;   /* Cream tinted cards */
+  --color-surface-secondary: 247 241 229;   /* Araish tinted cards */
   --color-surface-elevated: 255 255 255;
 
-  /* Border Colors - Light Mode (GOLDEN & TEAL) */
-  --color-border-primary: 217 119 6;        /* Golden border */
-  --color-border-secondary: 15 118 110;     /* Teal border */
-  --color-border-focus: 99 102 241;
+  /* Border Colors - Light Mode (JEF 2025 Colors) */
+  --color-border-primary: 249 161 27;       /* JEF 2025 Yellow border */
+  --color-border-secondary: 34 86 87;       /* JEF 2025 Green border */
+  --color-border-focus: 197 32 47;          /* JEF 2025 Red focus */
 }
 
 .dark {
-  /* Background Colors - Dark Mode (WARM REGAL TONES) */
-  --color-bg-primary: 23 37 84;         /* Deep navy */
-  --color-bg-secondary: 30 41 59;       /* Slate blue */
-  --color-bg-tertiary: 30 58 138;       /* Lighter navy */
-  --color-bg-gradient-start: 185 28 28;     /* Deep crimson (same as light) */
-  --color-bg-gradient-middle: 153 27 27;    /* Darker crimson */
-  --color-bg-gradient-end: 30 58 138;       /* Navy */
+  /* Background Colors - Dark Mode (JEF 2025 Blue) */
+  --color-bg-primary: 43 40 96;         /* JEF 2025 Blue */
+  --color-bg-secondary: 34 32 80;       /* Darker blue */
+  --color-bg-tertiary: 50 47 112;       /* Lighter blue */
 
-  /* Text Colors - Dark Mode (CREAM ON NAVY) */
-  --color-text-primary: 254 243 199;    /* Cream - main text */
-  --color-text-secondary: 250 245 255;  /* Lighter cream - body */
-  --color-text-tertiary: 251 191 36;    /* Golden yellow - accents */
-  --color-text-inverse: 30 58 138;      /* Navy - on light backgrounds */
+  /* Text Colors - Dark Mode (White on Blue) */
+  --color-text-primary: 255 255 255;    /* White - main text */
+  --color-text-secondary: 247 241 229;  /* JEF 2025 Araish - body */
+  --color-text-tertiary: 249 161 27;    /* JEF 2025 Yellow - accents */
+  --color-text-inverse: 43 40 96;       /* JEF 2025 Blue - on light backgrounds */
 
   /* Surface Colors - Dark Mode (ELEVATED SURFACES) */
-  --color-surface-primary: 30 41 59;
-  --color-surface-secondary: 51 65 85;
-  --color-surface-elevated: 30 41 59;
+  --color-surface-primary: 34 32 80;
+  --color-surface-secondary: 50 47 112;
+  --color-surface-elevated: 34 32 80;
 
   /* Border Colors - Dark Mode */
-  --color-border-primary: 251 191 36;    /* Golden */
-  --color-border-secondary: 20 184 166;  /* Bright teal */
-  --color-border-focus: 129 140 248;
+  --color-border-primary: 249 161 27;    /* JEF 2025 Yellow */
+  --color-border-secondary: 34 86 87;    /* JEF 2025 Green */
+  --color-border-focus: 197 32 47;       /* JEF 2025 Red */
 
   /* Stats Section Colors - Dark Mode */
-  --color-stats-bg: 15 118 110;
+  --color-stats-bg: 34 86 87;  /* JEF 2025 Green */
 }
 
 /* Utility classes for custom colors */
@@ -168,19 +163,9 @@
   .bg-bg-secondary { background-color: rgb(var(--color-bg-secondary)); }
   .bg-bg-tertiary { background-color: rgb(var(--color-bg-tertiary)); }
   
-  /* Gradient colors */
-  .from-bg-gradient-start { --tw-gradient-from: rgb(var(--color-bg-gradient-start)) var(--tw-gradient-from-position); --tw-gradient-to: rgb(var(--color-bg-gradient-start) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
-  .via-bg-gradient-middle { --tw-gradient-to: rgb(var(--color-bg-gradient-middle) / 0) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--color-bg-gradient-middle)) var(--tw-gradient-via-position), var(--tw-gradient-to); }
-  .to-bg-gradient-end { --tw-gradient-to: rgb(var(--color-bg-gradient-end)) var(--tw-gradient-to-position); }
-  
-  .from-cta-gradient-start { --tw-gradient-from: var(--color-cta-gradient-start) var(--tw-gradient-from-position); --tw-gradient-to: color-mix(in srgb, var(--color-cta-gradient-start), transparent) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
-  .to-cta-gradient-end { --tw-gradient-to: var(--color-cta-gradient-end) var(--tw-gradient-to-position); }
-  
-  .from-accent-yellow-400 { --tw-gradient-from: var(--color-accent-yellow-400) var(--tw-gradient-from-position); --tw-gradient-to: color-mix(in srgb, var(--color-accent-yellow-400), transparent) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
-  .to-accent-orange-500 { --tw-gradient-to: var(--color-accent-orange-500) var(--tw-gradient-to-position); }
-  
-  .from-primary-400\/20 { --tw-gradient-from: color-mix(in srgb, var(--color-primary-400) 20%, transparent) var(--tw-gradient-from-position); --tw-gradient-to: color-mix(in srgb, var(--color-primary-400), transparent) var(--tw-gradient-to-position); --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to); }
-  .to-secondary-500\/20 { --tw-gradient-to: color-mix(in srgb, var(--color-secondary-500) 20%, transparent) var(--tw-gradient-to-position); }
+  /* CTA colors - solid only, no gradients */
+  .bg-cta-bg { background-color: var(--color-cta-bg); }
+  .hover\:bg-cta-hover:hover { background-color: var(--color-cta-hover); }
   
   /* Text colors */
   .text-text-primary { color: rgb(var(--color-text-primary)); }
@@ -205,6 +190,8 @@
   
   /* CTA colors */
   .text-cta-text { color: var(--color-cta-text); }
+  .bg-cta-bg { background-color: var(--color-cta-bg); }
+  .hover\:bg-cta-hover:hover { background-color: var(--color-cta-hover); }
   
   /* Hover states */
   .hover\:text-primary-600:hover { color: var(--color-primary-600); }
