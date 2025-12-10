@@ -1,6 +1,60 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
+
+/* ============================================
+   JEF 2025 Brand Typography - Jost Variable
+   ============================================ */
+
+/* Base font family */
+html {
+  font-family: 'Jost', sans-serif;
+}
+
+/* JEF 2025 Header Typography - ALL CAPS with 2% expanded tracking */
+.jef-heading {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500; /* Medium */
+  text-transform: uppercase;
+  letter-spacing: 0.02em; /* 2% tracking */
+}
+
+/* Apply JEF heading styles to all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500; /* Medium for headers */
+  text-transform: uppercase;
+  letter-spacing: 0.02em; /* 2% expanded tracking */
+}
+
+/* JEF 2025 Body Typography - Regular weight, sentence case */
+.jef-body {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400; /* Regular */
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* Body text should use regular weight */
+p, span, div, li, td, th, label, input, textarea, select, button {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400; /* Regular */
+}
+
+/* Semibold for emphasis */
+strong, b, .font-semibold {
+  font-weight: 600;
+}
+
+/* Bold for strong emphasis */
+.font-bold {
+  font-weight: 700;
+}
+
+/* Medium weight utility */
+.font-medium {
+  font-weight: 500;
+}
 
 /* ============================================
    Tailwind v4 Theme Configuration

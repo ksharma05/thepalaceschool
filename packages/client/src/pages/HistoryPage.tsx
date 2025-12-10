@@ -64,7 +64,7 @@ const HistoryPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Our Rich Heritage
             </h1>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
               Discover the journey that has shaped The Palace School into a beacon of 
               educational excellence and character building.
             </p>

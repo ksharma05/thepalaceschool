@@ -99,7 +99,7 @@ const LeadershipPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Our Leadership
             </h1>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
               Meet the visionary leaders who guide The Palace School towards 
               excellence in education and character building.
             </p>

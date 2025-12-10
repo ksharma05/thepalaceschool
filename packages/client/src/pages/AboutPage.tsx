@@ -8,12 +8,14 @@ import {
   SparklesIcon,
   ShieldCheckIcon
 } from '@heroicons/react/24/outline';
-import diyaKumariImage from '../assets/Diya Kumari 1.jpg';
+import diyaKumariImage from '../assets/WhatsApp Image 2025-12-10 at 15.30.36.jpeg';
+import principalImage from '../assets/principal.jpeg';
 
 const AboutPage: React.FC = () => {
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
   const founderMessageRef = useGSAP({ animation: 'fadeIn', delay: 0.15 });
-  const philosophyRef = useGSAP({ animation: 'slideInLeft', delay: 0.2 });
+  const principalMessageRef = useGSAP({ animation: 'fadeIn', delay: 0.2 });
+  const philosophyRef = useGSAP({ animation: 'slideInLeft', delay: 0.25 });
   const approachRef = useGSAP({ animation: 'slideInRight', delay: 0.4 });
   const montessoriRef = useGSAP({ animation: 'scaleIn', delay: 0.6 });
   const holisticRef = useGSAP({ animation: 'fadeIn', delay: 0.8 });
@@ -77,7 +79,7 @@ const AboutPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               About The School
             </h1>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
               Founded with a bold vision by Princess Diya Kumari ji to go beyond 
               conventional academics and nurture the whole child.
             </p>
@@ -108,9 +110,7 @@ const AboutPage: React.FC = () => {
                     <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">
                       Message From The Founder
                     </h2>
-                    <p className="text-xl text-primary-600 font-semibold">
-                      Princess Diya Kumari ji
-                    </p>
+                  
                   </div>
 
                   <div className="prose prose-lg dark:prose-invert max-w-none">
@@ -135,6 +135,58 @@ const AboutPage: React.FC = () => {
                         Founder, The Palace School
                       </p>
                     </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Message From The Principal Section */}
+      <section ref={principalMessageRef} className="py-20 bg-bg-primary">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-surface-primary rounded-2xl shadow-2xl overflow-hidden border border-border-primary">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                {/* Message Section */}
+                <div className="p-8 lg:p-12 flex flex-col justify-center order-2 lg:order-1">
+                  <div className="mb-6">
+                    <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">
+                      Message From The Principal
+                    </h2>
+                  </div>
+
+                  <div className="prose prose-lg dark:prose-invert max-w-none">
+                    <div className="space-y-4 text-text-secondary leading-relaxed">
+                      <p>
+                        At The Palace School, we believe that education is not merely about acquiring knowledge, but about shaping character, building resilience, and nurturing the unique potential within each child. Our commitment is to create an environment where curiosity thrives, creativity flourishes, and every student feels valued and supported.
+                      </p>
+                      <p>
+                        Together with our dedicated team of educators, we strive to inspire a love for learning that extends far beyond the classroom walls. We are honoured to partner with parents in this beautiful journey of watching your children grow into confident, compassionate, and capable individuals.
+                      </p>
+                    </div>
+
+                    {/* Signature Block */}
+                    <div className="mt-8 pt-6 border-t border-border-primary">
+                      <p className="text-lg font-semibold text-text-primary mb-1">
+                        The Principal
+                      </p>
+                      <p className="text-primary-600 font-medium">
+                        The Palace School
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Image Section */}
+                <div className="relative bg-bg-secondary p-8 lg:p-12 flex items-center justify-center order-1 lg:order-2">
+                  <div className="relative w-full max-w-md">
+                    <img
+                      src={principalImage}
+                      alt="Principal of The Palace School"
+                      className="relative rounded-2xl shadow-2xl w-full h-auto object-cover border-4 border-white"
+                    />
                   </div>
                 </div>
               </div>

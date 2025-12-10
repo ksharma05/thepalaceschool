@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { 
   MapPinIcon, 
   PhoneIcon, 
-  EnvelopeIcon,
-  AcademicCapIcon
+  EnvelopeIcon
 } from '@heroicons/react/24/outline';
+import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -20,59 +20,61 @@ const Footer: React.FC = () => {
   const quickLinks = [
     { name: 'About Us', href: '/about' },
     { name: 'History', href: '/history' },
-    { name: 'Admissions', href: '/contact' },
+    { name: 'Leadership', href: '/leadership' },
+    { name: 'Committees', href: '/committees' },
     { name: 'Academics', href: '/academics' },
     { name: 'Student Life', href: '/student-life' },
-    { name: 'Leadership', href: '/leadership' },
     { name: 'Contact', href: '/contact' }
   ];
 
   return (
-    <footer className="bg-bg-tertiary text-text-inverse">
+    <footer className="bg-secondary-600 text-white">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* School Info */}
           <div className="lg:col-span-2">
-            <div className="flex items-center space-x-3 mb-6">
-              <div className="h-12 w-12 bg-primary-600 rounded-lg flex items-center justify-center">
-                <AcademicCapIcon className="h-8 w-8 text-white" />
-              </div>
+            <div className="flex items-center space-x-4 mb-6">
+              <img 
+                src={schoolLogo} 
+                alt="The Palace School" 
+                className="h-20 w-auto"
+              />
               <div>
-                <h3 className="text-2xl font-bold">The Palace School</h3>
-                <p className="text-text-secondary">Excellence in Education</p>
+                <h3 className="text-2xl font-bold text-white">The Palace School</h3>
+                <p className="text-white/80">Excellence in Education</p>
               </div>
             </div>
-            <p className="text-text-secondary mb-6 max-w-md">
+            <p className="text-white/80 mb-6 max-w-md">
               Nurturing young minds for a brighter tomorrow through excellence in education, 
               character building, and holistic development.
             </p>
             
             {/* Contact Info */}
             <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-text-secondary">
-                <MapPinIcon className="h-5 w-5 text-primary-400" />
-                <span>Palace School Campus, City, State</span>
+              <div className="flex items-center space-x-3 text-white/80">
+                <MapPinIcon className="h-5 w-5 text-accent-yellow-400" />
+                <span>The City Palace, Jaipur-302002 (Raj.) INDIA</span>
               </div>
-              <div className="flex items-center space-x-3 text-text-secondary">
-                <PhoneIcon className="h-5 w-5 text-primary-400" />
-                <span>+1 (555) 123-4567</span>
+              <div className="flex items-center space-x-3 text-white/80">
+                <PhoneIcon className="h-5 w-5 text-accent-yellow-400" />
+                <span>0141-4062847, 0141-4062848</span>
               </div>
-              <div className="flex items-center space-x-3 text-text-secondary">
-                <EnvelopeIcon className="h-5 w-5 text-primary-400" />
-                <span>info@palaceschool.edu</span>
+              <div className="flex items-center space-x-3 text-white/80">
+                <EnvelopeIcon className="h-5 w-5 text-accent-yellow-400" />
+                <span>info@thepalaceschool.com</span>
               </div>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-text-primary">Quick Links</h4>
+            <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.href}
-                    className="text-text-secondary hover:text-primary-400 transition-colors duration-200"
+                    className="text-white/80 hover:text-accent-yellow-400 transition-colors duration-200"
                   >
                     {link.name}
                   </Link>
@@ -83,17 +85,17 @@ const Footer: React.FC = () => {
 
           {/* Social Media */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-text-primary">Follow Us</h4>
+            <h4 className="text-lg font-semibold mb-6 text-white">Follow Us</h4>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
                   href={social.href}
-                  className="bg-surface-secondary hover:bg-primary-600 p-3 rounded-lg transition-colors duration-200 group"
+                  className="bg-white/10 hover:bg-primary-600 p-3 rounded-lg transition-colors duration-200 group"
                   aria-label={social.name}
                 >
                   <svg
-                    className="h-5 w-5 text-text-tertiary group-hover:text-white"
+                    className="h-5 w-5 text-white/80 group-hover:text-white"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
@@ -105,12 +107,12 @@ const Footer: React.FC = () => {
             
             {/* Newsletter Signup */}
             <div className="mt-6">
-              <h5 className="text-sm font-semibold mb-3 text-text-primary">Stay Updated</h5>
+              <h5 className="text-sm font-semibold mb-3 text-white">Stay Updated</h5>
               <div className="flex">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="flex-1 px-3 py-2 bg-surface-secondary border border-border-secondary rounded-l-lg text-text-primary placeholder-text-tertiary focus:outline-none focus:border-border-focus"
+                  className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-l-lg text-white placeholder-white/50 focus:outline-none focus:border-accent-yellow-400"
                 />
                 <button className="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-r-lg transition-colors duration-200 text-white">
                   Subscribe
@@ -121,16 +123,16 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-border-secondary mt-12 pt-8">
+        <div className="border-t border-white/20 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-text-tertiary text-sm">
+            <p className="text-white/60 text-sm">
               &copy; {currentYear} The Palace School. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-text-tertiary hover:text-primary-400 text-sm transition-colors">
+              <Link to="/privacy" className="text-white/60 hover:text-accent-yellow-400 text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-text-tertiary hover:text-primary-400 text-sm transition-colors">
+              <Link to="/terms" className="text-white/60 hover:text-accent-yellow-400 text-sm transition-colors">
                 Terms of Service
               </Link>
             </div>

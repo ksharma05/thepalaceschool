@@ -211,7 +211,7 @@ const HomePage: React.FC = () => {
                 The Palace School
               </span>
             </h1>
-            <p ref={heroSubtitleRef} className="text-xl md:text-2xl mb-8 text-text-secondary leading-relaxed">
+            <p ref={heroSubtitleRef} className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
               Nurturing young minds for a brighter tomorrow through excellence in education, 
               character building, and holistic development.
             </p>

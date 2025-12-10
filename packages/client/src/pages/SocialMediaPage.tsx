@@ -124,7 +124,7 @@ const SocialMediaPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Our Social Media
             </h1>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
               Stay connected with The Palace School community across all platforms
             </p>
           </div>

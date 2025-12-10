@@ -6,11 +6,13 @@ import AboutPage from "./pages/AboutPage";
 import HistoryPage from "./pages/HistoryPage";
 import ContactPage from "./pages/ContactPage";
 import LeadershipPage from "./pages/LeadershipPage";
+import CommitteesPage from "./pages/CommitteesPage";
 import PrincessGauravPage from "./pages/leadership/PrincessGauravPage";
 import HHMessagePage from "./pages/leadership/HHMessagePage";
 import RajmataSahibPage from "./pages/leadership/RajmataSahibPage";
 import HHMaharajaLakshrajPrakashPage from "./pages/leadership/HHMaharajaLakshrajPrakashPage";
 import SocialMediaPage from "./pages/SocialMediaPage";
+import AcademicsPage from "./pages/AcademicsPage";
 import AdminLayout from "./components/admin/AdminLayout";
 import LoginPage from "./pages/admin/LoginPage";
 import DashboardPage from "./pages/admin/DashboardPage";
@@ -61,10 +63,13 @@ const router = createBrowserRouter([
         path: "social-media",
         element: <SocialMediaPage />,
       },
-      // Placeholder routes for future pages
+      {
+        path: "committees",
+        element: <CommitteesPage />,
+      },
       {
         path: "academics",
-        element: <div className="min-h-screen flex items-center justify-center"><h1 className="text-4xl font-bold">Academics - Coming Soon</h1></div>,
+        element: <AcademicsPage />,
       },
       {
         path: "student-life",

@@ -69,35 +69,32 @@ const ContactPage: React.FC = () => {
       title: 'Address',
       details: [
         'The Palace School',
-        '123 Education Street',
-        'Academic City, AC 12345',
-        'United States'
+        'The City Palace',
+        'Jaipur-302002 (Raj.)',
+        'INDIA'
       ]
     },
     {
       icon: PhoneIcon,
       title: 'Phone',
       details: [
-        'Main Office: +1 (555) 123-4567',
-        'Admissions: +1 (555) 123-4568',
-        'Emergency: +1 (555) 123-4569'
+        'Main Office: 0141-4062847',
+        'Alternate: 0141-4062848'
       ]
     },
     {
       icon: EnvelopeIcon,
       title: 'Email',
       details: [
-        'info@palaceschool.edu',
-        'admissions@palaceschool.edu',
-        'support@palaceschool.edu'
+        'info@thepalaceschool.com'
       ]
     },
     {
       icon: ClockIcon,
       title: 'Office Hours',
       details: [
-        'Monday - Friday: 8:00 AM - 5:00 PM',
-        'Saturday: 9:00 AM - 2:00 PM',
+        'Monday - Friday: 8:00 AM - 3:00 PM',
+        'Saturday: 8:00 AM - 12:00 PM',
         'Sunday: Closed'
       ]
     }
@@ -113,7 +110,7 @@ const ContactPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Get in Touch
             </h1>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
               We'd love to hear from you. Send us a message and we'll respond as soon as possible.
             </p>
           </div>

@@ -13,6 +13,7 @@ import {
 } from '@heroicons/react/24/outline';
 import ThemeToggle from '../../components/ThemeToggle';
 import { API_ENDPOINTS, apiRequest } from '../../config/api';
+import schoolLogo from '../../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
 
 interface ContactSubmission {
   _id: string;
@@ -175,13 +176,8 @@ const DashboardPage: React.FC = () => {
               <div className="relative flex h-16 shrink-0 items-center">
                 <img
                   alt="The Palace School"
-                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                  className="h-8 w-auto dark:hidden"
-                />
-                <img
-                  alt="The Palace School"
-                  src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-                  className="h-8 w-auto not-dark:hidden"
+                  src={schoolLogo}
+                  className="h-14 w-auto"
                 />
               </div>
               <nav className="relative flex flex-1 flex-col">
@@ -261,13 +257,8 @@ const DashboardPage: React.FC = () => {
           <div className="flex h-16 shrink-0 items-center">
             <img
               alt="The Palace School"
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-              className="h-8 w-auto dark:hidden"
-            />
-            <img
-              alt="The Palace School"
-              src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
-              className="h-8 w-auto not-dark:hidden"
+              src={schoolLogo}
+              className="h-14 w-auto"
             />
           </div>
           <nav className="flex flex-1 flex-col">
