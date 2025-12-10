@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon } from '@heroicons/react/24/outline';
 import ThemeToggle from './ThemeToggle';
-import ColorPresetSelector from './ColorPresetSelector';
+// import ColorPresetSelector from './ColorPresetSelector';
 import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
 
 const Header: React.FC = () => {
@@ -43,7 +43,7 @@ const Header: React.FC = () => {
             />
           </Link>
           <div className="flex items-center space-x-2">
-            <ColorPresetSelector />
+            {/* <ColorPresetSelector /> */}
             <ThemeToggle />
             <button
               type="button"
@@ -125,7 +125,7 @@ const Header: React.FC = () => {
               </Link>
             ))}
             
-            <ColorPresetSelector />
+            {/* <ColorPresetSelector /> */}
             <ThemeToggle />
             
             <Link
@@ -152,7 +152,7 @@ const Header: React.FC = () => {
               />
             </Link>
             <div className="flex items-center space-x-2">
-              <ColorPresetSelector />
+              {/* <ColorPresetSelector /> */}
               <ThemeToggle />
               <button
                 type="button"

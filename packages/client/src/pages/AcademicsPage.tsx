@@ -18,7 +18,7 @@ import {
 const AcademicsPage: React.FC = () => {
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
   const montessoriRef = useGSAP({ animation: 'fadeIn', delay: 0.15 });
-  const curriculumRef = useGSAP({ animation: 'slideInLeft', delay: 0.2 });
+  // const curriculumRef = useGSAP({ animation: 'slideInLeft', delay: 0.2 });
   const ridsRef = useGSAP({ animation: 'slideInRight', delay: 0.25 });
   const exchangeRef = useGSAP({ animation: 'fadeIn', delay: 0.3 });
 
