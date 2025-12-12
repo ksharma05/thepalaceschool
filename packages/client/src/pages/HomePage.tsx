@@ -11,6 +11,7 @@ import {
   HeartIcon
 } from '@heroicons/react/24/outline';
 import schoolHeaderImage from '../assets/school_header.jpeg';
+import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
 
 const HomePage: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -207,8 +208,12 @@ const HomePage: React.FC = () => {
           <div className="max-w-4xl mx-auto text-center">
             <h1 ref={heroTitleRef} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
               Welcome to
-              <span className="block text-accent-yellow-400">
-                The Palace School
+              <span className="block mt-4">
+                <img 
+                  src={schoolNameText} 
+                  alt="The Palace School" 
+                  className="h-12 md:h-16 lg:h-20 w-auto mx-auto"
+                />
               </span>
             </h1>
             <p ref={heroSubtitleRef} className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">

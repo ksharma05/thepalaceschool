@@ -10,6 +10,7 @@ import {
 import gauraviKumariImage from '../assets/Princess Gauravi Kumari.jpg';
 import lakshrajPrakashImage from '../assets/HH Maharaja Lakshraj Prakash.jpg';
 import rajmataPadminiDeviImage from '../assets/HH Rajmata Padmini Devi .jpg';
+import padmanabhSinghImage from '../assets/WhatsApp Image 2025-12-11 at 09.02.43.jpeg';
 
 const LeadershipPage: React.FC = () => {
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
@@ -17,25 +18,6 @@ const LeadershipPage: React.FC = () => {
   const messagesRef = useGSAP({ animation: 'slideInRight', delay: 0.4 });
 
   const leadershipMessages = [
-    {
-      id: 'princess-gaurav',
-      title: 'Message From The Treasurer',
-      name: 'Princess Gauravi Kumari',
-      role: 'Treasurer',
-      excerpt: 'A heartfelt message from an alumna and treasurer about the school\'s remarkable growth and continued vision...',
-      image: gauraviKumariImage,
-      hasImage: true,
-      link: '/leadership/princess-gaurav'
-    },
-    // {
-    //   id: 'hh-message',
-    //   title: 'His Highness\'s Message',
-    //   name: 'His Highness',
-    //   role: 'Royal Patron',
-    //   excerpt: 'Words of wisdom and guidance for our educational journey...',
-    //   image: '/api/placeholder/400/300',
-    //   link: '/leadership/hh-message'
-    // },
     {
       id: 'rajmata-sahib',
       title: 'Message from The Chairperson',
@@ -45,6 +27,26 @@ const LeadershipPage: React.FC = () => {
       image: rajmataPadminiDeviImage,
       hasImage: true,
       link: '/leadership/rajmata-sahib'
+    },
+    {
+      id: 'vice-chairperson',
+      title: 'Message From The Vice Chairperson',
+      name: 'HH Maharaja Sawai Padmanabh Singh',
+      role: 'Vice-Chairperson',
+      excerpt: 'As the Vice Chairperson and its very first student, I take immense pride in witnessing how far the school has come since its inception in 2001...',
+      image: padmanabhSinghImage,
+      hasImage: true,
+      link: '/leadership/vice-chairperson'
+    },
+    {
+      id: 'princess-gaurav',
+      title: 'Message From The Treasurer',
+      name: 'Princess Gauravi Kumari',
+      role: 'Treasurer',
+      excerpt: 'A heartfelt message from an alumna and treasurer about the school\'s remarkable growth and continued vision...',
+      image: gauraviKumariImage,
+      hasImage: true,
+      link: '/leadership/princess-gaurav'
     },
     {
       id: 'maharaja-lakshraj-prakash',

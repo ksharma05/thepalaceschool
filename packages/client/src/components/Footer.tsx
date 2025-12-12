@@ -6,6 +6,7 @@ import {
   EnvelopeIcon
 } from '@heroicons/react/24/outline';
 import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
+import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -40,8 +41,12 @@ const Footer: React.FC = () => {
                 className="h-20 w-auto"
               />
               <div>
-                <h3 className="text-2xl font-bold text-white">The Palace School</h3>
-                <p className="text-white/80">Excellence in Education</p>
+                <img 
+                  src={schoolNameText} 
+                  alt="The Palace School" 
+                  className="h-8 md:h-10 w-auto brightness-0 invert"
+                />
+                <p className="text-white/80 mt-1">Excellence in Education</p>
               </div>
             </div>
             <p className="text-white/80 mb-6 max-w-md">

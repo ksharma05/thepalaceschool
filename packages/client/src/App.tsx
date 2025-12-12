@@ -11,6 +11,7 @@ import PrincessGauravPage from "./pages/leadership/PrincessGauravPage";
 import HHMessagePage from "./pages/leadership/HHMessagePage";
 import RajmataSahibPage from "./pages/leadership/RajmataSahibPage";
 import HHMaharajaLakshrajPrakashPage from "./pages/leadership/HHMaharajaLakshrajPrakashPage";
+import ViceChairpersonPage from "./pages/leadership/ViceChairpersonPage";
 import SocialMediaPage from "./pages/SocialMediaPage";
 import AcademicsPage from "./pages/AcademicsPage";
 import AdminLayout from "./components/admin/AdminLayout";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "leadership/maharaja-lakshraj-prakash",
         element: <HHMaharajaLakshrajPrakashPage />,
+      },
+      {
+        path: "leadership/vice-chairperson",
+        element: <ViceChairpersonPage />,
       },
       {
         path: "social-media",
