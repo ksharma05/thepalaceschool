@@ -25,7 +25,7 @@ const Header: React.FC = () => {
   // Right side navigation
   const rightNavigation = [
     { name: 'Academics', href: '/academics' },
-    { name: 'Student Life', href: '/student-life' },
+    { name: 'Gallery', href: '/gallery' },
   ];
 
   return (

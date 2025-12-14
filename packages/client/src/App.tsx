@@ -14,6 +14,7 @@ import HHMaharajaLakshrajPrakashPage from "./pages/leadership/HHMaharajaLakshraj
 import ViceChairpersonPage from "./pages/leadership/ViceChairpersonPage";
 import SocialMediaPage from "./pages/SocialMediaPage";
 import AcademicsPage from "./pages/AcademicsPage";
+import GalleryPage from "./pages/GalleryPage";
 import AdminLayout from "./components/admin/AdminLayout";
 import LoginPage from "./pages/admin/LoginPage";
 import DashboardPage from "./pages/admin/DashboardPage";
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "academics",
         element: <AcademicsPage />,
+      },
+      {
+        path: "gallery",
+        element: <GalleryPage />,
       },
       {
         path: "student-life",
