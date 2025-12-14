@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import staticContentRoutes from './routes/staticContent';
 import contactRoutes from './routes/contact';
 import authRoutes from './routes/auth';
+import socialMediaRoutes from './routes/socialMedia';
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use(express.json());
 app.use('/api/content', staticContentRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/social-media', socialMediaRoutes);
 
 app.get('/', (req, res) => {
   res.send('Server is running!');

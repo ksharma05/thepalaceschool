@@ -9,6 +9,17 @@
 /* Base font family */
 html {
   font-family: 'Jost', sans-serif;
+  /* GSAP ScrollSmoother will handle smooth scrolling */
+}
+
+/* GSAP ScrollSmoother wrapper styles */
+#smooth-wrapper {
+  overflow: hidden;
+}
+
+#smooth-wrapper-content {
+  overflow: visible;
+  width: 100%;
 }
 
 /* JEF 2025 Header Typography - ALL CAPS with 2% expanded tracking */

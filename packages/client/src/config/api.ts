@@ -7,6 +7,11 @@ export const API_ENDPOINTS = {
   },
   CONTACT: `${API_BASE_URL}/api/contact`,
   CONTENT: `${API_BASE_URL}/api/content`,
+  SOCIAL_MEDIA: {
+    POSTS: `${API_BASE_URL}/api/social-media/posts`,
+    STATS: `${API_BASE_URL}/api/social-media/stats`,
+    REFRESH: `${API_BASE_URL}/api/social-media/refresh`,
+  },
 } as const;
 
 export const apiRequest = async (url: string, options: RequestInit = {}) => {

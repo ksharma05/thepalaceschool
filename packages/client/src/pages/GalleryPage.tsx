@@ -16,7 +16,7 @@ const GalleryPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
-  const galleryRef = useGSAP({ animation: 'staggerChildren', delay: 0.2 });
+  const galleryRef = useGSAP({ animation: 'fadeIn', delay: 0.2, stagger: 0.1 });
 
   // Filter images by category and search
   const filteredImages = galleryImages.filter(image => {
