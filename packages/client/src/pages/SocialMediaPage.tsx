@@ -9,7 +9,6 @@ import {
   ChatBubbleOvalLeftIcon,
   ArrowPathIcon
 } from '@heroicons/react/24/outline';
-import { HeartIcon as HeartIconSolid } from '@heroicons/react/24/solid';
 import { socialPlatforms, samplePosts } from '../config/socialMedia';
 import type { SocialPost } from '../config/socialMedia';
 import { getCloudinaryUrl } from '../config/cloudinary';
