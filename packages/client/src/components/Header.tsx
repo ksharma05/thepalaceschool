@@ -10,22 +10,23 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const aboutDropdownItems = [
-    { name: 'About Us', href: '/about' },
-    { name: 'History', href: '/history' },
     { name: 'Leadership', href: '/leadership' },
+    { name: 'About Us', href: '/about' },
+    // { name: 'History', href: '/history' },
+    
     { name: 'Committees', href: '/committees' },
   ];
 
-  // Left side navigation (3 items)
+  // Left side navigation (About dropdown + these items)
   const leftNavigation = [
-    { name: 'Contact Us', href: '/contact' },
+    { name: 'Academics', href: '/academics' },
     { name: 'Social Media', href: '/social-media' },
   ];
 
   // Right side navigation
   const rightNavigation = [
-    { name: 'Academics', href: '/academics' },
     { name: 'Gallery', href: '/gallery' },
+    { name: 'Contact Us', href: '/contact' },
   ];
 
   return (

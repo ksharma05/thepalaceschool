@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useGSAP } from '../hooks/useGSAP';
 import { Link } from 'react-router-dom';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { 
-  UserCircleIcon, 
-  AcademicCapIcon, 
-  HeartIcon,
-  StarIcon
+  UserCircleIcon
 } from '@heroicons/react/24/outline';
+
+gsap.registerPlugin(ScrollTrigger);
 import gauraviKumariImage from '../assets/Princess Gauravi Kumari.jpg';
 import lakshrajPrakashImage from '../assets/HH Maharaja Lakshraj Prakash.jpg';
 import rajmataPadminiDeviImage from '../assets/HH Rajmata Padmini Devi .jpg';
 import padmanabhSinghImage from '../assets/WhatsApp Image 2025-12-11 at 09.02.43.jpeg';
+import diyaKumariImage from '../assets/WhatsApp Image 2025-12-10 at 15.30.36.jpeg';
 
 const LeadershipPage: React.FC = () => {
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
-  const leadershipRef = useGSAP({ animation: 'slideInLeft', delay: 0.2 });
-  const messagesRef = useGSAP({ animation: 'slideInRight', delay: 0.4 });
+  const leadershipRef = useRef<HTMLDivElement>(null);
+  const carouselContainerRef = useRef<HTMLDivElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
   const leadershipMessages = [
     {
@@ -39,6 +42,16 @@ const LeadershipPage: React.FC = () => {
       link: '/leadership/vice-chairperson'
     },
     {
+      id: 'founder',
+      title: 'Message From The Founder',
+      name: 'Princess Diya Kumari',
+      role: 'Deputy Chief Minister, Rajasthan & Founder',
+      excerpt: 'The Palace School, founded in 2001 as a Montessori pre-school, has grown into a nationally recognized institution known for its excellence in education and values...',
+      image: diyaKumariImage,
+      hasImage: true,
+      link: '/leadership/founder'
+    },
+    {
       id: 'princess-gaurav',
       title: 'Message From The Treasurer',
       name: 'Princess Gauravi Kumari',
@@ -60,36 +73,46 @@ const LeadershipPage: React.FC = () => {
     }
   ];
 
-  const leadershipTeam = [
-    {
-      name: 'Dr. Sarah Johnson',
-      role: 'Principal',
-      department: 'Administration',
-      experience: '15+ years in education',
-      icon: AcademicCapIcon
-    },
-    {
-      name: 'Prof. Michael Chen',
-      role: 'Vice Principal',
-      department: 'Academic Affairs',
-      experience: '12+ years in education',
-      icon: UserCircleIcon
-    },
-    {
-      name: 'Ms. Emily Rodriguez',
-      role: 'Head of Student Affairs',
-      department: 'Student Services',
-      experience: '10+ years in education',
-      icon: HeartIcon
-    },
-    {
-      name: 'Dr. James Wilson',
-      role: 'Head of Curriculum',
-      department: 'Academic Development',
-      experience: '18+ years in education',
-      icon: StarIcon
-    }
-  ];
+  useEffect(() => {
+    if (!carouselContainerRef.current || !carouselRef.current) return;
+
+    const carousel = carouselRef.current;
+    const cards = carousel.querySelectorAll('.leadership-card');
+    
+    if (cards.length === 0) return;
+    
+    // Calculate total scroll width
+    const totalWidth = cards.length * window.innerWidth;
+    
+    // Create snap points for each card
+    const snapValues = Array.from({ length: cards.length }, (_, i) => i / (cards.length - 1));
+    
+    // Create horizontal scroll animation with snap
+    // In the useEffect, after getting the cards:
+gsap.set(cards, { opacity: 1 });
+    gsap.to(carousel, {
+      x: () => -(totalWidth - window.innerWidth),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: carouselContainerRef.current,
+        start: 'top top',
+        end: () => `+=${totalWidth}`,
+        scrub: 1,
+        snap: {
+          snapTo: snapValues,
+          duration: { min: 0.2, max: 0.6 },
+          ease: 'power2.inOut',
+        },
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      }
+    });
+
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, [leadershipMessages.length]);
 
   return (
     <div className="min-h-screen bg-bg-primary">
@@ -111,65 +134,90 @@ const LeadershipPage: React.FC = () => {
 
       {/* Leadership Messages Section */}
       <section ref={leadershipRef} className="py-20 bg-bg-secondary">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
+        <div className="container mx-auto px-6 mb-16">
+          <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Leadership Messages
             </h2>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto">
               Inspiring messages from our distinguished patrons and founders
             </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {leadershipMessages.map((message) => {
-              const IconComponent = UserCircleIcon;
-              const hasImage = message.hasImage && message.image && message.image !== '/api/placeholder/400/300';
-              return (
-                <Link
-                  key={message.id}
-                  to={message.link}
-                  className="group bg-surface-primary rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-border-primary hover:border-primary-500"
-                >
-                  <div className="aspect-w-16 aspect-h-12 bg-primary-600 overflow-hidden">
-                    {hasImage ? (
-                      <img
-                        src={message.image}
-                        alt={message.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                    ) : (
-                      <div className="p-8 flex items-center justify-center h-full">
-                        <IconComponent className="h-24 w-24 text-white group-hover:scale-110 transition-transform duration-300" />
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-primary-600 transition-colors">
-                      {message.title}
-                    </h3>
-                    <p className="text-primary-600 font-semibold mb-3">
-                      {message.name}
-                    </p>
-                    <p className="text-text-secondary text-sm mb-4">
-                      {message.role}
-                    </p>
-                    <p className="text-text-secondary text-sm leading-relaxed">
-                      {message.excerpt}
-                    </p>
-                    <div className="mt-4 flex items-center text-primary-600 text-sm font-medium group-hover:underline">
-                      Read Full Message →
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
+            <p className="text-sm text-text-tertiary mt-4">
+              Scroll down to explore each message
+            </p>
           </div>
         </div>
       </section>
 
+      {/* Horizontal Scroll Gallery */}
+      <section ref={carouselContainerRef} className="relative bg-bg-primary overflow-hidden">
+        <div ref={carouselRef} className="flex items-center h-screen">
+          {leadershipMessages.map((message) => {
+            const IconComponent = UserCircleIcon;
+            const hasImage = message.hasImage && message.image && message.image !== '/api/placeholder/400/300';
+            return (
+              <div
+                key={message.id}
+                className="leadership-card flex-shrink-0 w-screen h-screen flex items-center justify-center px-8 md:px-16 lg:px-24"
+              >
+                <Link
+                  to={message.link}
+                  className="group w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+                >
+                  {/* Image Section */}
+                  <div className="relative w-full">
+                    <div className="aspect-[3/4] lg:aspect-[3/4] bg-primary-600 rounded-2xl overflow-hidden shadow-2xl border-4 border-border-primary group-hover:border-primary-500 transition-all duration-500">
+                      {hasImage ? (
+                        <img
+                          src={message.image}
+                          alt={message.name}
+                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        />
+                      ) : (
+                        <div className="flex items-center justify-center h-full">
+                          <IconComponent className="h-32 w-32 text-white" />
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4 group-hover:text-primary-600 transition-colors duration-300">
+                        {message.title}
+                      </h3>
+                      <p className="text-2xl md:text-3xl text-primary-600 font-bold mb-3">
+                        {message.name}
+                      </p>
+                      <p className="text-lg md:text-xl text-text-secondary font-medium mb-6">
+                        {message.role}
+                      </p>
+                    </div>
+                    <p className="text-lg md:text-xl text-text-secondary leading-relaxed">
+                      {message.excerpt}
+                    </p>
+                    <div className="inline-flex items-center gap-2 text-primary-600 text-lg font-semibold group-hover:gap-4 transition-all duration-300">
+                      <span>Read Full Message</span>
+                      <svg 
+                        className="w-6 h-6" 
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </div>
+                  </div>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Leadership Team Section */}
-      <section ref={messagesRef} className="py-20 bg-bg-primary">
+      {/* <section ref={messagesRef} className="py-20 bg-bg-primary">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
@@ -208,7 +256,7 @@ const LeadershipPage: React.FC = () => {
             })}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Call to Action */}
       <section className="py-20 bg-cta-bg">

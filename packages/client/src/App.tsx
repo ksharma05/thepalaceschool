@@ -12,6 +12,7 @@ import HHMessagePage from "./pages/leadership/HHMessagePage";
 import RajmataSahibPage from "./pages/leadership/RajmataSahibPage";
 import HHMaharajaLakshrajPrakashPage from "./pages/leadership/HHMaharajaLakshrajPrakashPage";
 import ViceChairpersonPage from "./pages/leadership/ViceChairpersonPage";
+import FounderPage from "./pages/leadership/FounderPage";
 import SocialMediaPage from "./pages/SocialMediaPage";
 import AcademicsPage from "./pages/AcademicsPage";
 import GalleryPage from "./pages/GalleryPage";
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "leadership/vice-chairperson",
         element: <ViceChairpersonPage />,
+      },
+      {
+        path: "leadership/founder",
+        element: <FounderPage />,
       },
       {
         path: "social-media",

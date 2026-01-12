@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
 import { GSAPScrollUtils } from '../utils/gsap';
 import { 
   AcademicCapIcon, 
@@ -11,13 +10,12 @@ import {
   HeartIcon
 } from '@heroicons/react/24/outline';
 import schoolHeaderImage from '../assets/school_header.jpeg';
-import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
+import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
 
 const HomePage: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
-  const heroTitleRef = useRef<HTMLHeadingElement>(null);
-  const heroSubtitleRef = useRef<HTMLParagraphElement>(null);
-  const videoRef = useRef<HTMLDivElement>(null);
+  const heroTitleRef = useRef<HTMLDivElement>(null);
+  const heroBgImageRef = useRef<HTMLImageElement>(null);
   const featuresRef = useRef<HTMLDivElement>(null);
   const featuresTitleRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
@@ -36,39 +34,14 @@ const HomePage: React.FC = () => {
       GSAPScrollUtils.elegantFadeIn(heroRef.current, { duration: 1.8, y: 30 });
     }
 
-    // Hero title - split text reveal
+    // Hero title - elegant fade
     if (heroTitleRef.current) {
-      GSAPScrollUtils.splitTextReveal(heroTitleRef.current, { delay: 0.2, stagger: 0.08 });
+      GSAPScrollUtils.elegantFadeIn(heroTitleRef.current, { delay: 0.2, duration: 1.2, y: 20 });
     }
 
-    // Hero subtitle - elegant fade
-    if (heroSubtitleRef.current) {
-      GSAPScrollUtils.elegantFadeIn(heroSubtitleRef.current, { delay: 0.6, duration: 1.2, y: 20 });
-    }
-
-    // Video section - scroll width scale animation with opacity fade
-    if (videoRef.current) {
-      GSAPScrollUtils.scrollWidthScale(videoRef.current, {
-        startWidth: '50vw',
-        endWidth: '100vw',
-        scrub: true,
-        start: 'top 70%',
-        end: 'top 20%'
-      });
-      
-      // Add opacity animation (0 to 1) starting from current visible position
-      gsap.fromTo(videoRef.current, 
-        { opacity: 0 },
-        { 
-          opacity: 1,
-          scrollTrigger: {
-            trigger: videoRef.current,
-            start: 'top 70%',
-            end: 'top 20%',
-            scrub: true
-          }
-        }
-      );
+    // Hero background image parallax effect
+    if (heroBgImageRef.current) {
+      GSAPScrollUtils.elegantParallax(heroBgImageRef.current, { speed: 0.5, direction: 'up' });
     }
 
     // Features section title - split reveal
@@ -194,32 +167,26 @@ const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative text-white overflow-hidden">
+      <section ref={heroRef} className="relative text-white overflow-hidden min-h-screen">
         {/* Background Image */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 h-[120%]">
           <img 
+            ref={heroBgImageRef}
             src={schoolHeaderImage} 
             alt="The Palace School Campus" 
             className="w-full h-full object-cover"
           />
         </div>
         
-        <div className="relative container mx-auto px-6 py-24 lg:py-32">
+        <div className="relative container mx-auto px-6 py-12 lg:py-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 ref={heroTitleRef} className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Welcome to
-              <span className="block mt-4">
-                <img 
-                  src={schoolNameText} 
-                  alt="The Palace School" 
-                  className="h-12 md:h-16 lg:h-20 w-auto mx-auto"
-                />
-              </span>
-            </h1>
-            <p ref={heroSubtitleRef} className="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed">
-              Nurturing young minds for a brighter tomorrow through excellence in education, 
-              character building, and holistic development.
-            </p>
+            <div ref={heroTitleRef} className="mb-8 flex justify-center">
+              <img 
+                src={schoolLogo} 
+                alt="The Palace School" 
+                className="h-32 md:h-32 lg:h-64 w-auto"
+              />
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/contact"
@@ -233,25 +200,6 @@ const HomePage: React.FC = () => {
               >
                 Learn More
               </Link>
-            </div>
-          </div>
-        </div>
-        
-        {/* Video placeholder for TRAILER - HOMEPAGE */}
-        <div className="relative -mt-20 pb-20">
-          <div className="container mx-auto px-6">
-            <div ref={videoRef} className="bg-surface-secondary rounded-2xl shadow-2xl overflow-hidden opacity-0">
-              <div className="aspect-video bg-bg-secondary flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-20 h-20 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
-                    </svg>
-                  </div>
-                  <p className="text-text-primary text-lg font-semibold">School Introduction Video</p>
-                  <p className="text-text-tertiary text-sm">Coming Soon</p>
-                </div>
-              </div>
             </div>
           </div>
         </div>
