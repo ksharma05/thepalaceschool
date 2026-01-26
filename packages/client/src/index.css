@@ -22,20 +22,31 @@ html {
   width: 100%;
 }
 
-/* JEF 2025 Header Typography - ALL CAPS with 2% expanded tracking */
-.jef-heading {
+/* JEF 2025 Header Typography - Selective ALL CAPS for readability */
+.jef-heading-caps {
   font-family: 'Jost', sans-serif;
   font-weight: 500; /* Medium */
   text-transform: uppercase;
   letter-spacing: 0.02em; /* 2% tracking */
 }
 
-/* Apply JEF heading styles to all headings */
+/* Apply JEF heading styles to headings - Normal case for better readability */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Jost', sans-serif;
-  font-weight: 500; /* Medium for headers */
+  font-weight: 600; /* Semibold for headers */
+  text-transform: none; /* Normal case - better readability */
+  letter-spacing: 0.01em; /* Slightly expanded tracking */
+}
+
+/* Large headings can be bold */
+h1, h2 {
+  font-weight: 700; /* Bold for main headings */
+}
+
+/* Navigation and section labels use ALL CAPS */
+nav a, .section-label, .uppercase {
   text-transform: uppercase;
-  letter-spacing: 0.02em; /* 2% expanded tracking */
+  letter-spacing: 0.02em;
 }
 
 /* JEF 2025 Body Typography - Regular weight, sentence case */
@@ -149,25 +160,25 @@ strong, b, .font-semibold {
 
 /* Additional CSS Variables for theme-aware colors */
 :root {
-  /* Background Colors - Light Mode (JEF 2025 Araish Backdrop #F7F1E5) */
-  --color-bg-primary: 247 241 229;      /* JEF 2025 Araish - main background */
-  --color-bg-secondary: 255 255 255;    /* White - alternate sections */
-  --color-bg-tertiary: 250 248 242;     /* Slightly lighter araish - subtle variation */
+  /* Background Colors - Light Mode (Softer, Araish-based palette) */
+  --color-bg-primary: 255 255 255;      /* White - main background for cleaner look */
+  --color-bg-secondary: 249 250 251;    /* Very light gray - alternate sections */
+  --color-bg-tertiary: 247 241 229;     /* JEF 2025 Araish - accent sections */
 
-  /* Text Colors - Light Mode (JEF 2025 Blue on Araish) */
+  /* Text Colors - Light Mode (More readable, professional) */
   --color-text-primary: 43 40 96;       /* JEF 2025 Blue - main headings */
-  --color-text-secondary: 34 86 87;     /* JEF 2025 Green - body text */
-  --color-text-tertiary: 197 32 47;     /* JEF 2025 Red - accents */
+  --color-text-secondary: 75 85 99;     /* Gray-600 - body text (more readable) */
+  --color-text-tertiary: 107 114 128;   /* Gray-500 - secondary text */
   --color-text-inverse: 255 255 255;    /* White - on dark backgrounds */
 
   /* Surface Colors (Cards, Panels) - Light Mode */
   --color-surface-primary: 255 255 255;     /* Pure white cards */
-  --color-surface-secondary: 247 241 229;   /* Araish tinted cards */
+  --color-surface-secondary: 249 250 251;   /* Light gray cards */
   --color-surface-elevated: 255 255 255;
 
-  /* Border Colors - Light Mode (JEF 2025 Colors) */
-  --color-border-primary: 249 161 27;       /* JEF 2025 Yellow border */
-  --color-border-secondary: 34 86 87;       /* JEF 2025 Green border */
+  /* Border Colors - Light Mode (Softer borders) */
+  --color-border-primary: 229 231 235;      /* Gray-200 - subtle borders */
+  --color-border-secondary: 209 213 219;    /* Gray-300 - medium borders */
   --color-border-focus: 197 32 47;          /* JEF 2025 Red focus */
 }
 

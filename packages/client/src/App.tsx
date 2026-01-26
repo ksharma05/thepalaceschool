@@ -7,6 +7,7 @@ import HistoryPage from "./pages/HistoryPage";
 import ContactPage from "./pages/ContactPage";
 import LeadershipPage from "./pages/LeadershipPage";
 import CommitteesPage from "./pages/CommitteesPage";
+import WhyChooseUsPage from "./pages/WhyChooseUsPage";
 import PrincessGauravPage from "./pages/leadership/PrincessGauravPage";
 import HHMessagePage from "./pages/leadership/HHMessagePage";
 import RajmataSahibPage from "./pages/leadership/RajmataSahibPage";
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <AboutPage />,
+      },
+      {
+        path: "why-choose-us",
+        element: <WhyChooseUsPage />,
       },
       {
         path: "history",

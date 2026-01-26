@@ -1,32 +1,23 @@
 import React, { useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
-import { GSAPScrollUtils } from '../utils/gsap';
 
 const Layout: React.FC = () => {
+  const location = useLocation();
+
+  // Scroll to top on route change
   useEffect(() => {
-    // Initialize GSAP smooth scrolling
-    const smoother = GSAPScrollUtils.initSmoothScroll();
-    
-    // Cleanup on unmount
-    return () => {
-      if (smoother) {
-        smoother.kill();
-      }
-      GSAPScrollUtils.cleanup();
-    };
-  }, []);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [location.pathname]);
 
   return (
-    <div id="smooth-wrapper">
-      <div id="smooth-wrapper-content" className="flex flex-col min-h-screen">
-        <Header />
-        <main className="flex-grow">
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      <main className="flex-grow">
+        <Outlet />
+      </main>
+      <Footer />
     </div>
   );
 };

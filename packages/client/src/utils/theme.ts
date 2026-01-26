@@ -20,17 +20,8 @@ class ThemeManager {
   }
 
   private getPreferredTheme(): Theme {
-    // Check localStorage first
-    const savedTheme = localStorage.getItem('theme') as Theme;
-    if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
-      return savedTheme;
-    }
-    
-    // Check system preference
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
-    }
-    
+    // Force light theme only - matching Dharav High School design
+    // Dark mode is disabled for professional, consistent appearance
     return 'light';
   }
 
@@ -60,7 +51,8 @@ class ThemeManager {
   }
 
   public toggleTheme(): void {
-    this.setTheme(this.currentTheme === 'light' ? 'dark' : 'light');
+    // Disabled: Always use light theme for professional appearance
+    this.setTheme('light');
   }
 
   public subscribe(listener: (theme: Theme) => void): () => void {

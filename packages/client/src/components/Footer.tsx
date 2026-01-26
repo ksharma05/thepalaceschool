@@ -1,15 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   MapPinIcon, 
   PhoneIcon, 
-  EnvelopeIcon
+  EnvelopeIcon,
+  ArrowRightIcon
 } from '@heroicons/react/24/outline';
 import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
 import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+
+  const aboutUsLinks = [
+    { name: 'Our Vision & Mission', href: '/about' },
+    { name: 'Our School', href: '/about' },
+    { name: 'Leadership', href: '/leadership' },
+    { name: 'Gallery', href: '/gallery' },
+  ];
+
+  const quickLinks = [
+    { name: 'Virtual Tour', href: '/gallery' },
+    { name: 'School Campus', href: '/about' },
+    { name: 'Committees', href: '/committees' },
+    { name: 'Programmes', href: '/academics' },
+  ];
+
+  const academicsLinks = [
+    { name: 'Pedagogy', href: '/academics' },
+    { name: 'Curriculum', href: '/academics' },
+    { name: 'Career Counselling', href: '/academics' },
+  ];
+
+  const beyondAcademicsLinks = [
+    { name: 'Visual Arts', href: '/student-life#visual-arts' },
+    { name: 'Performing Arts', href: '/student-life#performing-arts' },
+    { name: 'Music', href: '/student-life#music' },
+    { name: 'Health & Well-Being', href: '/student-life#health' },
+    { name: 'House System', href: '/student-life#house-system' },
+  ];
 
   const socialLinks = [
     { 
@@ -34,69 +64,29 @@ const Footer: React.FC = () => {
     }
   ];
 
-  const quickLinks = [
-    { name: 'About Us', href: '/about' },
-    { name: 'History', href: '/history' },
-    { name: 'Leadership', href: '/leadership' },
-    { name: 'Committees', href: '/committees' },
-    { name: 'Academics', href: '/academics' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'Contact', href: '/contact' }
-  ];
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    // Handle newsletter subscription
+    console.log('Newsletter subscription for:', email);
+    setEmail('');
+  };
 
   return (
-    <footer className="bg-secondary-600 text-white">
-      <div className="container mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* School Info */}
-          <div className="lg:col-span-2">
-            <div className="flex items-center space-x-4 mb-6">
-              <img 
-                src={schoolLogo} 
-                alt="The Palace School" 
-                className="h-20 w-auto"
-              />
-              <div>
-                <img 
-                  src={schoolNameText} 
-                  alt="The Palace School" 
-                  className="h-8 md:h-10 w-auto brightness-0 invert"
-                />
-                <p className="text-white/80 mt-1">Excellence in Education</p>
-              </div>
-            </div>
-            <p className="text-white/80 mb-6 max-w-md">
-              Nurturing young minds for a brighter tomorrow through excellence in education, 
-              character building, and holistic development.
-            </p>
-            
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3 text-white/80">
-                <MapPinIcon className="h-5 w-5 text-accent-yellow-400" />
-                <span>The City Palace, Jaipur-302002 (Raj.) INDIA</span>
-              </div>
-              <div className="flex items-center space-x-3 text-white/80">
-                <PhoneIcon className="h-5 w-5 text-accent-yellow-400" />
-                <span>0141-4062847, 0141-4062848</span>
-              </div>
-              <div className="flex items-center space-x-3 text-white/80">
-                <EnvelopeIcon className="h-5 w-5 text-accent-yellow-400" />
-                <span>info@thepalaceschool.com</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Links */}
+    <footer className="bg-white border-t-4 border-primary-600">
+      {/* Main Footer Content */}
+      <div className="container mx-auto px-4 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-6">
+          {/* About Us Section */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
-            <ul className="space-y-3">
-              {quickLinks.map((link, index) => (
+            <h4 className="text-base font-bold text-secondary-600 mb-4 uppercase tracking-wide">About Us</h4>
+            <ul className="space-y-2.5">
+              {aboutUsLinks.map((link, index) => (
                 <li key={index}>
                   <Link
                     to={link.href}
-                    className="text-white/80 hover:text-accent-yellow-400 transition-colors duration-200"
+                    className="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center"
                   >
+                    <span className="mr-1">•</span>
                     {link.name}
                   </Link>
                 </li>
@@ -104,57 +94,175 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Social Media */}
+          {/* Quick Links Section */}
           <div>
-            <h4 className="text-lg font-semibold mb-6 text-white">Follow Us</h4>
-            <div className="flex space-x-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="bg-white/10 hover:bg-primary-600 p-3 rounded-lg transition-colors duration-200 group"
-                  aria-label={social.name}
-                >
-                  <svg
-                    className="h-5 w-5 text-white/80 group-hover:text-white"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
+            <h4 className="text-base font-bold text-secondary-600 mb-4 uppercase tracking-wide">Quick Links</h4>
+            <ul className="space-y-2.5">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.href}
+                    className="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center"
                   >
-                    <path d={social.icon} />
-                  </svg>
-                </a>
+                    <span className="mr-1">•</span>
+                    {link.name}
+                  </Link>
+                </li>
               ))}
+            </ul>
+          </div>
+
+          {/* Academics Section */}
+          <div>
+            <h4 className="text-base font-bold text-secondary-600 mb-4 uppercase tracking-wide">Academics</h4>
+            <ul className="space-y-2.5">
+              {academicsLinks.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.href}
+                    className="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center"
+                  >
+                    <span className="mr-1">•</span>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Beyond Academics Section */}
+          <div>
+            <h4 className="text-base font-bold text-secondary-600 mb-4 uppercase tracking-wide">Beyond Academics</h4>
+            <ul className="space-y-2.5">
+              {beyondAcademicsLinks.map((link, index) => (
+                <li key={index}>
+                  <Link
+                    to={link.href}
+                    className="text-sm text-gray-600 hover:text-primary-600 transition-colors duration-200 flex items-center"
+                  >
+                    <span className="mr-1">•</span>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Us Section */}
+          <div className="lg:col-span-2">
+            <h4 className="text-base font-bold text-secondary-600 mb-4 uppercase tracking-wide">Contact Us</h4>
+            <div className="space-y-3 mb-6">
+              <div className="flex items-start space-x-3">
+                <MapPinIcon className="h-5 w-5 text-primary-600 flex-shrink-0 mt-0.5" />
+                <span className="text-sm text-gray-600">The City Palace, Jaipur-302002 (Raj.) INDIA</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <PhoneIcon className="h-5 w-5 text-primary-600 flex-shrink-0" />
+                <div className="text-sm text-gray-600">
+                  <div>+91 141-4062847</div>
+                  <div>+91 141-4062848</div>
+                </div>
+              </div>
+              <div className="flex items-center space-x-3">
+                <EnvelopeIcon className="h-5 w-5 text-primary-600 flex-shrink-0" />
+                <span className="text-sm text-gray-600">info@thepalaceschool.com</span>
+              </div>
             </div>
-            
-            {/* Newsletter Signup */}
-            <div className="mt-6">
-              <h5 className="text-sm font-semibold mb-3 text-white">Stay Updated</h5>
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-3 py-2 bg-white/10 border border-white/20 rounded-l-lg text-white placeholder-white/50 focus:outline-none focus:border-accent-yellow-400"
-                />
-                <button className="bg-primary-600 hover:bg-primary-700 px-4 py-2 rounded-r-lg transition-colors duration-200 text-white">
-                  Subscribe
-                </button>
+
+            {/* Social Media */}
+            <div className="mb-6">
+              <h5 className="text-sm font-semibold text-secondary-600 mb-3">Follow Us</h5>
+              <div className="flex space-x-3">
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-gray-100 hover:bg-primary-600 p-2.5 rounded-lg transition-all duration-200 group"
+                    aria-label={social.name}
+                  >
+                    <svg
+                      className="h-4 w-4 text-gray-600 group-hover:text-white transition-colors"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d={social.icon} />
+                    </svg>
+                  </a>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-white/20 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/60 text-sm">
+        {/* Newsletter Section */}
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="max-w-2xl">
+            <h4 className="text-lg font-bold text-secondary-600 mb-3">Stay Updated</h4>
+            <p className="text-sm text-gray-600 mb-4">Subscribe to our newsletter for latest updates and announcements</p>
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email address"
+                required
+                className="flex-1 px-4 py-2.5 border border-gray-300 rounded-lg text-sm focus:outline-none focus:border-primary-600 focus:ring-1 focus:ring-primary-600"
+              />
+              <button 
+                type="submit"
+                className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-colors duration-200 flex items-center justify-center space-x-2 shadow-sm hover:shadow-md"
+              >
+                <span>Subscribe</span>
+                <ArrowRightIcon className="h-4 w-4" />
+              </button>
+            </form>
+          </div>
+        </div>
+
+        {/* Logo Section */}
+        <div className="mt-12 pt-8 border-t border-gray-200">
+          <div className="flex items-center justify-center space-x-4 mb-6">
+            <img 
+              src={schoolLogo} 
+              alt="The Palace School" 
+              className="h-20 w-auto"
+            />
+            <div>
+              <img 
+                src={schoolNameText} 
+                alt="The Palace School" 
+                className="h-10 w-auto object-contain"
+              />
+              <p className="text-sm text-gray-600 mt-1">Excellence in Education</p>
+            </div>
+          </div>
+          <p className="text-sm text-gray-600 text-center max-w-3xl mx-auto">
+            Nurturing young minds for a brighter tomorrow through excellence in education, 
+            character building, and holistic development at The Palace School, City Palace, Jaipur.
+          </p>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="bg-secondary-600 text-white py-4">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center text-sm">
+            <p className="text-white/90">
               &copy; {currentYear} The Palace School. All rights reserved.
             </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link to="/privacy" className="text-white/60 hover:text-accent-yellow-400 text-sm transition-colors">
+            <div className="flex items-center space-x-6 mt-3 md:mt-0">
+              <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="/terms" className="text-white/60 hover:text-accent-yellow-400 text-sm transition-colors">
+              <span className="text-white/50">|</span>
+              <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
                 Terms of Service
+              </Link>
+              <span className="text-white/50">|</span>
+              <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
+                Sitemap
               </Link>
             </div>
           </div>
