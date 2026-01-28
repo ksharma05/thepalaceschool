@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
-import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
-import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
+// import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
+// import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
 
 // Import slider images
 import slide1 from '../assets/slider/IMG_5400.JPG';
@@ -82,7 +82,7 @@ const HeroSlider: React.FC = () => {
               className="w-full h-full object-cover"
             />
             {/* Dark overlay for better text readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+            {/* <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div> */}
           </div>
         ))}
       </div>
