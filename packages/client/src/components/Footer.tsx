@@ -230,12 +230,12 @@ const Footer: React.FC = () => {
               className="h-20 w-auto"
             />
             <div>
-              <img 
+              {/* <img 
                 src={schoolNameText} 
                 alt="The Palace School" 
                 className="h-10 w-auto object-contain"
-              />
-              <p className="text-sm text-gray-600 mt-1">Excellence in Education</p>
+              /> */}
+              {/* <p className="text-sm text-gray-600 mt-1">Excellence in Education</p> */}
             </div>
           </div>
           <p className="text-sm text-gray-600 text-center max-w-3xl mx-auto">

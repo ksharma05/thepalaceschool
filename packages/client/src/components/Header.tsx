@@ -57,11 +57,11 @@ const Header: React.FC = () => {
               alt="The Palace School Logo" 
               className="h-12 w-auto object-contain"
             />
-            <img 
+            {/* <img 
               src={schoolNameText} 
               alt="The Palace School" 
               className="h-8 w-auto object-contain"
-            />
+            /> */}
           </Link>
           <button
             type="button"
@@ -82,11 +82,11 @@ const Header: React.FC = () => {
               alt="The Palace School Logo" 
               className="h-16 w-auto object-contain"
             />
-            <img 
+            {/* <img 
               src={schoolNameText} 
               alt="The Palace School" 
               className="h-10 w-auto object-contain"
-            />
+            /> */}
           </Link>
 
           {/* Navigation - Right */}

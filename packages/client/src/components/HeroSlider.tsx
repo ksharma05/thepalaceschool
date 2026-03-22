@@ -5,17 +5,16 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 // import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
 
 // Import slider images
-import slide1 from '../assets/slider/IMG_5400.JPG';
-import slide2 from '../assets/slider/IMG_5141.JPG';
-import slide3 from '../assets/slider/IMG-20251029-WA0007.jpeg';
-import slide4 from '../assets/slider/IMG_5390.JPG';
-import slide5 from '../assets/slider/IMG_5389.JPG';
-import slide6 from '../assets/slider/IMG_5396.JPG';
-import slide7 from '../assets/slider/IMG_5388.JPG';
-import slide8 from '../assets/slider/IMG_5391.JPG';
-import slide9 from '../assets/slider/Investiture Ceremony 2025 group picture.jpeg';
-import slide10 from '../assets/slider/IMG_5519.JPG';
-import slide11 from '../assets/slider/SPS_6086.jpeg';
+import slide1 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.41.jpeg';
+import slide2 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.42 (1).jpeg';
+import slide3 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.42 (2).jpeg';
+import slide4 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.42.jpeg';
+import slide5 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.43 (1).jpeg';
+import slide6 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.43 (2).jpeg';
+import slide7 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.43.jpeg';
+import slide8 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.44 (1).jpeg';
+import slide9 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.44.jpeg';
+
 
 const HeroSlider: React.FC = () => {
   const slides = [
@@ -28,12 +27,13 @@ const HeroSlider: React.FC = () => {
     { id: 7, image: slide7, alt: 'The Palace School Campus View' },
     { id: 8, image: slide8, alt: 'The Palace School Students Activities' },
     { id: 9, image: slide9, alt: 'Investiture Ceremony 2025' },
-    { id: 10, image: slide10, alt: 'The Palace School Excellence' },
-    { id: 11, image: slide11, alt: 'The Palace School Heritage' },
+
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   // Auto-play functionality
   useEffect(() => {
@@ -45,6 +45,32 @@ const HeroSlider: React.FC = () => {
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, slides.length]);
+
+  // Touch handlers for mobile swipe
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
@@ -66,25 +92,38 @@ const HeroSlider: React.FC = () => {
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section 
+      className="relative w-full overflow-hidden pt-0 sm:-mt-24 bg-white sm:bg-gray-100"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       {/* Slider Images */}
-      <div className="absolute inset-0">
+      <div className="relative w-full min-h-[50vh] sm:min-h-[70vh] flex items-center justify-center bg-white sm:bg-gray-100">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out ${
               index === currentSlide ? 'opacity-100' : 'opacity-0'
             }`}
           >
             <img
               src={slide.image}
               alt={slide.alt}
-              className="w-full h-full object-cover"
+              className="w-full h-auto max-h-[65vh] sm:max-h-[85vh] object-contain"
             />
-            {/* Dark overlay for better text readability */}
-            {/* <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div> */}
+            {/* Dark overlay removed to show full image clearly */}
           </div>
         ))}
+      </div>
+
+      {/* Mobile Swipe Indicator - Shows briefly on page load */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:hidden pointer-events-none z-20">
+        <div className="flex items-center space-x-2 bg-black/60 px-4 py-2 rounded-full text-white text-xs sm:text-sm animate-pulse">
+          <ChevronLeftIcon className="h-4 w-4" />
+          <span className="font-medium">Swipe to navigate</span>
+          <ChevronRightIcon className="h-4 w-4" />
+        </div>
       </div>
 
       {/* Content Overlay */}
@@ -139,67 +178,67 @@ const HeroSlider: React.FC = () => {
         </div>
 
         {/* Bottom Section - Navigation Controls */}
-        <div className="pb-8">
+        <div className="pb-4 sm:pb-6 md:pb-8">
           <div className="container mx-auto px-4 lg:px-8">
             {/* Slider Dots */}
-            <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className="flex items-center justify-center space-x-2 sm:space-x-3 mb-3 sm:mb-4">
               {slides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`transition-all duration-300 ${
                     index === currentSlide
-                      ? 'w-12 h-3 bg-white rounded-full'
-                      : 'w-3 h-3 bg-white/50 rounded-full hover:bg-white/75'
+                      ? 'w-8 sm:w-10 md:w-12 h-2 sm:h-2.5 md:h-3 bg-primary-600 sm:bg-white rounded-full shadow-lg'
+                      : 'w-2 sm:w-2.5 md:w-3 h-2 sm:h-2.5 md:h-3 bg-gray-400 sm:bg-white/50 rounded-full hover:bg-primary-500 sm:hover:bg-white/75'
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
 
-            {/* Arrow Navigation - Desktop Only */}
+            {/* Arrow Navigation & Counter - Desktop Only */}
             <div className="hidden md:flex items-center justify-center space-x-4">
               <button
                 onClick={prevSlide}
-                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
+                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2.5 md:p-3 rounded-full transition-all duration-200 hover:scale-110"
                 aria-label="Previous slide"
               >
-                <ChevronLeftIcon className="h-6 w-6" />
+                <ChevronLeftIcon className="h-5 w-5 md:h-6 md:w-6" />
               </button>
-              <span className="text-white/80 text-sm font-medium">
+              <span className="text-white/90 text-xs md:text-sm font-medium px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full">
                 {currentSlide + 1} / {slides.length}
               </span>
               <button
                 onClick={nextSlide}
-                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-200 hover:scale-110"
+                className="bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-2.5 md:p-3 rounded-full transition-all duration-200 hover:scale-110"
                 aria-label="Next slide"
               >
-                <ChevronRightIcon className="h-6 w-6" />
+                <ChevronRightIcon className="h-5 w-5 md:h-6 md:w-6" />
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Left Arrow - Fixed Position */}
+      {/* Left Arrow - Fixed Position (Hidden on Mobile/Tablet) */}
       <button
         onClick={prevSlide}
-        className="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-4 rounded-full transition-all duration-200 hover:scale-110 z-10"
+        className="hidden lg:flex absolute left-2 md:left-4 lg:left-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-200 hover:scale-110 z-10 items-center justify-center shadow-lg"
         aria-label="Previous slide"
       >
-        <ChevronLeftIcon className="h-8 w-8" />
+        <ChevronLeftIcon className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8" />
       </button>
 
-      {/* Right Arrow - Fixed Position */}
+      {/* Right Arrow - Fixed Position (Hidden on Mobile/Tablet) */}
       <button
         onClick={nextSlide}
-        className="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-4 rounded-full transition-all duration-200 hover:scale-110 z-10"
+        className="hidden lg:flex absolute right-2 md:right-4 lg:right-6 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 md:p-4 rounded-full transition-all duration-200 hover:scale-110 z-10 items-center justify-center shadow-lg"
         aria-label="Next slide"
       >
-        <ChevronRightIcon className="h-8 w-8" />
+        <ChevronRightIcon className="h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8" />
       </button>
 
-      {/* Custom animations */}
+      {/* Custom animations and responsive styles */}
       <style>{`
         @keyframes fadeIn {
           from {
@@ -218,6 +257,22 @@ const HeroSlider: React.FC = () => {
 
         .animate-fade-in-delay {
           animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        /* Hide swipe indicator after 3 seconds */
+        @keyframes fadeOut {
+          0%, 70% {
+            opacity: 0.6;
+          }
+          100% {
+            opacity: 0;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .md\\:hidden.animate-pulse {
+            animation: fadeOut 3s ease-in-out forwards;
+          }
         }
       `}</style>
     </section>
