@@ -7,7 +7,7 @@ import {
   ArrowRightIcon
 } from '@heroicons/react/24/outline';
 import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
-import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
+// import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
