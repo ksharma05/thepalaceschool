@@ -5,29 +5,36 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 // import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
 
 // Import slider images
-import slide1 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.41.jpeg';
-import slide2 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.42 (1).jpeg';
-import slide3 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.42 (2).jpeg';
-import slide4 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.42.jpeg';
-import slide5 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.43 (1).jpeg';
-import slide6 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.43 (2).jpeg';
-import slide7 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.43.jpeg';
-import slide8 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.44 (1).jpeg';
-import slide9 from '../assets/slider/WhatsApp Image 2026-02-17 at 15.37.44.jpeg';
+import slide1 from '../assets/slider/one.jpeg';
+import slide2 from '../assets/slider/two.jpeg';
+import slide3 from '../assets/slider/three.jpeg';
+import slide4 from '../assets/slider/four.jpeg';
+import slide5 from '../assets/slider/five.jpeg';
+import slide6 from '../assets/slider/six.jpeg';
+import slide7 from '../assets/slider/seven.jpeg';
+import slide8 from '../assets/slider/eight.jpeg';
+import slide9 from '../assets/slider/nine.jpeg';
+import slide10 from '../assets/slider/fourteen.jpeg';
+import slide14 from '../assets/slider/nineteen.jpeg';
+import slide15 from '../assets/slider/initial.jpeg';
+
 
 
 const HeroSlider: React.FC = () => {
   const slides = [
-    { id: 1, image: slide1, alt: 'The Palace School Campus' },
-    { id: 2, image: slide2, alt: 'The Palace School Students' },
-    { id: 3, image: slide3, alt: 'The Palace School Activities' },
-    { id: 4, image: slide4, alt: 'The Palace School Facilities' },
-    { id: 5, image: slide5, alt: 'The Palace School Events' },
-    { id: 6, image: slide6, alt: 'The Palace School Life' },
-    { id: 7, image: slide7, alt: 'The Palace School Campus View' },
-    { id: 8, image: slide8, alt: 'The Palace School Students Activities' },
-    { id: 9, image: slide9, alt: 'Investiture Ceremony 2025' },
-
+    { id: 1, image: slide15, alt: 'The Palace School Campus' },
+    { id: 2, image: slide1, alt: 'The Palace School Students' },
+    { id: 3, image: slide2, alt: 'The Palace School Activities' },
+    { id: 4, image: slide3, alt: 'The Palace School Facilities' },
+    { id: 5, image: slide4, alt: 'The Palace School Events' },
+    { id: 6, image: slide5, alt: 'The Palace School Life' },
+    { id: 7, image: slide6, alt: 'The Palace School Campus View' },
+    { id: 8, image: slide7, alt: 'The Palace School Students Activities' },
+    { id: 9, image: slide8, alt: 'Investiture Ceremony 2025' },
+    { id: 10, image: slide9, alt: 'Investiture Ceremony 2025' },
+    { id: 11, image: slide10, alt: 'Investiture Ceremony 2025' },
+    { id: 15, image: slide14, alt: 'Investiture Ceremony 2025' },
+    
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -93,7 +100,7 @@ const HeroSlider: React.FC = () => {
 
   return (
     <section 
-      className="relative w-full overflow-hidden pt-0 sm:-mt-24 bg-white sm:bg-gray-100"
+      className="relative w-full overflow-hidden pt-0 sm:mt-0 bg-white sm:bg-gray-100"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
