@@ -41,7 +41,7 @@ const Header: React.FC = () => {
             </div>
             <div className="hidden md:flex items-center space-x-4">
               <PhoneIcon className="h-4 w-4" />
-              <span>0141-4062847, 0141-4062848, +91 92612 01102</span>
+              <span>  +91 92612 01102, 0141-4062847 / 48</span>
             </div>
           </div>
         </div>

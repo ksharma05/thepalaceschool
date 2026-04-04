@@ -159,9 +159,10 @@ const Footer: React.FC = () => {
               <div className="flex items-center space-x-3">
                 <PhoneIcon className="h-5 w-5 text-primary-600 flex-shrink-0" />
                 <div className="text-sm text-gray-600">
-                  <div>+91 141-4062847</div>
-                  <div>+91 141-4062848</div>
                   <div>+91 92612 01102</div>
+                  <div>+91 141-4062847 / 48</div>
+                
+                  
                 </div>
               </div>
               <div className="flex items-center space-x-3">
