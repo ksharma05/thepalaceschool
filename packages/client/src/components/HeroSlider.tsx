@@ -170,7 +170,7 @@ const HeroSlider: React.FC = () => {
                       className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg text-base font-semibold transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
                     >
                       Admission Enquiry
-                    </Link>
+                    </a>
                     <Link
                       to="/about"
                       className="border-2 border-white text-white hover:bg-white hover:text-secondary-600 px-8 py-3 rounded-lg text-base font-semibold transition-all duration-200 backdrop-blur-sm"
