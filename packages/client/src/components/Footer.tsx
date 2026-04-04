@@ -227,7 +227,7 @@ const Footer: React.FC = () => {
             <img 
               src={schoolLogo} 
               alt="The Palace School" 
-              className="h-20 w-auto"
+              className="h-24 w-auto"
             />
             <div>
               {/* <img 
