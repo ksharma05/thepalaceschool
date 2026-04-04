@@ -79,7 +79,8 @@ const ContactPage: React.FC = () => {
       title: 'Phone',
       details: [
         'Main Office: 0141-4062847',
-        'Alternate: 0141-4062848'
+        'Alternate: 0141-4062848',
+        'Mobile: +91 92612 01102'
       ]
     },
     {

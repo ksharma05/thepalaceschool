@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
-import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
+// import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // About Us dropdown items
+  // About Us dropdown items4062847
   const aboutDropdownItems = [
     { name: 'About Us', href: '/about' },
     { name: 'Leadership', href: '/leadership' },
@@ -41,7 +41,7 @@ const Header: React.FC = () => {
             </div>
             <div className="hidden md:flex items-center space-x-4">
               <PhoneIcon className="h-4 w-4" />
-              <span>0141-4062847, 0141-4062848</span>
+              <span>0141-4062847, 0141-4062848, +91 92612 01102</span>
             </div>
           </div>
         </div>

@@ -161,6 +161,7 @@ const Footer: React.FC = () => {
                 <div className="text-sm text-gray-600">
                   <div>+91 141-4062847</div>
                   <div>+91 141-4062848</div>
+                  <div>+91 92612 01102</div>
                 </div>
               </div>
               <div className="flex items-center space-x-3">
