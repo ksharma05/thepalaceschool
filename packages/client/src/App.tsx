@@ -21,6 +21,7 @@ import AdminLayout from "./components/admin/AdminLayout";
 import LoginPage from "./pages/admin/LoginPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
+import AdmissionEnquiryPage from "./pages/AdmissionEnquiryPage";
 
 const router = createBrowserRouter([
   {
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
       {
         path: "student-life",
         element: <div className="min-h-screen flex items-center justify-center"><h1 className="text-4xl font-bold">Student Life - Coming Soon</h1></div>,
+      },
+      {
+        path: "admission-enquiry",
+        element: <AdmissionEnquiryPage />,
       },
     ],
   },

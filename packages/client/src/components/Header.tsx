@@ -180,14 +180,12 @@ const Header: React.FC = () => {
             </Link>
 
             {/* Admission CTA Button */}
-            <a
-              href="https://agasty.ai/admissions?centerId=1837&boardId=295"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/admission-enquiry?centerId=1837&boardId=295"
               className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
             >
               Admission Enquiry
-            </a>
+            </Link>
           </div>
         </div>
       </nav>
@@ -293,15 +291,13 @@ const Header: React.FC = () => {
               
               {/* Admission CTA */}
               <div className="py-6">
-                <a
-                  href="https://agasty.ai/admissions?centerId=1837&boardId=295"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  to="/admission-enquiry?centerId=1837&boardId=295"
                   onClick={() => setMobileMenuOpen(false)}
                   className="block w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg text-center font-semibold transition-colors"
                 >
                   Admission Enquiry
-                </a>
+                </Link>
               </div>
             </div>
           </div>

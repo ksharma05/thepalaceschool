@@ -274,17 +274,15 @@ const WhyChooseUsPage: React.FC = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
-              <a
-                href="https://agasty.ai/admissions?centerId=1837&boardId=295"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/admission-enquiry?centerId=1837&boardId=295"
                 className="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-primary-600 px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-200"
               >
                 Apply for Admission
                 <svg className="ml-2 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

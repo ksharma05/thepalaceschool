@@ -175,14 +175,12 @@ const HomePage: React.FC = () => {
               Contact us today to learn more about admissions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="https://agasty.ai/admissions?centerId=1837&boardId=295"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/admission-enquiry?centerId=1837&boardId=295"
                 className="bg-white text-primary-600 hover:bg-gray-100 px-8 py-3 rounded-lg text-base font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
               >
                 Apply Now
-              </a>
+              </Link>
               <Link
                 to="/contact"
                 className="border-2 border-white text-white hover:bg-white hover:text-primary-600 px-8 py-3 rounded-lg text-base font-semibold transition-all duration-200"
