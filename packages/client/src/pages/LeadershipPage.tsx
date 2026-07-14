@@ -3,7 +3,7 @@ import { useGSAP } from '../hooks/useGSAP';
 import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
+import {
   UserCircleIcon
 } from '@heroicons/react/24/outline';
 
@@ -80,37 +80,50 @@ const LeadershipPage: React.FC = () => {
     const cards = carousel.querySelectorAll('.leadership-card');
     
     if (cards.length === 0) return;
-    
-    // Calculate total scroll width
-    const totalWidth = cards.length * window.innerWidth;
-    
-    // Create snap points for each card
-    const snapValues = Array.from({ length: cards.length }, (_, i) => i / (cards.length - 1));
-    
-    // Create horizontal scroll animation with snap
-    // In the useEffect, after getting the cards:
-gsap.set(cards, { opacity: 1 });
-    gsap.to(carousel, {
-      x: () => -(totalWidth - window.innerWidth),
-      ease: 'none',
-      scrollTrigger: {
-        trigger: carouselContainerRef.current,
-        start: 'top top',
-        end: () => `+=${totalWidth}`,
-        scrub: 1,
-        snap: {
-          snapTo: snapValues,
-          duration: { min: 0.2, max: 0.6 },
-          ease: 'power2.inOut',
-        },
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      }
+
+    const mm = gsap.matchMedia();
+
+    // Only apply horizontal scrolling pinned animation on large screens (lg: >= 1024px)
+    mm.add("(min-width: 1024px)", () => {
+      // Calculate total scroll width
+      const totalWidth = cards.length * window.innerWidth;
+      
+      // Create snap points for each card
+      const snapValues = Array.from({ length: cards.length }, (_, i) => i / (cards.length - 1));
+      
+      gsap.set(cards, { opacity: 1 });
+      const anim = gsap.to(carousel, {
+        x: () => -(totalWidth - window.innerWidth),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: carouselContainerRef.current,
+          start: 'top top',
+          end: () => `+=${totalWidth}`,
+          scrub: 1,
+          snap: {
+            snapTo: snapValues,
+            duration: { min: 0.2, max: 0.6 },
+            ease: 'power2.inOut',
+          },
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        }
+      });
+
+      return () => {
+        anim.kill();
+      };
+    });
+
+    // Reset x translation for mobile viewports to prevent layout shifts
+    mm.add("(max-width: 1023px)", () => {
+      gsap.set(carousel, { clearProps: "x" });
+      gsap.set(cards, { opacity: 1 });
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      mm.revert();
     };
   }, [leadershipMessages.length]);
 
@@ -125,7 +138,7 @@ gsap.set(cards, { opacity: 1 });
               Our Leadership
             </h1>
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-              Meet the visionary leaders who guide The Palace School towards 
+              Meet the visionary leaders who guide The Palace School towards
               excellence in education and character building.
             </p>
           </div>
@@ -150,23 +163,23 @@ gsap.set(cards, { opacity: 1 });
       </section>
 
       {/* Horizontal Scroll Gallery */}
-      <section ref={carouselContainerRef} className="relative bg-bg-primary overflow-hidden">
-        <div ref={carouselRef} className="flex items-center h-screen">
+      <section ref={carouselContainerRef} className="relative bg-bg-primary overflow-hidden lg:overflow-visible">
+        <div ref={carouselRef} className="flex flex-col lg:flex-row items-center gap-16 lg:gap-0 py-16 lg:py-0 lg:h-screen">
           {leadershipMessages.map((message) => {
             const IconComponent = UserCircleIcon;
             const hasImage = message.hasImage && message.image && message.image !== '/api/placeholder/400/300';
             return (
               <div
                 key={message.id}
-                className="leadership-card flex-shrink-0 w-screen h-screen flex items-center justify-center px-8 md:px-16 lg:px-24"
+                className="leadership-card w-full lg:w-screen lg:h-screen lg:flex-shrink-0 flex items-center justify-center px-6 md:px-16 lg:px-24 py-8 lg:py-0 lg:pt-[148px]"
               >
                 <Link
                   to={message.link}
-                  className="group w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center"
+                  className="group w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
                 >
                   {/* Image Section */}
-                  <div className="relative w-full">
-                    <div className="aspect-[3/4] lg:aspect-[3/4] bg-primary-600 rounded-2xl overflow-hidden shadow-2xl border-4 border-border-primary group-hover:border-primary-500 transition-all duration-500">
+                  <div className="relative w-full flex justify-center lg:col-span-5">
+                    <div className="w-full max-w-[280px] sm:max-w-xs lg:max-w-[320px] aspect-[3/4] bg-primary-600 rounded-2xl overflow-hidden shadow-2xl border-4 border-border-primary group-hover:border-primary-500 transition-all duration-500">
                       {hasImage ? (
                         <img
                           src={message.image}
@@ -175,34 +188,34 @@ gsap.set(cards, { opacity: 1 });
                         />
                       ) : (
                         <div className="flex items-center justify-center h-full">
-                          <IconComponent className="h-32 w-32 text-white" />
+                          <IconComponent className="h-24 w-24 text-white" />
                         </div>
                       )}
                     </div>
                   </div>
 
                   {/* Content Section */}
-                  <div className="space-y-6">
+                  <div className="space-y-4 lg:col-span-7">
                     <div>
-                      <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-text-primary mb-4 group-hover:text-primary-600 transition-colors duration-300">
+                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary mb-3 group-hover:text-primary-600 transition-colors duration-300">
                         {message.title}
                       </h3>
-                      <p className="text-2xl md:text-3xl text-primary-600 font-bold mb-3">
+                      <p className="text-xl md:text-2xl text-primary-600 font-bold mb-2">
                         {message.name}
                       </p>
-                      <p className="text-lg md:text-xl text-text-secondary font-medium mb-6">
+                      <p className="text-base md:text-lg text-text-secondary font-medium mb-4">
                         {message.role}
                       </p>
                     </div>
-                    <p className="text-lg md:text-xl text-text-secondary leading-relaxed">
+                    <p className="text-base md:text-lg text-text-secondary leading-relaxed">
                       {message.excerpt}
                     </p>
-                    <div className="inline-flex items-center gap-2 text-primary-600 text-lg font-semibold group-hover:gap-4 transition-all duration-300">
+                    <div className="inline-flex items-center gap-2 text-primary-600 text-base md:text-lg font-semibold group-hover:gap-4 transition-all duration-300">
                       <span>Read Full Message</span>
-                      <svg 
-                        className="w-6 h-6" 
-                        fill="none" 
-                        stroke="currentColor" 
+                      <svg
+                        className="w-5 h-5 md:w-6 md:h-6"
+                        fill="none"
+                        stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
