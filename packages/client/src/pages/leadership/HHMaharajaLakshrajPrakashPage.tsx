@@ -25,7 +25,7 @@ const HHMaharajaLakshrajPrakashPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Message from HH Maharaja Lakshraj Prakash
             </h1>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
               Member, Board of Governors & Alumnus, The Palace School
             </p>
           </div>
@@ -87,7 +87,7 @@ const HHMaharajaLakshrajPrakashPage: React.FC = () => {
                     <p className="text-lg font-semibold text-text-primary">
                       HH Maharaja Lakshraj Prakash
                     </p>
-                    <p className="text-indigo-600 dark:text-indigo-400 font-medium">
+                    <p className="text-primary-600 font-medium">
                       Sirmour
                     </p>
                   </div>
@@ -96,13 +96,13 @@ const HHMaharajaLakshrajPrakashPage: React.FC = () => {
             </div>
 
             {/* Additional Info */}
-            <div className="mt-12 bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8 border border-border-primary">
+            <div className="mt-12 bg-surface-primary rounded-xl shadow-lg p-8 border border-border-primary">
               <h3 className="text-2xl font-bold text-text-primary mb-6">
                 About HH Maharaja Lakshraj Prakash
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                  <h4 className="text-lg font-semibold text-primary-600 mb-3">
                     Alumnus & Board Member
                   </h4>
                   <p className="text-text-secondary">
@@ -113,7 +113,7 @@ const HHMaharajaLakshrajPrakashPage: React.FC = () => {
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-indigo-600 dark:text-indigo-400 mb-3">
+                  <h4 className="text-lg font-semibold text-primary-600 mb-3">
                     Global Perspective
                   </h4>
                   <p className="text-text-secondary">

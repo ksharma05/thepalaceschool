@@ -9,7 +9,6 @@ import LeadershipPage from "./pages/LeadershipPage";
 import CommitteesPage from "./pages/CommitteesPage";
 import WhyChooseUsPage from "./pages/WhyChooseUsPage";
 import PrincessGauravPage from "./pages/leadership/PrincessGauravPage";
-import HHMessagePage from "./pages/leadership/HHMessagePage";
 import RajmataSahibPage from "./pages/leadership/RajmataSahibPage";
 import HHMaharajaLakshrajPrakashPage from "./pages/leadership/HHMaharajaLakshrajPrakashPage";
 import ViceChairpersonPage from "./pages/leadership/ViceChairpersonPage";
@@ -55,10 +54,6 @@ const router = createBrowserRouter([
       {
         path: "leadership/princess-gaurav",
         element: <PrincessGauravPage />,
-      },
-      {
-        path: "leadership/hh-message",
-        element: <HHMessagePage />,
       },
       {
         path: "leadership/rajmata-sahib",

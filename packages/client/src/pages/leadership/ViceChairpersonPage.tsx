@@ -39,7 +39,7 @@ const ViceChairpersonPage: React.FC = () => {
             {/* Back Button */}
             <Link
               to="/leadership"
-              className="inline-flex items-center text-primary-600 hover:text-indigo-800 dark:hover:text-indigo-300 mb-8 transition-colors"
+              className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-8 transition-colors"
             >
               <ArrowLeftIcon className="h-5 w-5 mr-2" />
               Back to Leadership

@@ -2,7 +2,7 @@ import React from 'react';
 import { useGSAP } from '../../hooks/useGSAP';
 import { Link } from 'react-router-dom';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
-import diyaKumariImage from '../../assets/Diya Kumari 1.jpg';
+import diyaKumariImage from '../../assets/WhatsApp Image 2025-12-10 at 15.30.36.jpeg';
 
 const FounderPage: React.FC = () => {
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
@@ -25,7 +25,7 @@ const FounderPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Message From The Founder
             </h1>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
               Deputy Chief Minister, Rajasthan & Founder, The Palace School
             </p>
           </div>

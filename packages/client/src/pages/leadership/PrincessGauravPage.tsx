@@ -25,7 +25,7 @@ const PrincessGauravPage: React.FC = () => {
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Message From The Treasurer
             </h1>
-            <p className="text-xl md:text-2xl text-text-secondary leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed">
               Princess Gauravi Kumari
             </p>
           </div>
@@ -39,7 +39,7 @@ const PrincessGauravPage: React.FC = () => {
             {/* Back Button */}
             <Link
               to="/leadership"
-              className="inline-flex items-center text-primary-600 hover:text-indigo-800 dark:hover:text-indigo-300 mb-8 transition-colors"
+              className="inline-flex items-center text-primary-600 hover:text-primary-700 mb-8 transition-colors"
             >
               <ArrowLeftIcon className="h-5 w-5 mr-2" />
               Back to Leadership
@@ -80,7 +80,7 @@ const PrincessGauravPage: React.FC = () => {
                     The Palace School continues to embody her vision of holistic education rooted in values, creativity, and excellence. I am deeply committed to contributing to its ongoing journey and look forward to being an active part of its continued progress and success.
                   </p>
 
-                  <div className="text-right mt-8 pt-6 border-t border-border-primary">
+                  <div className="mt-8 pt-6 border-t border-border-primary">
                     <p className="text-lg font-semibold text-text-primary">
                       Princess Gauravi Kumari
                     </p>
