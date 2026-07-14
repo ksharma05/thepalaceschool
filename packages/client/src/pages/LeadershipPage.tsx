@@ -25,7 +25,7 @@ const LeadershipPage: React.FC = () => {
       id: 'rajmata-sahib',
       title: 'Message from The Chairperson',
       name: 'HH Rajmata Padmini Devi',
-      role: 'Chairperson',
+      // role: 'Chairperson',
       excerpt: 'A message from the Chairperson about supporting her daughter\'s vision and the school\'s growth at The City Palace, Jaipur...',
       image: rajmataPadminiDeviImage,
       hasImage: true,
@@ -35,7 +35,7 @@ const LeadershipPage: React.FC = () => {
       id: 'vice-chairperson',
       title: 'Message From The Vice Chairperson',
       name: 'HH Maharaja Sawai Padmanabh Singh',
-      role: 'Vice-Chairperson',
+      // role: 'Vice-Chairperson',
       excerpt: 'As the Vice Chairperson and its very first student, I take immense pride in witnessing how far the school has come since its inception in 2001...',
       image: padmanabhSinghImage,
       hasImage: true,
@@ -45,7 +45,7 @@ const LeadershipPage: React.FC = () => {
       id: 'founder',
       title: 'Message From The Founder',
       name: 'Princess Diya Kumari',
-      role: 'Deputy Chief Minister, Rajasthan & Founder',
+      role: 'Deputy Chief Minister, Rajasthan',
       excerpt: 'The Palace School, founded in 2001 as a Montessori pre-school, has grown into a nationally recognized institution known for its excellence in education and values...',
       image: diyaKumariImage,
       hasImage: true,
@@ -55,7 +55,7 @@ const LeadershipPage: React.FC = () => {
       id: 'princess-gaurav',
       title: 'Message From The Treasurer',
       name: 'Princess Gauravi Kumari',
-      role: 'Treasurer',
+      // role: 'Treasurer',
       excerpt: 'A heartfelt message from an alumna and treasurer about the school\'s remarkable growth and continued vision...',
       image: gauraviKumariImage,
       hasImage: true,
@@ -78,7 +78,7 @@ const LeadershipPage: React.FC = () => {
 
     const carousel = carouselRef.current;
     const cards = carousel.querySelectorAll('.leadership-card');
-    
+
     if (cards.length === 0) return;
 
     const mm = gsap.matchMedia();
@@ -87,10 +87,10 @@ const LeadershipPage: React.FC = () => {
     mm.add("(min-width: 1024px)", () => {
       // Calculate total scroll width
       const totalWidth = cards.length * window.innerWidth;
-      
+
       // Create snap points for each card
       const snapValues = Array.from({ length: cards.length }, (_, i) => i / (cards.length - 1));
-      
+
       gsap.set(cards, { opacity: 1 });
       const anim = gsap.to(carousel, {
         x: () => -(totalWidth - window.innerWidth),
