@@ -142,13 +142,13 @@ const CommitteesPage: React.FC = () => {
               Transparency and governance through dedicated committees ensuring 
               the welfare of students, staff, and the school community.
             </p>
-            <button
+            {/* <button
               onClick={handleDownload}
               className="inline-flex items-center bg-white text-primary-600 hover:bg-bg-secondary px-6 py-3 rounded-lg text-lg font-semibold transition-colors duration-300 shadow-lg hover:shadow-xl"
             >
               <DocumentArrowDownIcon className="h-6 w-6 mr-2" />
               Download Committees PDF
-            </button>
+            </button> */}
           </div>
         </div>
       </section>

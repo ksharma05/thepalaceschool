@@ -78,7 +78,7 @@ const AboutPage: React.FC = () => {
               About The School
             </h1>
             <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-              Founded with a bold vision by Princess Diya Kumari ji to go beyond 
+              Founded with a bold vision by Princess Diya Kumari Ji to go beyond 
               conventional academics and nurture the whole child.
             </p>
           </div>

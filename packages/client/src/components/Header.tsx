@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
-import { Bars3Icon, XMarkIcon, ChevronDownIcon, PhoneIcon } from '@heroicons/react/24/outline';
+import { Bars3Icon, XMarkIcon, ChevronDownIcon, ChevronRightIcon, PhoneIcon } from '@heroicons/react/24/outline';
 import schoolLogo from '../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
 // import schoolNameText from '../assets/WhatsApp Image 2025-12-11 at 21.13.04-Photoroom.png';
 
+interface AboutDropdownItem {
+  name: string;
+  href?: string;
+  children?: { name: string; href: string }[];
+}
+
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cbseDisclosureOpen, setCbseDisclosureOpen] = useState(false);
 
   // About Us dropdown items4062847
-  const aboutDropdownItems = [
+  const aboutDropdownItems: AboutDropdownItem[] = [
     { name: 'About Us', href: '/about' },
     { name: 'Leadership', href: '/leadership' },
     { name: 'Committees', href: '/committees' },
+    {
+      name: 'CBSE MANDATORY DISCLOSURE',
+      children: [
+        { name: 'Fee Structure', href: '/cbse-mandatory-disclosure/fee-structure' },
+      ],
+    },
   ];
 
   // Beyond Academics dropdown items
@@ -109,22 +122,51 @@ const Header: React.FC = () => {
                 className="absolute left-0 z-50 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-xl ring-1 ring-gray-200 focus:outline-none transition data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
               >
                 <div className="py-2">
-                  {aboutDropdownItems.map((item) => (
-                    <MenuItem key={item.name}>
-                      {({ active }) => (
-                        <Link
-                          to={item.href}
-                          className={`block px-4 py-2 text-sm transition-colors duration-200 ${
-                            active
-                              ? 'bg-gray-50 text-primary-600'
-                              : 'text-secondary-600'
-                          }`}
-                        >
+                  {aboutDropdownItems.map((item) =>
+                    item.children ? (
+                      <div key={item.name} className="group/cbse relative">
+                        <div className="flex cursor-default items-center justify-between px-4 py-2 text-sm text-secondary-600">
                           {item.name}
-                        </Link>
-                      )}
-                    </MenuItem>
-                  ))}
+                          <ChevronRightIcon className="ml-2 h-4 w-4" aria-hidden="true" />
+                        </div>
+                        <div className="absolute left-full top-0 z-50 ml-1 hidden w-56 rounded-lg bg-surface-elevated shadow-xl ring-1 ring-border-primary focus:outline-none group-hover/cbse:block">
+                          <div className="py-2">
+                            {item.children.map((child) => (
+                              <MenuItem key={child.name}>
+                                {({ active }) => (
+                                  <Link
+                                    to={child.href}
+                                    className={`block px-4 py-2 text-sm transition-colors duration-200 ${
+                                      active
+                                        ? 'bg-bg-secondary text-primary-600'
+                                        : 'text-secondary-600'
+                                    }`}
+                                  >
+                                    {child.name}
+                                  </Link>
+                                )}
+                              </MenuItem>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <MenuItem key={item.name}>
+                        {({ active }) => (
+                          <Link
+                            to={item.href!}
+                            className={`block px-4 py-2 text-sm transition-colors duration-200 ${
+                              active
+                                ? 'bg-gray-50 text-primary-600'
+                                : 'text-secondary-600'
+                            }`}
+                          >
+                            {item.name}
+                          </Link>
+                        )}
+                      </MenuItem>
+                    )
+                  )}
                 </div>
               </MenuItems>
             </Menu>
@@ -186,6 +228,14 @@ const Header: React.FC = () => {
             >
               Admission Enquiry
             </Link>
+
+            <Link
+              to="https://agasty.ai/signin"
+              className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
+              target='_blank'
+            >
+              Pay Fee
+            </Link>
           </div>
         </div>
       </nav>
@@ -234,16 +284,48 @@ const Header: React.FC = () => {
               <div className="py-6">
                 <p className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">About Us</p>
                 <div className="space-y-1">
-                  {aboutDropdownItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="block px-3 py-2 text-base font-medium text-secondary-600 hover:bg-gray-50 rounded-lg transition-colors"
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  {aboutDropdownItems.map((item) =>
+                    item.children ? (
+                      <div key={item.name}>
+                        <button
+                          type="button"
+                          onClick={() => setCbseDisclosureOpen((open) => !open)}
+                          className="flex w-full items-center justify-between px-3 py-2 text-base font-medium text-secondary-600 hover:bg-bg-secondary rounded-lg transition-colors"
+                        >
+                          {item.name}
+                          <ChevronDownIcon
+                            className={`h-4 w-4 transition-transform duration-200 ${
+                              cbseDisclosureOpen ? 'rotate-180' : ''
+                            }`}
+                            aria-hidden="true"
+                          />
+                        </button>
+                        {cbseDisclosureOpen && (
+                          <div className="space-y-1 pl-6">
+                            {item.children.map((child) => (
+                              <Link
+                                key={child.name}
+                                to={child.href}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="block px-3 py-2 text-sm font-medium text-secondary-600 hover:bg-bg-secondary rounded-lg transition-colors"
+                              >
+                                {child.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <Link
+                        key={item.name}
+                        to={item.href!}
+                        onClick={() => setMobileMenuOpen(false)}
+                        className="block px-3 py-2 text-base font-medium text-secondary-600 hover:bg-gray-50 rounded-lg transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    )
+                  )}
                 </div>
               </div>
 

@@ -21,6 +21,7 @@ import LoginPage from "./pages/admin/LoginPage";
 import DashboardPage from "./pages/admin/DashboardPage";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import AdmissionEnquiryPage from "./pages/AdmissionEnquiryPage";
+import FeeStructurePage from "./pages/FeeStructurePage";
 
 const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "committees",
         element: <CommitteesPage />,
+      },
+      {
+        path: "cbse-mandatory-disclosure/fee-structure",
+        element: <FeeStructurePage />,
       },
       {
         path: "academics",

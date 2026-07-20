@@ -16,13 +16,13 @@ import slide8 from '../assets/slider/eight.jpeg';
 import slide9 from '../assets/slider/nine.jpeg';
 import slide10 from '../assets/slider/fourteen.jpeg';
 import slide14 from '../assets/slider/nineteen.jpeg';
-import slide15 from '../assets/slider/initial.jpeg';
-
+// import slide15 from '../assets/slider/initial.jpeg';
+// { id: 1, image: slide15, alt: 'The Palace School Campus' },
 
 
 const HeroSlider: React.FC = () => {
   const slides = [
-    { id: 1, image: slide15, alt: 'The Palace School Campus' },
+    
     { id: 2, image: slide1, alt: 'The Palace School Students' },
     { id: 3, image: slide2, alt: 'The Palace School Activities' },
     { id: 4, image: slide3, alt: 'The Palace School Facilities' },

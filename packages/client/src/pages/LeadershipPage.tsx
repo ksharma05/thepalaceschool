@@ -1,131 +1,33 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { useGSAP } from '../hooks/useGSAP';
 import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   UserCircleIcon
 } from '@heroicons/react/24/outline';
-
-gsap.registerPlugin(ScrollTrigger);
-import gauraviKumariImage from '../assets/Princess Gauravi Kumari.jpg';
-import lakshrajPrakashImage from '../assets/HH Maharaja Lakshraj Prakash.jpg';
-import rajmataPadminiDeviImage from '../assets/HH Rajmata Padmini Devi .jpg';
-import padmanabhSinghImage from '../assets/WhatsApp Image 2025-12-11 at 09.02.43.jpeg';
-import diyaKumariImage from '../assets/WhatsApp Image 2025-12-10 at 15.30.36.jpeg';
+import { leadershipProfiles } from '../utils/leadershipProfiles';
 
 const LeadershipPage: React.FC = () => {
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
-  const leadershipRef = useRef<HTMLDivElement>(null);
-  const carouselContainerRef = useRef<HTMLDivElement>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
 
   const leadershipMessages = [
-    {
-      id: 'rajmata-sahib',
-      title: 'Message from The Chairperson',
-      name: 'HH Rajmata Padmini Devi',
-      // role: 'Chairperson',
-      excerpt: 'A message from the Chairperson about supporting her daughter\'s vision and the school\'s growth at The City Palace, Jaipur...',
-      image: rajmataPadminiDeviImage,
+    'rajmata-sahib',
+    'vice-chairperson',
+    'founder',
+    'princess-gaurav',
+    'maharaja-lakshraj-prakash',
+  ].map((id) => {
+    const profile = leadershipProfiles[id];
+    return {
+      id: profile.id,
+      title: profile.listing.title,
+      name: profile.listing.name,
+      role: profile.listing.role,
+      excerpt: profile.listing.excerpt,
+      image: profile.image,
       hasImage: true,
-      link: '/leadership/rajmata-sahib'
-    },
-    {
-      id: 'vice-chairperson',
-      title: 'Message From The Vice Chairperson',
-      name: 'HH Maharaja Sawai Padmanabh Singh',
-      // role: 'Vice-Chairperson',
-      excerpt: 'As the Vice Chairperson and its very first student, I take immense pride in witnessing how far the school has come since its inception in 2001...',
-      image: padmanabhSinghImage,
-      hasImage: true,
-      link: '/leadership/vice-chairperson'
-    },
-    {
-      id: 'founder',
-      title: 'Message From The Founder',
-      name: 'Princess Diya Kumari',
-      role: 'Deputy Chief Minister, Rajasthan',
-      excerpt: 'The Palace School, founded in 2001 as a Montessori pre-school, has grown into a nationally recognized institution known for its excellence in education and values...',
-      image: diyaKumariImage,
-      hasImage: true,
-      link: '/leadership/founder'
-    },
-    {
-      id: 'princess-gaurav',
-      title: 'Message From The Treasurer',
-      name: 'Princess Gauravi Kumari',
-      // role: 'Treasurer',
-      excerpt: 'A heartfelt message from an alumna and treasurer about the school\'s remarkable growth and continued vision...',
-      image: gauraviKumariImage,
-      hasImage: true,
-      link: '/leadership/princess-gaurav'
-    },
-    {
-      id: 'maharaja-lakshraj-prakash',
-      title: 'Message from HH Maharaja Lakshraj Prakash',
-      name: 'HH Maharaja Lakshraj Prakash of Sirmour',
-      role: 'Member, Board of Governors & Alumnus',
-      excerpt: 'A heartfelt message from an alumnus and Board member about returning to The Palace School...',
-      image: lakshrajPrakashImage,
-      hasImage: true,
-      link: '/leadership/maharaja-lakshraj-prakash'
-    }
-  ];
-
-  useEffect(() => {
-    if (!carouselContainerRef.current || !carouselRef.current) return;
-
-    const carousel = carouselRef.current;
-    const cards = carousel.querySelectorAll('.leadership-card');
-
-    if (cards.length === 0) return;
-
-    const mm = gsap.matchMedia();
-
-    // Only apply horizontal scrolling pinned animation on large screens (lg: >= 1024px)
-    mm.add("(min-width: 1024px)", () => {
-      // Calculate total scroll width
-      const totalWidth = cards.length * window.innerWidth;
-
-      // Create snap points for each card
-      const snapValues = Array.from({ length: cards.length }, (_, i) => i / (cards.length - 1));
-
-      gsap.set(cards, { opacity: 1 });
-      const anim = gsap.to(carousel, {
-        x: () => -(totalWidth - window.innerWidth),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: carouselContainerRef.current,
-          start: 'top top',
-          end: () => `+=${totalWidth}`,
-          scrub: 1,
-          snap: {
-            snapTo: snapValues,
-            duration: { min: 0.2, max: 0.6 },
-            ease: 'power2.inOut',
-          },
-          pin: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-        }
-      });
-
-      return () => {
-        anim.kill();
-      };
-    });
-
-    // Reset x translation for mobile viewports to prevent layout shifts
-    mm.add("(max-width: 1023px)", () => {
-      gsap.set(carousel, { clearProps: "x" });
-      gsap.set(cards, { opacity: 1 });
-    });
-
-    return () => {
-      mm.revert();
+      link: profile.path,
     };
-  }, [leadershipMessages.length]);
+  });
 
   return (
     <div className="min-h-screen bg-bg-primary">
@@ -146,8 +48,8 @@ const LeadershipPage: React.FC = () => {
       </section>
 
       {/* Leadership Messages Section */}
-      <section ref={leadershipRef} className="py-20 bg-bg-secondary">
-        <div className="container mx-auto px-6 mb-16">
+      <section className="py-20 bg-bg-secondary">
+        <div className="container mx-auto px-6">
           <div className="text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Leadership Messages
@@ -155,71 +57,86 @@ const LeadershipPage: React.FC = () => {
             <p className="text-xl text-text-secondary max-w-3xl mx-auto">
               Inspiring messages from our distinguished patrons and founders
             </p>
-            <p className="text-sm text-text-tertiary mt-4">
-              Scroll down to explore each message
-            </p>
           </div>
         </div>
       </section>
 
-      {/* Horizontal Scroll Gallery */}
-      <section ref={carouselContainerRef} className="relative bg-bg-primary overflow-hidden lg:overflow-visible">
-        <div ref={carouselRef} className="flex flex-col lg:flex-row items-center gap-16 lg:gap-0 py-16 lg:py-0 lg:h-screen">
-          {leadershipMessages.map((message) => {
+      {/* Leadership Gallery */}
+      <section className="bg-bg-primary py-16 lg:py-24">
+        <div className="container mx-auto px-6 space-y-12 lg:space-y-16">
+          {leadershipMessages.map((message, index) => {
             const IconComponent = UserCircleIcon;
             const hasImage = message.hasImage && message.image && message.image !== '/api/placeholder/400/300';
+            const isReversed = index % 2 === 1;
             return (
-              <div
-                key={message.id}
-                className="leadership-card w-full lg:w-screen lg:h-screen lg:flex-shrink-0 flex items-center justify-center px-6 md:px-16 lg:px-24 py-8 lg:py-0 lg:pt-[148px]"
-              >
+              <div key={message.id} className="max-w-6xl mx-auto">
                 <Link
                   to={message.link}
-                  className="group w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+                  className="group block bg-surface-primary rounded-2xl shadow-2xl overflow-hidden border border-border-primary hover:shadow-2xl transition-shadow duration-300"
                 >
-                  {/* Image Section */}
-                  <div className="relative w-full flex justify-center lg:col-span-5">
-                    <div className="w-full max-w-[280px] sm:max-w-xs lg:max-w-[320px] aspect-[3/4] bg-primary-600 rounded-2xl overflow-hidden shadow-2xl border-4 border-border-primary group-hover:border-primary-500 transition-all duration-500">
-                      {hasImage ? (
-                        <img
-                          src={message.image}
-                          alt={message.name}
-                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                        />
-                      ) : (
-                        <div className="flex items-center justify-center h-full">
-                          <IconComponent className="h-24 w-24 text-white" />
-                        </div>
-                      )}
-                    </div>
-                  </div>
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+                    {/* Content Section */}
+                    <div
+                      className={`p-8 lg:p-12 flex flex-col justify-center text-center order-2 ${
+                        isReversed ? 'lg:order-2 lg:text-left' : 'lg:order-1 lg:text-right'
+                      }`}
+                    >
+                      <div className="mb-6">
+                        <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary mb-2 group-hover:text-primary-600 transition-colors duration-300">
+                          {message.title}
+                        </h3>
+                        <p className="text-xl md:text-2xl text-primary-600 font-bold mb-1">
+                          {message.name}
+                        </p>
+                        {message.role && (
+                          <p className="text-base md:text-lg text-text-secondary font-medium">
+                            {message.role}
+                          </p>
+                        )}
+                      </div>
 
-                  {/* Content Section */}
-                  <div className="space-y-4 lg:col-span-7">
-                    <div>
-                      <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary mb-3 group-hover:text-primary-600 transition-colors duration-300">
-                        {message.title}
-                      </h3>
-                      <p className="text-xl md:text-2xl text-primary-600 font-bold mb-2">
-                        {message.name}
-                      </p>
-                      <p className="text-base md:text-lg text-text-secondary font-medium mb-4">
-                        {message.role}
-                      </p>
-                    </div>
-                    <p className="text-base md:text-lg text-text-secondary leading-relaxed">
-                      {message.excerpt}
-                    </p>
-                    <div className="inline-flex items-center gap-2 text-primary-600 text-base md:text-lg font-semibold group-hover:gap-4 transition-all duration-300">
-                      <span>Read Full Message</span>
-                      <svg
-                        className="w-5 h-5 md:w-6 md:h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                      <div className="prose prose-lg dark:prose-invert max-w-none">
+                        <p className="text-text-secondary leading-relaxed">
+                          {message.excerpt}
+                        </p>
+                      </div>
+
+                      <div
+                        className={`mt-8 pt-6 border-t border-border-primary inline-flex items-center gap-2 text-primary-600 text-base md:text-lg font-semibold group-hover:gap-4 transition-all duration-300 ${
+                          isReversed ? 'lg:self-start' : 'lg:self-end'
+                        } self-center`}
                       >
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                      </svg>
+                        <span>Read Full Message</span>
+                        <svg
+                          className="w-5 h-5 md:w-6 md:h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                        </svg>
+                      </div>
+                    </div>
+
+                    {/* Image Section */}
+                    <div
+                      className={`relative bg-bg-secondary p-8 lg:p-12 flex items-center justify-center order-1 ${
+                        isReversed ? 'lg:order-1' : 'lg:order-2'
+                      }`}
+                    >
+                      <div className="relative w-full max-w-[240px] sm:max-w-xs aspect-[3/4]">
+                        {hasImage ? (
+                          <img
+                            src={message.image}
+                            alt={message.name}
+                            className="relative rounded-2xl shadow-2xl w-full h-full object-cover object-top border-4 border-white group-hover:scale-[1.02] transition-transform duration-500"
+                          />
+                        ) : (
+                          <div className="flex items-center justify-center w-full h-full bg-primary-600 rounded-2xl border-4 border-white">
+                            <IconComponent className="h-24 w-24 text-white" />
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </Link>
