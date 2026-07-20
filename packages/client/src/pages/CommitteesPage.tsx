@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useGSAP } from '../hooks/useGSAP';
 import { 
-  DocumentArrowDownIcon,
+  // DocumentArrowDownIcon,
   ShieldCheckIcon,
   UserGroupIcon,
   BookOpenIcon,
@@ -119,14 +119,14 @@ const CommitteesPage: React.FC = () => {
 
   const activeCommittee = committees.find(c => c.id === activeTab) || committees[0];
 
-  const handleDownload = () => {
-    const link = document.createElement('a');
-    link.href = '/documents/committees-2025-26.pdf';
-    link.download = 'The-Palace-School-Committees-2025-26.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
+  // const handleDownload = () => {
+  //   const link = document.createElement('a');
+  //   link.href = '/documents/committees-2025-26.pdf';
+  //   link.download = 'The-Palace-School-Committees-2025-26.pdf';
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
 
   return (
     <div className="min-h-screen bg-bg-primary">
