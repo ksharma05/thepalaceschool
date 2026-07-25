@@ -64,7 +64,7 @@ const LeadershipPage: React.FC = () => {
       {/* Leadership Gallery */}
       <section className="bg-bg-primary py-16 lg:py-24">
         <div className="container mx-auto px-6 space-y-12 lg:space-y-16">
-          {leadershipMessages.map((message, index) => {
+          {leadershipMessages.map((message) => {
             const IconComponent = UserCircleIcon;
             const hasImage = message.hasImage && message.image && message.image !== '/api/placeholder/400/300';
             // const isReversed = index % 2 === 1;
