@@ -67,7 +67,8 @@ const LeadershipPage: React.FC = () => {
           {leadershipMessages.map((message, index) => {
             const IconComponent = UserCircleIcon;
             const hasImage = message.hasImage && message.image && message.image !== '/api/placeholder/400/300';
-            const isReversed = index % 2 === 1;
+            // const isReversed = index % 2 === 1;
+            const isReversed = true;
             return (
               <div key={message.id} className="max-w-6xl mx-auto">
                 <Link

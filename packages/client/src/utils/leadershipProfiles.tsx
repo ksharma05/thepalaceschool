@@ -103,6 +103,7 @@ export const leadershipProfiles: Record<string, LeadershipProfile> = {
         "I remain committed to carrying forward my mother's vision — strengthening the school's academic excellence, global outlook, and value-based education — while ensuring that The Palace School continues to prepare students to meet the future with wisdom, grace, and leadership.",
       ],
       signature: {
+        salutation: 'With warm regards,',
         name: 'HH Maharaja Sawai Padmanabh Singh Ji',
         // roleLines: [
         //   { text: 'Vice-Chairperson' },
@@ -180,6 +181,7 @@ export const leadershipProfiles: Record<string, LeadershipProfile> = {
         'The Palace School continues to embody her vision of holistic education rooted in values, creativity, and excellence. I am deeply committed to contributing to its ongoing journey and look forward to being an active part of its continued progress and success.',
       ],
       signature: {
+        salutation: 'With warm regards,',
         name: 'Princess Gauravi Kumari Ji',
         // roleLines: [
         //   { text: 'Treasurer' },
@@ -222,7 +224,7 @@ export const leadershipProfiles: Record<string, LeadershipProfile> = {
         </>,
       ],
       signature: {
-        salutation: 'Best Wishes',
+        salutation: 'With warm regards,',
         name: 'HH Maharaja Lakshraj Prakash Ji',
         // roleLines: [{ text: 'Sirmour' }],
       },

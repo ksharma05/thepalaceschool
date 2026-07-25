@@ -33,42 +33,53 @@ const LeadershipDetailTemplate: React.FC<LeadershipDetailTemplateProps> = ({ pro
               </h1>
 
               <div className="prose prose-lg max-w-none">
-                <div className="text-text-secondary leading-relaxed">
+                <div className="flex flex-col md:flex-row gap-6 md:gap-8">
                   <img
                     src={profile.image}
                     alt={detail.imageAlt}
-                    className="float-left w-40 sm:w-56 md:w-64 mr-6 mb-4 rounded-xl shadow-lg object-cover"
+                    className="w-40 sm:w-56 md:w-64 mx-auto md:mx-0 flex-shrink-0 rounded-xl shadow-lg object-cover"
                   />
 
-                  {detail.bioParagraphs.map((paragraph, index) => (
-                    <p key={index} className="mb-6">
-                      {paragraph}
-                    </p>
-                  ))}
-
-                  <div className="clear-both" />
-
-                  <div className="mt-8 pt-6 border-t border-border-primary">
-                    {detail.signature.salutation && (
-                      <p className="text-lg font-medium text-text-secondary mb-4">
-                        {detail.signature.salutation}
+                  <div className="text-text-secondary leading-relaxed flex-1">
+                    {detail.bioParagraphs.map((paragraph, index) => (
+                      <p key={index} className="mb-6">
+                        {paragraph}
                       </p>
-                    )}
-                    <p className="text-lg font-semibold text-text-primary mb-1">
-                      {detail.signature.name}
-                    </p>
-                    {/* {detail.signature.roleLines.map((line) => (
-                      <p
-                        key={line.text}
-                        className={
-                          line.variant === 'secondary'
-                            ? 'text-text-secondary'
-                            : 'text-primary-600 font-medium'
-                        }
-                      >
-                        {line.text}
+                    ))}
+
+                    <div className="mt-2 pt-4">
+                      {detail.signature.salutation && (
+                        <p className="text-lg font-medium text-text-secondary mb-4">
+                          {detail.signature.salutation}
+                        </p>
+                      )}
+                      <p className="text-lg font-semibold text-text-primary mb-1">
+                        {detail.signature.name}
                       </p>
-                    ))} */}
+                    </div>
+
+                    {/* <div className="mt-8 pt-6 border-t border-border-primary">
+                      {detail.signature.salutation && (
+                        <p className="text-lg font-medium text-text-secondary mb-4">
+                          {detail.signature.salutation}
+                        </p>
+                      )}
+                      <p className="text-lg font-semibold text-text-primary mb-1">
+                        {detail.signature.name}
+                      </p>
+                       {detail.signature.roleLines.map((line) => (
+                        <p
+                          key={line.text}
+                          className={
+                            line.variant === 'secondary'
+                              ? 'text-text-secondary'
+                              : 'text-primary-600 font-medium'
+                          }
+                        >
+                          {line.text}
+                        </p>
+                      ))}
+                    </div> */}
                   </div>
                 </div>
               </div>
