@@ -258,13 +258,7 @@ const Header: React.FC = () => {
                 className="h-8 w-auto object-contain"
               /> */}
             </Link>
-            <Link
-              to="https://agasty.ai/signin"
-              className="block w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 mt-3 rounded-lg text-center font-semibold transition-colors"
-              target='_blank'
-            >
-              Pay Fee
-            </Link>
+            
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
@@ -393,6 +387,13 @@ const Header: React.FC = () => {
           </div>
         </DialogPanel>
       </Dialog>
+      <Link
+              to="https://agasty.ai/signin"
+              className="block w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 mt-3 rounded-lg text-center font-semibold transition-colors"
+              target='_blank'
+            >
+              Pay Fee
+            </Link>
     </header>
   );
 };
