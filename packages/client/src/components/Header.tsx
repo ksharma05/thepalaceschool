@@ -382,7 +382,7 @@ const Header: React.FC = () => {
                 </Link>
                  <Link
               to="https://agasty.ai/signin"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
+              className="block w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg text-center font-semibold transition-colors"
               target='_blank'
             >
               Pay Fee
