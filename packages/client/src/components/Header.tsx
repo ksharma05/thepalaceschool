@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+Fpimport React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Dialog, DialogPanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon, ChevronDownIcon, ChevronRightIcon, PhoneIcon } from '@heroicons/react/24/outline';
@@ -380,6 +380,13 @@ const Header: React.FC = () => {
                 >
                   Admission Enquiry
                 </Link>
+                 <Link
+              to="https://agasty.ai/signin"
+              className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
+              target='_blank'
+            >
+              Pay Fee
+            </Link>
               </div>
             </div>
           </div>
