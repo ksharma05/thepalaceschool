@@ -55,7 +55,7 @@ const Header: React.FC = () => {
       </div>
 
       <nav aria-label="Global" className="container mx-auto px-4 lg:px-8">
-        {/* Mobile: Logo left, menu button right */}
+        {/* Mobile: Logo left, Pay Fee button, menu button right */}
         <div className="flex lg:hidden items-center justify-between py-4">
           <Link to="/" className="flex items-center space-x-2">
             <span className="sr-only">The Palace School</span>
@@ -70,14 +70,25 @@ const Header: React.FC = () => {
               className="h-8 w-auto object-contain"
             /> */}
           </Link>
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(true)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-secondary-600 hover:bg-gray-100"
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon aria-hidden="true" className="h-6 w-6" />
-          </button>
+
+          <div className="flex items-center space-x-2">
+            <Link
+              to="https://agasty.ai/signin"
+              className="inline-flex items-center rounded-md bg-primary-600 text-white px-3 py-1 text-sm font-semibold hover:bg-primary-700 shadow-sm"
+              target='_blank'
+            >
+              Pay Fee
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              className="inline-flex items-center justify-center rounded-md p-2 text-secondary-600 hover:bg-gray-100"
+            >
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon aria-hidden="true" className="h-6 w-6" />
+            </button>
+          </div>
         </div>
 
         {/* Desktop: Horizontal layout */}
@@ -113,7 +124,7 @@ const Header: React.FC = () => {
               </MenuButton>
               <MenuItems
                 transition
-                className="absolute left-0 z-50 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-xl ring-1 ring-gray-200 focus:outline-none transition data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                className="absolute left-0 z-50 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-xl ring-1 ring-gray-200 focus:outline-none transition data-[closed]:scale-95 data-[closed]:tra[...]]"
               >
                 <div className="py-2">
                   {aboutDropdownItems.map((item) =>
@@ -184,7 +195,7 @@ const Header: React.FC = () => {
               </MenuButton>
               <MenuItems
                 transition
-                className="absolute left-0 z-50 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-xl ring-1 ring-gray-200 focus:outline-none transition data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
+                className="absolute left-0 z-50 mt-2 w-56 origin-top-left rounded-lg bg-white shadow-xl ring-1 ring-gray-200 focus:outline-none transition data-[closed]:scale-95 data-[closed]:tra[...]]"
               >
                 <div className="py-2">
                   {beyondAcademicsItems.map((item) => (
@@ -215,6 +226,15 @@ const Header: React.FC = () => {
               Contact Us
             </Link>
 
+            {/* Pay Fee (moved before Admission Enquiry) */}
+            <Link
+              to="https://agasty.ai/signin"
+              className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
+              target='_blank'
+            >
+              Pay Fee
+            </Link>
+
             {/* Admission CTA Button */}
             <Link
               to="/admission-enquiry?centerId=1837&boardId=295"
@@ -223,13 +243,6 @@ const Header: React.FC = () => {
               Admission Enquiry
             </Link>
 
-            <Link
-              to="https://agasty.ai/signin"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
-              target='_blank'
-            >
-              Pay Fee
-            </Link>
           </div>
         </div>
       </nav>
@@ -252,6 +265,7 @@ const Header: React.FC = () => {
                 className="h-8 w-auto object-contain"
               /> */}
             </Link>
+            
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}
@@ -342,6 +356,13 @@ const Header: React.FC = () => {
                 >
                   Admission Enquiry
                 </Link>
+                 <Link
+              to="https://agasty.ai/signin"
+              className="block w-full bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 mt-3 rounded-lg text-center font-semibold transition-colors"
+              target='_blank'
+            >
+              Pay Fee
+            </Link>
               </div>
             </div>
           </div>
