@@ -13,19 +13,13 @@ interface AboutDropdownItem {
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [cbseDisclosureOpen, setCbseDisclosureOpen] = useState(false);
 
   // About Us dropdown items4062847
   const aboutDropdownItems: AboutDropdownItem[] = [
     { name: 'About Us', href: '/about' },
     { name: 'Leadership', href: '/leadership' },
     { name: 'Committees', href: '/committees' },
-    {
-      name: 'CBSE MANDATORY DISCLOSURE',
-      children: [
-        { name: 'Fee Structure', href: '/cbse-mandatory-disclosure/fee-structure' },
-      ],
-    },
+    { name: 'CBSE Mandatory Disclosure', href: '/cbse-mandatory-disclosure' },
   ];
 
   // Beyond Academics dropdown items
@@ -284,48 +278,16 @@ const Header: React.FC = () => {
               <div className="py-6">
                 <p className="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">About Us</p>
                 <div className="space-y-1">
-                  {aboutDropdownItems.map((item) =>
-                    item.children ? (
-                      <div key={item.name}>
-                        <button
-                          type="button"
-                          onClick={() => setCbseDisclosureOpen((open) => !open)}
-                          className="flex w-full items-center justify-between px-3 py-2 text-base font-medium text-secondary-600 hover:bg-bg-secondary rounded-lg transition-colors"
-                        >
-                          {item.name}
-                          <ChevronDownIcon
-                            className={`h-4 w-4 transition-transform duration-200 ${
-                              cbseDisclosureOpen ? 'rotate-180' : ''
-                            }`}
-                            aria-hidden="true"
-                          />
-                        </button>
-                        {cbseDisclosureOpen && (
-                          <div className="space-y-1 pl-6">
-                            {item.children.map((child) => (
-                              <Link
-                                key={child.name}
-                                to={child.href}
-                                onClick={() => setMobileMenuOpen(false)}
-                                className="block px-3 py-2 text-sm font-medium text-secondary-600 hover:bg-bg-secondary rounded-lg transition-colors"
-                              >
-                                {child.name}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <Link
-                        key={item.name}
-                        to={item.href!}
-                        onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-base font-medium text-secondary-600 hover:bg-gray-50 rounded-lg transition-colors"
-                      >
-                        {item.name}
-                      </Link>
-                    )
-                  )}
+                  {aboutDropdownItems.map((item) => (
+                    <Link
+                      key={item.name}
+                      to={item.href!}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-3 py-2 text-base font-medium text-secondary-600 hover:bg-gray-50 rounded-lg transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </div>
               </div>
 
