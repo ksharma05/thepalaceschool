@@ -173,6 +173,20 @@ const CBSEMandatoryDisclosurePage: React.FC = () => {
         </div>
       </section>
 
+      {/* Academic Calendar */}
+      <section ref={calendarRef} className="py-16 bg-bg-primary">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-text-primary text-center mb-2">
+            Academic Calendar 2026-27
+          </h2>
+          <p className="text-text-secondary text-center mb-10 max-w-2xl mx-auto">
+            Theme of the year: My City My Curriculum &middot; Zero Waste & Sustainability
+          </p>
+          <DocumentListSection documents={academicCalendarDocuments} />
+        </div>
+      </section>
+
+
       {/* Fee Structure */}
       <section className="py-16 bg-bg-secondary border-y border-border-primary">
         <div className="container mx-auto px-6">
@@ -212,6 +226,8 @@ const CBSEMandatoryDisclosurePage: React.FC = () => {
               })}
             </div>
           </div>
+
+          
 
           {/* Fee Table */}
           <div ref={tableRef} className="max-w-6xl mx-auto mb-12">
@@ -290,18 +306,7 @@ const CBSEMandatoryDisclosurePage: React.FC = () => {
         </div>
       </section>
 
-      {/* Academic Calendar */}
-      <section ref={calendarRef} className="py-16 bg-bg-primary">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-text-primary text-center mb-2">
-            Academic Calendar 2026-27
-          </h2>
-          <p className="text-text-secondary text-center mb-10 max-w-2xl mx-auto">
-            Theme of the year: My City My Curriculum &middot; Zero Waste & Sustainability
-          </p>
-          <DocumentListSection documents={academicCalendarDocuments} />
-        </div>
-      </section>
+      
 
       {/*
         Additional CBSE Mandatory Disclosure sections (Results, Staff (Teaching), and
