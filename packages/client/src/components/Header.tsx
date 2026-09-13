@@ -108,7 +108,7 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Navigation - Right */}
-          <div className="flex items-center gap-x-8">
+          <div className="flex items-center gap-x-4 xl:gap-x-6">
             <Link
               to="/"
               className="text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200"
@@ -218,6 +218,14 @@ const Header: React.FC = () => {
               </MenuItems>
             </Menu>
 
+            {/* Awards & Achievements */}
+            <Link
+              to="/awards"
+              className="text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200 whitespace-nowrap"
+            >
+              AWARDS &amp; ACHIEVEMENTS
+            </Link>
+
             {/* Contact Us */}
             <Link
               to="/contact"
@@ -238,7 +246,7 @@ const Header: React.FC = () => {
             {/* Admission CTA Button */}
             <Link
               to="/admission-enquiry?centerId=1837&boardId=295"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
+              className="bg-primary-600 hover:bg-primary-700 text-white px-5 xl:px-6 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all duration-200 shadow-md hover:shadow-lg"
             >
               Admission Enquiry
             </Link>
@@ -334,6 +342,17 @@ const Header: React.FC = () => {
                     </Link>
                   ))}
                 </div>
+              </div>
+
+              {/* Awards & Achievements */}
+              <div className="py-6">
+                <Link
+                  to="/awards"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="block px-3 py-2 text-base font-medium text-secondary-600 hover:bg-gray-50 rounded-lg transition-colors"
+                >
+                  Awards &amp; Achievements
+                </Link>
               </div>
 
               {/* Contact */}

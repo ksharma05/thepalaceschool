@@ -17,6 +17,7 @@ const Footer: React.FC = () => {
     { name: 'Our Vision & Mission', href: '/about' },
     { name: 'Our School', href: '/about' },
     { name: 'Leadership', href: '/leadership' },
+    { name: 'Awards & Achievements', href: '/awards' },
     { name: 'Gallery', href: '/gallery' },
   ];
 

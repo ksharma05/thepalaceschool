@@ -16,6 +16,7 @@ import FounderPage from "./pages/leadership/FounderPage";
 import SocialMediaPage from "./pages/SocialMediaPage";
 import AcademicsPage from "./pages/AcademicsPage";
 import GalleryPage from "./pages/GalleryPage";
+import AwardsPage from "./pages/AwardsPage";
 import AdminLayout from "./components/admin/AdminLayout";
 import LoginPage from "./pages/admin/LoginPage";
 import DashboardPage from "./pages/admin/DashboardPage";
@@ -91,6 +92,10 @@ const router = createBrowserRouter([
       {
         path: "gallery",
         element: <GalleryPage />,
+      },
+      {
+        path: "awards",
+        element: <AwardsPage />,
       },
       {
         path: "student-life",
