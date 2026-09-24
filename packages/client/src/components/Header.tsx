@@ -11,6 +11,11 @@ interface AboutDropdownItem {
   children?: { name: string; href: string }[];
 }
 
+// Desktop nav items stay on one line between lg and 2xl by stepping down the
+// font size; full size returns at 2xl (1536px).
+const NAV_LINK_CLASS =
+  'text-xs 2xl:text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200 whitespace-nowrap';
+
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -41,7 +46,7 @@ const Header: React.FC = () => {
     <header className="bg-white shadow-sm sticky top-0 z-50">
       {/* Admission Banner */}
       <div className="bg-primary-600 text-white py-2">
-        <div className="container mx-auto px-4 lg:px-8">
+        <div className="container mx-auto px-4 2xl:px-8">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center space-x-6">
               <span className="font-medium">📢 Admission Open for Session 2026-27</span>
@@ -54,7 +59,7 @@ const Header: React.FC = () => {
         </div>
       </div>
 
-      <nav aria-label="Global" className="container mx-auto px-4 lg:px-8">
+      <nav aria-label="Global" className="container mx-auto px-4 2xl:px-8">
         {/* Mobile: Logo left, Pay Fee button, menu button right */}
         <div className="flex lg:hidden items-center justify-between py-4">
           <Link to="/" className="flex items-center space-x-2">
@@ -108,19 +113,16 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Navigation - Right */}
-          <div className="flex items-center gap-x-4 xl:gap-x-6">
-            <Link
-              to="/"
-              className="text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200"
-            >
+          <div className="flex flex-nowrap items-center gap-x-2.5 xl:gap-x-4 2xl:gap-x-6">
+            <Link to="/" className={NAV_LINK_CLASS}>
               HOME
             </Link>
 
             {/* About Us Dropdown */}
             <Menu as="div" className="relative">
-              <MenuButton className="flex items-center text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200">
+              <MenuButton className={`flex items-center ${NAV_LINK_CLASS}`}>
                 ABOUT US
-                <ChevronDownIcon className="ml-1 h-4 w-4" aria-hidden="true" />
+                <ChevronDownIcon className="ml-1 h-3.5 w-3.5 2xl:h-4 2xl:w-4" aria-hidden="true" />
               </MenuButton>
               <MenuItems
                 transition
@@ -181,7 +183,7 @@ const Header: React.FC = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className="text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200"
+                className={NAV_LINK_CLASS}
               >
                 {item.name}
               </Link>
@@ -189,9 +191,9 @@ const Header: React.FC = () => {
 
             {/* Beyond Academics Dropdown */}
             <Menu as="div" className="relative">
-              <MenuButton className="flex items-center text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200">
+              <MenuButton className={`flex items-center ${NAV_LINK_CLASS}`}>
                 BEYOND ACADEMICS
-                <ChevronDownIcon className="ml-1 h-4 w-4" aria-hidden="true" />
+                <ChevronDownIcon className="ml-1 h-3.5 w-3.5 2xl:h-4 2xl:w-4" aria-hidden="true" />
               </MenuButton>
               <MenuItems
                 transition
@@ -221,7 +223,7 @@ const Header: React.FC = () => {
             {/* Awards & Achievements */}
             <Link
               to="/awards"
-              className="text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200 whitespace-nowrap"
+              className={NAV_LINK_CLASS}
             >
               AWARDS &amp; ACHIEVEMENTS
             </Link>
@@ -229,7 +231,7 @@ const Header: React.FC = () => {
             {/* Contact Us */}
             <Link
               to="/contact"
-              className="text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200"
+              className={NAV_LINK_CLASS}
             >
               Contact Us
             </Link>
@@ -237,7 +239,7 @@ const Header: React.FC = () => {
             {/* Pay Fee (moved before Admission Enquiry) */}
             <Link
               to="https://agasty.ai/signin"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 shadow-md hover:shadow-lg"
+              className="bg-primary-600 hover:bg-primary-700 text-white px-3 py-1.5 2xl:px-4 2xl:py-2 rounded-lg text-xs 2xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 shadow-md hover:shadow-lg"
               target='_blank'
             >
               Pay Fee
@@ -246,7 +248,7 @@ const Header: React.FC = () => {
             {/* Admission CTA Button */}
             <Link
               to="/admission-enquiry?centerId=1837&boardId=295"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-5 xl:px-6 py-2.5 rounded-lg text-sm font-semibold whitespace-nowrap transition-all duration-200 shadow-md hover:shadow-lg"
+              className="bg-primary-600 hover:bg-primary-700 text-white px-3 xl:px-4 2xl:px-6 py-1.5 2xl:py-2.5 rounded-lg text-xs 2xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 shadow-md hover:shadow-lg"
             >
               Admission Enquiry
             </Link>
