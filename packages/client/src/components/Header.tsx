@@ -12,9 +12,11 @@ interface AboutDropdownItem {
 }
 
 // Desktop nav items stay on one line between lg and 2xl by stepping down the
-// font size; full size returns at 2xl (1536px).
+// font size (15px), gaps and a heavier weight; full size/weight returns at 2xl
+// (1536px). Weight uses arbitrary-property syntax because the unlayered
+// .font-bold/.font-medium rules in index.css would otherwise beat the utility.
 const NAV_LINK_CLASS =
-  'text-xs 2xl:text-sm font-medium text-secondary-600 hover:text-primary-600 transition-colors duration-200 whitespace-nowrap';
+  'text-[15px] 2xl:text-md [font-weight:900] 2xl:[font-weight:500] text-secondary-900 hover:text-primary-600 transition-colors duration-200 whitespace-nowrap';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -113,7 +115,7 @@ const Header: React.FC = () => {
           </Link>
 
           {/* Navigation - Right */}
-          <div className="flex flex-nowrap items-center gap-x-2.5 xl:gap-x-4 2xl:gap-x-6">
+          <div className="flex flex-nowrap items-center gap-x-2 xl:gap-x-4 2xl:gap-x-6">
             <Link to="/" className={NAV_LINK_CLASS}>
               HOME
             </Link>
@@ -239,7 +241,7 @@ const Header: React.FC = () => {
             {/* Pay Fee (moved before Admission Enquiry) */}
             <Link
               to="https://agasty.ai/signin"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-3 py-1.5 2xl:px-4 2xl:py-2 rounded-lg text-xs 2xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 shadow-md hover:shadow-lg"
+              className="bg-primary-600 hover:bg-primary-700 text-white px-3 py-1.5 2xl:px-4 2xl:py-2 rounded-lg text-[15px] 2xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 shadow-md hover:shadow-lg"
               target='_blank'
             >
               Pay Fee
@@ -248,7 +250,7 @@ const Header: React.FC = () => {
             {/* Admission CTA Button */}
             <Link
               to="/admission-enquiry?centerId=1837&boardId=295"
-              className="bg-primary-600 hover:bg-primary-700 text-white px-3 xl:px-4 2xl:px-6 py-1.5 2xl:py-2.5 rounded-lg text-xs 2xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 shadow-md hover:shadow-lg"
+              className="bg-primary-600 hover:bg-primary-700 text-white px-3 xl:px-4 2xl:px-6 py-1.5 2xl:py-2.5 rounded-lg text-[15px] 2xl:text-sm font-semibold whitespace-nowrap transition-all duration-200 shadow-md hover:shadow-lg"
             >
               Admission Enquiry
             </Link>
