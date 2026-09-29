@@ -11,12 +11,13 @@ interface AboutDropdownItem {
   children?: { name: string; href: string }[];
 }
 
-// Desktop nav items stay on one line between lg and 2xl by stepping down the
-// font size (15px), gaps and a heavier weight; full size/weight returns at 2xl
-// (1536px). Weight uses arbitrary-property syntax because the unlayered
-// .font-bold/.font-medium rules in index.css would otherwise beat the utility.
+// Desktop nav items stay on one line by stepping down the font size and gaps.
+// The weight uses an important arbitrary property because index.css declares
+// `button { font-weight: 400 }` outside any @layer, and unlayered CSS beats
+// every Tailwind utility — without `!` the two MenuButton items (ABOUT US,
+// BEYOND ACADEMICS) render lighter than the surrounding <a> items.
 const NAV_LINK_CLASS =
-  'text-[15px] 2xl:text-md [font-weight:900] 2xl:[font-weight:500] text-secondary-900 hover:text-primary-600 transition-colors duration-200 whitespace-nowrap';
+  'text-[15px] 2xl:text-md [font-weight:600]! uppercase text-secondary-600 hover:text-primary-600 transition-colors duration-200 whitespace-nowrap';
 
 const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
