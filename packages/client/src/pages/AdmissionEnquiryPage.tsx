@@ -19,6 +19,13 @@ import {
 } from 'lucide-react';
 import { IoLogoWhatsapp } from 'react-icons/io';
 import { decodeBase64Url } from '../utils/helpers';
+import AdmissionPaymentModal from '../components/admission/AdmissionPaymentModal';
+import {
+  AGASTY_DEFAULTS,
+  AGASTY_ENDPOINTS,
+  AGASTY_FEE_PORTAL_URL,
+  resolveAgastyId,
+} from '../config/agasty';
 
 const admissionFormSchema = z.object({
   studentName: z.string().min(1, 'Student name is required'),
@@ -72,6 +79,20 @@ interface ToastState {
   message: string;
 }
 
+interface AdmissionSubmissionResponse {
+  id: number;
+  studentName: string;
+  status: string;
+  paymentAccessToken: string;
+  paymentRequired: boolean;
+}
+
+interface PendingPayment {
+  admissionId: number;
+  token: string;
+  studentName: string;
+}
+
 const inputClass =
   'w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-secondary-600 focus:outline-none focus:ring-2 focus:ring-secondary-600/20 transition-colors duration-200';
 
@@ -85,6 +106,10 @@ const AdmissionEnquiryPage: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingSchool, setIsLoadingSchool] = useState(true);
   const [schoolData, setSchoolData] = useState<SchoolData | null>(null);
+  // `pendingPayment` is the durable "a fee is owed" fact: it survives dismissing
+  // the modal, and drives both the pending-fee card and the submit lock.
+  const [pendingPayment, setPendingPayment] = useState<PendingPayment | null>(null);
+  const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false);
   const [toast, setToast] = useState<ToastState>({
     visible: false,
     type: 'success',
@@ -94,18 +119,14 @@ const AdmissionEnquiryPage: React.FC = () => {
 
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const centerId = searchParams.get('centerId') ?? '0';
-  const boardId = searchParams.get('boardId') ?? '0';
+  // Fall back to the school's real ids: without this, a direct visit to
+  // /admission-enquiry (bookmark, shared link) yielded a form that silently
+  // refused to submit.
+  const centerId = resolveAgastyId(searchParams.get('centerId'), AGASTY_DEFAULTS.CENTER_ID);
+  const boardId = resolveAgastyId(searchParams.get('boardId'), AGASTY_DEFAULTS.BOARD_ID);
+  const isPaymentReturn = searchParams.get('paymentReturn') === '1';
 
-  const ADMISSION_API_URL =
-    centerId !== '0' && boardId !== '0'
-      ? `https://server-core.agasty.ai/agasty/api/v1/admMngmnt/center/${centerId}/board/${boardId}`
-      : null;
-
-  const SCHOOL_INFO_API_URL =
-    centerId !== '0'
-      ? `https://server-core.agasty.ai/agasty/api/v1/unauth/info/center/${centerId}`
-      : null;
+  const ADMISSION_API_URL = AGASTY_ENDPOINTS.admissionCreate(centerId, boardId);
 
   const {
     register,
@@ -141,13 +162,9 @@ const AdmissionEnquiryPage: React.FC = () => {
 
   useEffect(() => {
     const fetchSchoolData = async () => {
-      if (!SCHOOL_INFO_API_URL) {
-        setIsLoadingSchool(false);
-        return;
-      }
       try {
         setIsLoadingSchool(true);
-        const response = await fetch(SCHOOL_INFO_API_URL);
+        const response = await fetch(AGASTY_ENDPOINTS.centerInfo(centerId));
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data: SchoolData = await response.json();
         setSchoolData(data);
@@ -205,6 +222,47 @@ const AdmissionEnquiryPage: React.FC = () => {
         throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
       }
 
+      // Read as text first: an empty 201 body makes response.json() throw, and we
+      // want to be able to tell that apart from "payment is switched off".
+      const rawBody = await response.text();
+      let result: AdmissionSubmissionResponse | null = null;
+      try {
+        result = rawBody ? (JSON.parse(rawBody) as AdmissionSubmissionResponse) : null;
+      } catch {
+        result = null;
+      }
+
+      const canPay =
+        result?.paymentRequired === true &&
+        typeof result.id === 'number' &&
+        typeof result.paymentAccessToken === 'string' &&
+        result.paymentAccessToken.length > 0;
+
+      if (canPay && result) {
+        setPendingPayment({
+          admissionId: result.id,
+          token: result.paymentAccessToken,
+          studentName: result.studentName || data.studentName,
+        });
+        setIsPaymentModalOpen(true);
+        showToast('success', 'Registration Saved', 'One last step - please pay the registration fee.');
+        // No reset() and no navigate(): the modal must stay mounted, and a blank
+        // form behind it would read as "it did not save".
+        return;
+      }
+
+      // Payment not enabled for this school, or a response we cannot use. The
+      // admission WAS created, so never report failure here.
+      //
+      // Logged because this branch is otherwise indistinguishable from a working
+      // no-fee setup, and Agasty gives us no other signal about why.
+      console.warn(
+        '[admission] No payment step shown. paymentRequired=%o id=%o hasToken=%o rawBody=%s',
+        result?.paymentRequired,
+        result?.id,
+        Boolean(result?.paymentAccessToken),
+        rawBody || '(empty)'
+      );
       showToast('success', 'Registration Successful!', 'Your admission enquiry has been submitted. We will be in touch shortly.');
       reset();
       setTimeout(() => navigate('/'), 2500);
@@ -397,6 +455,59 @@ const AdmissionEnquiryPage: React.FC = () => {
                   Complete the form below to register for admission
                 </p>
               </div>
+
+              {(isPaymentReturn && !pendingPayment) || (pendingPayment && !isPaymentModalOpen) ? (
+                <div className="space-y-4 px-8 pt-8">
+                  {isPaymentReturn && !pendingPayment && (
+                    <div className="rounded-xl border border-info-600/30 bg-info-600/10 p-5">
+                      <h2 className="font-semibold text-text-primary">Thanks - you are back.</h2>
+                      <p className="mt-1 text-sm text-text-secondary">
+                        If your payment went through, your registration fee is recorded. You can
+                        check the status any time from the{' '}
+                        <a
+                          href={AGASTY_FEE_PORTAL_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium underline"
+                        >
+                          fee portal
+                        </a>
+                        , or contact the school office.
+                      </p>
+                    </div>
+                  )}
+
+                  {pendingPayment && !isPaymentModalOpen && (
+                    <div className="rounded-xl border border-warning-600/40 bg-warning-600/10 p-5">
+                      <h2 className="flex items-center gap-2 font-semibold text-text-primary">
+                        <AlertCircle className="h-5 w-5" />
+                        Registration fee pending
+                      </h2>
+                      <p className="mt-1 text-sm text-text-secondary">
+                        {pendingPayment.studentName}&apos;s registration is confirmed only once
+                        the fee is paid.
+                      </p>
+                      <div className="mt-4 flex flex-wrap items-center gap-4">
+                        <button
+                          type="button"
+                          onClick={() => setIsPaymentModalOpen(true)}
+                          className="rounded-lg bg-cta-bg px-4 py-2 text-sm font-semibold text-cta-text transition-colors duration-300 hover:bg-cta-hover"
+                        >
+                          Pay registration fee
+                        </button>
+                        <a
+                          href={AGASTY_FEE_PORTAL_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-sm font-medium text-text-secondary underline"
+                        >
+                          Pay from the fee portal instead
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : null}
 
               <form onSubmit={handleSubmit(onSubmit)} className="p-8 space-y-10">
                 {/* Basic Information */}
@@ -726,10 +837,12 @@ const AdmissionEnquiryPage: React.FC = () => {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    disabled={!isValid || isSubmitting}
+                    disabled={!isValid || isSubmitting || pendingPayment !== null}
                     className="w-full rounded-2xl bg-gradient-to-r from-secondary-600 to-secondary-800 py-4 text-lg font-semibold text-white shadow-lg transition-all duration-200 hover:scale-[1.02] hover:shadow-xl disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
                   >
-                    {isSubmitting ? (
+                    {pendingPayment ? (
+                      'Registration submitted'
+                    ) : isSubmitting ? (
                       <span className="flex items-center justify-center gap-2">
                         <svg className="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
@@ -752,6 +865,25 @@ const AdmissionEnquiryPage: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {pendingPayment && (
+        <AdmissionPaymentModal
+          open={isPaymentModalOpen}
+          centerId={centerId}
+          boardId={boardId}
+          admissionId={pendingPayment.admissionId}
+          token={pendingPayment.token}
+          studentName={pendingPayment.studentName}
+          onClose={() => {
+            setIsPaymentModalOpen(false);
+            showToast(
+              'success',
+              'Saved for later',
+              'Your registration is saved. Pay the fee any time from the panel above.'
+            );
+          }}
+        />
+      )}
     </div>
   );
 };
