@@ -33,11 +33,73 @@ export const getCloudinaryUrl = (publicId: string, options?: {
   if (transformations.length > 0) {
     url += `/${transformations.join(',')}`;
   }
-  
-  url += `/${publicId}`;
-  
+
+  // Encode per path segment so a publicId inside a folder whose name contains spaces
+  // (e.g. `visual arts/IMG_0080`) still produces a valid URL, while leaving the `/`
+  // folder separators intact.
+  url += `/${publicId.split('/').map(encodeURIComponent).join('/')}`;
+
   return url;
 };
+
+// Student-life sections, as linked from the "Beyond Academics" cards on the home page.
+//
+// This is a SEPARATE axis from `category` below: `category` describes the event an image
+// came from ('Annual Day', 'Sports Day', ...) and drives the gallery's filter chips, while
+// `section` describes the activity it illustrates. One image can legitimately be both
+// 'Sports Day' and `sports`, so the two must not be collapsed into one field.
+export type SiteSectionSlug =
+  | 'visual-arts'
+  | 'performing-arts'
+  | 'sports'
+  | 'music'
+  | 'health'
+  | 'house-system';
+
+export type SiteSection = {
+  slug: SiteSectionSlug;
+  /** Hero heading for the section-scoped gallery view. */
+  label: string;
+  /** Hero sub-heading, mirroring the wording on the home-page card. */
+  description: string;
+};
+
+export const siteSections: SiteSection[] = [
+  {
+    slug: 'visual-arts',
+    label: 'Visual Arts',
+    description: 'Exploring creativity through painting, sculpture, and various art forms',
+  },
+  {
+    slug: 'performing-arts',
+    label: 'Performing Arts',
+    description: 'Drama, theatre, and stage performances that build confidence',
+  },
+  {
+    slug: 'sports',
+    label: 'Sports',
+    description: 'State-of-the-art facilities for a wide range of indoor and outdoor sports',
+  },
+  {
+    slug: 'music',
+    label: 'Music',
+    description: 'Learning instruments, vocals, and music theory from experts',
+  },
+  {
+    slug: 'health',
+    label: 'Health & Well-Being',
+    description: 'Physical and mental wellness programmes for holistic development',
+  },
+  {
+    slug: 'house-system',
+    label: 'House System',
+    description: 'Fostering teamwork, leadership, and healthy competition',
+  },
+];
+
+/** Resolves a `?section=` query value to a known section, or `undefined` if unrecognised. */
+export const getSiteSection = (slug: string | null): SiteSection | undefined =>
+  slug ? siteSections.find((section) => section.slug === slug) : undefined;
 
 // Gallery image type
 export type GalleryImage = {
@@ -45,6 +107,8 @@ export type GalleryImage = {
   publicId: string;
   title: string;
   category: string;
+  /** Which student-life section this image illustrates, if any. */
+  section?: SiteSectionSlug;
   event?: string;
   date?: string;
   description?: string;
@@ -104,6 +168,39 @@ export const galleryImages: GalleryImage[] = [
   // Walk for Dyslexia (2 images)
   { id: '36', publicId: '4aa07bb2-bcd7-425a-ad84-f6631517e241_wauhln', title: 'Walk for Dyslexia', category: 'Academics', event: 'Walk for Dyslexia Awareness' },
   { id: '37', publicId: 'a2bd634f-464e-4489-9bad-7d838f44d4ad_pmmwzw', title: 'Walk for Dyslexia', category: 'Academics', event: 'Walk for Dyslexia Awareness' },
+
+  // Visual Arts (22 images) — uploaded to the `visual arts` folder.
+  //
+  // !! VERIFY THE publicIds BELOW BEFORE SHIPPING !!
+  // These assume the publicId is `visual arts/<original filename without extension>`.
+  // Cloudinary appends a random 6-character suffix when "unique filename" is enabled on
+  // upload — every other entry in this file shows that (`..._pmmwzw`, `..._bwlt8e`). If the
+  // visual-arts uploads got suffixes too, copy the real publicIds out of the Cloudinary
+  // Media Library (or `GET /resources/image?prefix=visual arts`) and replace these.
+  // The 4 source files were .heif; `f_auto` in getCloudinaryUrl transcodes them on delivery,
+  // so no extension belongs in the publicId.
+  { id: '38', publicId: 'visual arts/454928d6-5503-4628-9ec1-6a21c63f3ab4', title: 'Student Artwork', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '39', publicId: 'visual arts/78bd1b23-3495-4be7-9f29-1c35b1d2bf1b', title: 'Student Artwork', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '40', publicId: 'visual arts/IMG_0080', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '41', publicId: 'visual arts/IMG_0081', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '42', publicId: 'visual arts/IMG_0082', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '43', publicId: 'visual arts/IMG_0083', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '44', publicId: 'visual arts/IMG_0084', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '45', publicId: 'visual arts/IMG_0085', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '46', publicId: 'visual arts/IMG_0086', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '47', publicId: 'visual arts/IMG_0087', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '48', publicId: 'visual arts/IMG_0088', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '49', publicId: 'visual arts/IMG_0089', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '50', publicId: 'visual arts/IMG_0090', title: 'Art & Craft Display', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '51', publicId: 'visual arts/IMG_0104', title: 'Student Paintings', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '52', publicId: 'visual arts/IMG_0105', title: 'Student Paintings', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '53', publicId: 'visual arts/IMG_0106', title: 'Student Paintings', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '54', publicId: 'visual arts/IMG_0107', title: 'Student Paintings', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '55', publicId: 'visual arts/IMG_0108', title: 'Student Paintings', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '56', publicId: 'visual arts/IMG_1674', title: 'Creative Expression', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '57', publicId: 'visual arts/IMG_1682', title: 'Creative Expression', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '58', publicId: 'visual arts/IMG_1956', title: 'Creative Expression', category: 'Cultural Events', section: 'visual-arts' },
+  { id: '59', publicId: 'visual arts/IMG_1971', title: 'Creative Expression', category: 'Cultural Events', section: 'visual-arts' },
 ];
 
 // Gallery categories

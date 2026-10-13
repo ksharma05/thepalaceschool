@@ -7,26 +7,45 @@ import {
   ChevronRightIcon,
   MagnifyingGlassIcon
 } from '@heroicons/react/24/outline';
-import { getCloudinaryUrl, galleryImages, galleryCategories } from '../config/cloudinary';
+import { Link, useSearchParams } from 'react-router-dom';
+import { getCloudinaryUrl, galleryImages, galleryCategories, getSiteSection } from '../config/cloudinary';
 import type { GalleryImage } from '../config/cloudinary';
+import { useSiteFeatures } from '../hooks/useSiteFeatures';
 
 const GalleryPage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
+  const { features } = useSiteFeatures();
+  const filtersEnabled = features.gallery.showSearchAndFilter;
+
+  // `?section=` scopes the page to one student-life activity, as linked from the
+  // "Beyond Academics" cards. An unrecognised value falls back to the full gallery.
+  const [searchParams] = useSearchParams();
+  const activeSection = getSiteSection(searchParams.get('section'));
+
   const heroRef = useGSAP({ animation: 'fadeIn', duration: 1.5 });
   const galleryRef = useGSAP({ animation: 'fadeIn', delay: 0.2, stagger: 0.1 });
 
-  // Filter images by category and search
-  const filteredImages = galleryImages.filter(image => {
-    const matchesCategory = selectedCategory === 'All' || image.category === selectedCategory;
-    const matchesSearch = searchQuery === '' || 
-      image.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      image.event?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      image.description?.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+  // Section scoping is deliberately independent of `filtersEnabled`: a section link must
+  // always narrow the grid, including while the search/filter UI is switched off.
+  const sectionImages = activeSection
+    ? galleryImages.filter(image => image.section === activeSection.slug)
+    : galleryImages;
+
+  // Filter images by category and search. With the filter UI hidden there is no way to
+  // change either input, so skip filtering entirely and show every image in scope.
+  const filteredImages = filtersEnabled
+    ? sectionImages.filter(image => {
+        const matchesCategory = selectedCategory === 'All' || image.category === selectedCategory;
+        const matchesSearch = searchQuery === '' ||
+          image.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          image.event?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          image.description?.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      })
+    : sectionImages;
 
   // Get current image index for navigation
   const currentIndex = selectedImage ? filteredImages.findIndex(img => img.id === selectedImage.id) : -1;
@@ -62,52 +81,56 @@ const GalleryPage: React.FC = () => {
         <div className="absolute inset-0 bg-black opacity-20"></div>
         <div className="relative container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
-            <PhotoIcon className="h-16 w-16 mx-auto mb-6 text-white/80" />
+            <PhotoIcon className="h-16 w-16 mx-auto mb-6 text-text-inverse/80" />
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Photo Gallery
+              {activeSection ? activeSection.label : 'Photo Gallery'}
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
-              Capturing moments of learning, growth, and celebration at The Palace School
+            <p className="text-xl md:text-2xl text-text-inverse/90 leading-relaxed">
+              {activeSection
+                ? activeSection.description
+                : 'Capturing moments of learning, growth, and celebration at The Palace School'}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Search and Filter Section */}
-      <section className="py-8 bg-bg-secondary border-b border-border-primary">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
-            {/* Search */}
-            <div className="relative w-full md:w-96">
-              <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-text-tertiary" />
-              <input
-                type="text"
-                placeholder="Search photos..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-border-primary rounded-lg bg-bg-primary text-text-primary focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              />
-            </div>
+      {/* Search and Filter Section — toggled by the `gallery.showSearchAndFilter` flag */}
+      {filtersEnabled && (
+        <section className="py-8 bg-bg-secondary border-b border-border-primary">
+          <div className="container mx-auto px-6">
+            <div className="flex flex-col md:flex-row gap-6 items-center justify-between">
+              {/* Search */}
+              <div className="relative w-full md:w-96">
+                <MagnifyingGlassIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-text-tertiary" />
+                <input
+                  type="text"
+                  placeholder="Search photos..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 border border-border-primary rounded-lg bg-bg-primary text-text-primary focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                />
+              </div>
 
-            {/* Category Filters */}
-            <div className="flex flex-wrap gap-2 justify-center">
-              {galleryCategories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
-                    selectedCategory === category
-                      ? 'bg-primary-600 text-white'
-                      : 'bg-surface-primary text-text-primary hover:bg-surface-secondary border border-border-primary'
-                  }`}
-                >
-                  {category}
-                </button>
-              ))}
+              {/* Category Filters */}
+              <div className="flex flex-wrap gap-2 justify-center">
+                {galleryCategories.map((category) => (
+                  <button
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+                      selectedCategory === category
+                        ? 'bg-primary-600 text-white'
+                        : 'bg-surface-primary text-text-primary hover:bg-surface-secondary border border-border-primary'
+                    }`}
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* Gallery Grid */}
       <section ref={galleryRef} className="py-12 bg-bg-primary">
@@ -144,14 +167,26 @@ const GalleryPage: React.FC = () => {
             <div className="text-center py-20">
               <PhotoIcon className="h-24 w-24 mx-auto text-text-tertiary mb-6" />
               <h3 className="text-2xl font-bold text-text-primary mb-4">
-                {galleryImages.length === 0 ? 'Gallery Coming Soon' : 'No Photos Found'}
+                {sectionImages.length === 0 ? 'Photos Coming Soon' : 'No Photos Found'}
               </h3>
               <p className="text-text-secondary max-w-md mx-auto">
-                {galleryImages.length === 0 
-                  ? 'We are currently uploading photos of our school events. Please check back soon!'
-                  : 'Try adjusting your search or filter to find what you\'re looking for.'
+                {sectionImages.length === 0
+                  ? activeSection
+                    ? `We are currently putting together our ${activeSection.label} photos. Please check back soon!`
+                    : 'We are currently uploading photos of our school events. Please check back soon!'
+                  : filtersEnabled
+                    ? 'Try adjusting your search or filter to find what you\'re looking for.'
+                    : 'There are no photos to display right now. Please check back soon!'
                 }
               </p>
+              {activeSection && (
+                <Link
+                  to="/gallery"
+                  className="inline-block mt-8 px-6 py-3 rounded-full font-semibold bg-cta-bg hover:bg-cta-hover text-cta-text transition-colors duration-200"
+                >
+                  Browse all photos
+                </Link>
+              )}
               {galleryImages.length === 0 && (
                 <div className="mt-8 p-6 bg-surface-secondary rounded-xl max-w-2xl mx-auto border border-border-primary">
                   <h4 className="text-lg font-semibold text-text-primary mb-3">

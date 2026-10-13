@@ -35,11 +35,11 @@ const Footer: React.FC = () => {
   ];
 
   const beyondAcademicsLinks = [
-    { name: 'Visual Arts', href: '/student-life#visual-arts' },
-    { name: 'Performing Arts', href: '/student-life#performing-arts' },
-    { name: 'Music', href: '/student-life#music' },
-    { name: 'Health & Well-Being', href: '/student-life#health' },
-    { name: 'House System', href: '/student-life#house-system' },
+    { name: 'Visual Arts', href: '/gallery?section=visual-arts' },
+    { name: 'Performing Arts', href: '/gallery?section=performing-arts' },
+    { name: 'Music', href: '/gallery?section=music' },
+    { name: 'Health & Well-Being', href: '/gallery?section=health' },
+    { name: 'House System', href: '/gallery?section=house-system' },
   ];
 
   const socialLinks = [

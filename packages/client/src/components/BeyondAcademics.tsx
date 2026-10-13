@@ -16,42 +16,42 @@ const BeyondAcademics: React.FC = () => {
       title: 'Visual Arts',
       description: 'Explore creativity through painting, sculpture, and various art forms',
       color: 'bg-blue-50 text-blue-600',
-      href: '/student-life#visual-arts'
+      href: '/gallery?section=visual-arts'
     },
     {
       icon: SparklesIcon,
       title: 'Performing Arts',
       description: 'Drama, theatre, and stage performances to build confidence',
       color: 'bg-purple-50 text-purple-600',
-      href: '/student-life#performing-arts'
+      href: '/gallery?section=performing-arts'
     },
     {
       icon: TrophyIcon,
       title: 'Sports',
       description: 'State-of-the-art facilities for various indoor and outdoor sports',
       color: 'bg-green-50 text-green-600',
-      href: '/student-life#sports'
+      href: '/gallery?section=sports'
     },
     {
       icon: MusicalNoteIcon,
       title: 'Music',
       description: 'Learn instruments, vocals, and music theory from experts',
       color: 'bg-pink-50 text-pink-600',
-      href: '/student-life#music'
+      href: '/gallery?section=music'
     },
     {
       icon: HeartIcon,
       title: 'Health & Well-Being',
       description: 'Physical and mental wellness programs for holistic development',
       color: 'bg-red-50 text-red-600',
-      href: '/student-life#health'
+      href: '/gallery?section=health'
     },
     {
       icon: UserGroupIcon,
       title: 'House System',
       description: 'Foster teamwork, leadership, and healthy competition',
       color: 'bg-yellow-50 text-yellow-600',
-      href: '/student-life#house-system'
+      href: '/gallery?section=house-system'
     }
   ];
 

@@ -7,6 +7,7 @@ export const API_ENDPOINTS = {
   },
   CONTACT: `${API_BASE_URL}/api/contact`,
   CONTENT: `${API_BASE_URL}/api/content`,
+  CONTENT_PAGE: (page: string) => `${API_BASE_URL}/api/content/${encodeURIComponent(page)}`,
   SOCIAL_MEDIA: {
     POSTS: `${API_BASE_URL}/api/social-media/posts`,
     STATS: `${API_BASE_URL}/api/social-media/stats`,

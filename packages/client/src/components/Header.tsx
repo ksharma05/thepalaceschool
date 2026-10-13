@@ -32,11 +32,11 @@ const Header: React.FC = () => {
 
   // Beyond Academics dropdown items
   const beyondAcademicsItems = [
-    { name: 'Visual Arts', href: '/student-life#visual-arts' },
-    { name: 'Performing Arts', href: '/student-life#performing-arts' },
-    { name: 'Sports', href: '/student-life#sports' },
-    { name: 'Music', href: '/student-life#music' },
-    { name: 'Health & Well-Being', href: '/student-life#health' },
+    { name: 'Visual Arts', href: '/gallery?section=visual-arts' },
+    { name: 'Performing Arts', href: '/gallery?section=performing-arts' },
+    { name: 'Sports', href: '/gallery?section=sports' },
+    { name: 'Music', href: '/gallery?section=music' },
+    { name: 'Health & Well-Being', href: '/gallery?section=health' },
   ];
 
   // Main navigation structure
