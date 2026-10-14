@@ -13,6 +13,7 @@
 /packages/server/.env
 .env.local
 /packages/client/.env.local
+/packages/client/src/assets/visual-arts
 /packages/server/.env.local
 
 # IDE files

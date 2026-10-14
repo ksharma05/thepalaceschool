@@ -8,6 +8,8 @@ import designThinkingTrophyImage from '../assets/awards/education-world-design-t
 import ridsCertificatePresentationImage from '../assets/awards/rids-certificate-presentation.jpeg';
 import ridsAwardCeremonyImage from '../assets/awards/rids-award-ceremony.jpeg';
 import ridsCertificateImage from '../assets/awards/rids-certificate.jpeg';
+import jsscFelicitationCeremonyImage from '../assets/awards/jssc-felicitation-ceremony.jpeg';
+import jsscCertificateTrophyImage from '../assets/awards/jssc-certificate-trophy.jpeg';
 
 export interface AwardImage {
   src: string;
@@ -25,7 +27,7 @@ export interface Award {
   /** Short headline used on the summary cards at the top of the page */
   summary: string;
   /** Icon key mapped to a Heroicon + feature colour in AwardsPage */
-  icon: 'globe' | 'trophy' | 'academic';
+  icon: 'globe' | 'trophy' | 'academic' | 'excellence';
   /** Bullet honours, rendered as pills */
   highlights: string[];
   /** Narrative paragraphs */
@@ -34,6 +36,36 @@ export interface Award {
 }
 
 export const awards: Award[] = [
+  {
+    id: 'jssc-felicitation',
+    title: "A Tribute to Excellence — JSSC Teachers’ Felicitation Ceremony",
+    awardingBody: 'Jaipur Sahodaya Schools Complex (JSSC)',
+    year: '2026',
+    date: '26 September 2026',
+    summary: "Ms. Puja Garg honoured for her valuable contribution to the field of education at the JSSC Teachers’ Felicitation Ceremony.",
+    icon: 'excellence',
+    highlights: [
+      'Certificate of Excellence presented by JSSC President Mr. Ashok Vaid and Vice-President Dr. Sanjay Parashar',
+      'Celebrating educators’ contribution to the success of CBSE initiatives',
+    ],
+    body: [
+      'We are pleased to share that Ms. Puja Garg from The Palace School was felicitated and awarded in recognition of her valuable contribution to the field of education, at the JSSC Teachers’ Felicitation Ceremony. The award was presented by JSSC President Mr. Ashok Vaid and Vice-President Dr. Sanjay Parashar.',
+      'The event was a gracious celebration of the commitment, excellence and outstanding contribution of educators to the success of CBSE initiatives.',
+      'Heartiest congratulations to Ms. Puja Garg on receiving this Certificate of Excellence.',
+    ],
+    images: [
+      {
+        src: jsscFelicitationCeremonyImage,
+        alt: 'Ms. Puja Garg of The Palace School being felicitated on stage at the JSSC Teachers’ Felicitation Ceremony',
+        caption: 'Ms. Puja Garg felicitated at the JSSC Teachers’ Felicitation Ceremony',
+      },
+      {
+        src: jsscCertificateTrophyImage,
+        alt: 'JSSC Certificate of Excellence and trophy awarded to Ms. Puja Garg of The Palace School',
+        caption: 'Certificate of Excellence and trophy from Jaipur Sahodaya Schools Complex',
+      },
+    ],
+  },
   {
     id: 'rids-award',
     title: 'RIDS Award — Recognition of International Dimension in Schools',

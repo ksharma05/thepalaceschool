@@ -5,6 +5,7 @@ import {
   TrophyIcon,
   GlobeAltIcon,
   AcademicCapIcon,
+  SparklesIcon,
   XMarkIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
@@ -18,6 +19,7 @@ const iconMap = {
   globe: { Icon: GlobeAltIcon, accent: 'bg-feature-blue' },
   trophy: { Icon: TrophyIcon, accent: 'bg-feature-orange' },
   academic: { Icon: AcademicCapIcon, accent: 'bg-feature-purple' },
+  excellence: { Icon: SparklesIcon, accent: 'bg-feature-green' },
 } as const;
 
 // Flattened list of every image on the page, so the lightbox can step
@@ -112,7 +114,6 @@ const AwardsPage: React.FC = () => {
       {/* Award Story Sections */}
       {awards.map((award: Award, index: number) => {
         const { Icon, accent } = iconMap[award.icon];
-        const isReversed = index % 2 === 1;
         return (
           <section
             key={award.id}
@@ -121,9 +122,7 @@ const AwardsPage: React.FC = () => {
           >
             <div className="container mx-auto px-6">
               <div
-                className={`max-w-6xl mx-auto flex flex-col gap-12 lg:items-center ${
-                  isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'
-                }`}
+                className="max-w-6xl mx-auto flex flex-col gap-12 lg:flex-row lg:items-center"
               >
                 {/* Copy */}
                 <div className="lg:w-1/2">
