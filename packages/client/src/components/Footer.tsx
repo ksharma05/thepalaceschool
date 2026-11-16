@@ -37,6 +37,7 @@ const Footer: React.FC = () => {
   const beyondAcademicsLinks = [
     { name: 'Visual Arts', href: '/gallery?section=visual-arts' },
     { name: 'Performing Arts', href: '/gallery?section=performing-arts' },
+    { name: 'Sports', href: '/gallery?section=sports' },
     { name: 'Music', href: '/gallery?section=music' },
     { name: 'Health & Well-Being', href: '/gallery?section=health' },
     { name: 'House System', href: '/gallery?section=house-system' },
