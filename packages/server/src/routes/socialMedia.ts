@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { fetchAllSocialPosts, fetchSocialMediaStats } from '../services/socialMediaService';
+import { requireAuth } from '../middleware/requireAuth';
 
 const router = Router();
 
@@ -94,9 +95,9 @@ router.get('/stats', async (req, res) => {
 
 /**
  * POST /api/social-media/refresh
- * Manually trigger a refresh of cached posts
+ * Manually trigger a refresh of cached posts (admin only)
  */
-router.post('/refresh', async (req, res) => {
+router.post('/refresh', requireAuth, async (req, res) => {
   try {
     // Clear cache
     cachedPosts = [];

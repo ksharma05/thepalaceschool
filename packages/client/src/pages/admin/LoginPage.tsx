@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ThemeToggle from '../../components/ThemeToggle';
 import { API_ENDPOINTS, apiRequest } from '../../config/api';
+import { setToken } from '../../utils/auth';
 
 const LoginPage: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -25,9 +26,9 @@ const LoginPage: React.FC = () => {
       }
 
       const data = await response.json();
-      localStorage.setItem('token', data.token);
+      setToken(data.token);
       navigate('/admin/dashboard');
-    } catch (err) {
+    } catch {
       setError('An error occurred. Please try again.');
     }
   };

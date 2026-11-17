@@ -1,3 +1,5 @@
+import { getAuthHeaders, removeToken } from '../utils/auth';
+
 // API configuration
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://server-production-7e27.up.railway.app';
 
@@ -23,6 +25,30 @@ export const apiRequest = async (url: string, options: RequestInit = {}) => {
       ...options.headers,
     },
   });
-  
+
+  return response;
+};
+
+export const ADMIN_LOGIN_PATH = '/admin/login';
+
+/**
+ * `apiRequest` for admin-only endpoints: attaches the login token and, when the
+ * server answers 401 (missing, expired or revoked session), clears the token
+ * and sends the admin back to the login page.
+ */
+export const authRequest = async (url: string, options: RequestInit = {}) => {
+  const response = await apiRequest(url, {
+    ...options,
+    headers: {
+      ...getAuthHeaders(),
+      ...options.headers,
+    },
+  });
+
+  if (response.status === 401) {
+    removeToken();
+    window.location.assign(ADMIN_LOGIN_PATH);
+  }
+
   return response;
 };

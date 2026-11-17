@@ -1,52 +1,80 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import User from '../src/models/User';
+import { applyDnsOverride } from '../src/config/dns';
 
-// Load environment variables
+/**
+ * Creates an admin user, or resets an existing admin's password.
+ *
+ * Credentials come from the environment and are never printed:
+ *   ADMIN_EMAIL     required
+ *   ADMIN_PASSWORD  required, at least 12 characters
+ *   ADMIN_NAME      optional, defaults to "Admin"
+ *
+ * Usage:
+ *   npm run create-admin                        create the admin (stops if it exists)
+ *   npm run create-admin -- --reset-password    set a new password for an existing admin
+ *
+ * Tip: set ADMIN_PASSWORD only for the one command rather than saving it in .env.
+ */
+
 dotenv.config();
+applyDnsOverride();
 
-const createAdminUser = async () => {
+const MIN_PASSWORD_LENGTH = 12;
+
+const fail = (message: string): never => {
+  console.error(`❌ ${message}`);
+  process.exit(1);
+};
+
+const run = async () => {
+  const resetPassword = process.argv.includes('--reset-password');
+
+  const mongoUri = process.env.MONGO_URI;
+  // Matched exactly, the same way the login route looks users up.
+  const email = process.env.ADMIN_EMAIL?.trim();
+  const password = process.env.ADMIN_PASSWORD;
+  const name = process.env.ADMIN_NAME?.trim() || 'Admin';
+
+  if (!mongoUri) fail('MONGO_URI is not defined.');
+  if (!email) fail('ADMIN_EMAIL is not defined.');
+  if (!password) fail('ADMIN_PASSWORD is not defined.');
+  if (password!.length < MIN_PASSWORD_LENGTH) {
+    fail(`ADMIN_PASSWORD must be at least ${MIN_PASSWORD_LENGTH} characters long.`);
+  }
+
+  let exitCode = 0;
+
   try {
-    // Connect to MongoDB
-    if (!process.env.MONGO_URI) {
-      console.error('MONGO_URI is not defined in environment variables');
-      process.exit(1);
-    }
-
-    await mongoose.connect(process.env.MONGO_URI);
+    await mongoose.connect(mongoUri!);
     console.log('Connected to MongoDB');
 
-    // Check if admin user already exists
-    const existingAdmin = await User.findOne({ email: 'admin@palaceschool.edu' });
-    if (existingAdmin) {
-      console.log('Admin user already exists!');
-      console.log('Email: admin@palaceschool.edu');
-      console.log('Password: admin123');
-      process.exit(0);
+    const existing = await User.findOne({ email });
+
+    if (existing) {
+      if (!resetPassword) {
+        console.log(`Admin ${email} already exists. Nothing changed.`);
+        console.log('To set a new password, run again with --reset-password.');
+      } else {
+        existing.password = password!; // re-hashed by the pre-save hook
+        await existing.save();
+        console.log(`✅ Password reset for ${email}.`);
+      }
+    } else if (resetPassword) {
+      console.error(`❌ No admin with email ${email} exists, so there is no password to reset.`);
+      exitCode = 1;
+    } else {
+      await new User({ name, email, password }).save(); // hashed by the pre-save hook
+      console.log(`✅ Admin ${email} created.`);
     }
-
-    // Create admin user
-    const adminUser = new User({
-      name: 'Admin User',
-      email: 'admin@palaceschool.edu',
-      password: 'admin123' // This will be hashed automatically by the pre-save middleware
-    });
-
-    await adminUser.save();
-    console.log('✅ Admin user created successfully!');
-    console.log('📧 Email: admin@palaceschool.edu');
-    console.log('🔑 Password: admin123');
-    console.log('🌐 You can now login to the admin panel with these credentials.');
-
   } catch (error) {
-    console.error('❌ Error creating admin user:', error);
+    console.error('❌ Error:', (error as Error).message);
+    exitCode = 1;
   } finally {
-    // Close the database connection
     await mongoose.connection.close();
-    console.log('Database connection closed.');
-    process.exit(0);
+    process.exit(exitCode);
   }
 };
 
-// Run the script
-createAdminUser();
+run();

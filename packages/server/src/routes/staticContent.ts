@@ -1,10 +1,14 @@
 import { Router, Request, Response } from 'express';
 import StaticContent from '../models/StaticContent';
+import { requireAuth } from '../middleware/requireAuth';
 
 const router = Router();
 
+const isNonEmptyString = (value: unknown): value is string =>
+  typeof value === 'string' && value.trim().length > 0;
+
 // Get all static content (admin only)
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', requireAuth, async (req: Request, res: Response) => {
   try {
     const contents = await StaticContent.find().sort({ page: 1 });
     res.json(contents);
@@ -13,7 +17,7 @@ router.get('/', async (req: Request, res: Response) => {
   }
 });
 
-// Get content for a specific page
+// Get content for a specific page (public: the website reads this)
 router.get('/:page', async (req: Request, res: Response) => {
   try {
     const content = await StaticContent.findOne({ page: req.params.page });
@@ -26,9 +30,13 @@ router.get('/:page', async (req: Request, res: Response) => {
   }
 });
 
-// Create or update content for a page
-router.post('/', async (req: Request, res: Response) => {
-  const { page, content } = req.body;
+// Create or update content for a page (admin only)
+router.post('/', requireAuth, async (req: Request, res: Response) => {
+  const { page, content } = req.body ?? {};
+
+  if (!isNonEmptyString(page) || !isNonEmptyString(content)) {
+    return res.status(400).json({ message: 'Both "page" and "content" must be non-empty text.' });
+  }
 
   try {
     let staticContent = await StaticContent.findOne({ page });

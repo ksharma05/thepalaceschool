@@ -1,10 +1,12 @@
 import { Router, Request, Response } from 'express';
 import ContactSubmission from '../models/ContactSubmission';
+import { requireAuth } from '../middleware/requireAuth';
+import { contactRateLimit } from '../middleware/rateLimit';
 
 const router = Router();
 
-// Create a new contact form submission
-router.post('/', async (req: Request, res: Response) => {
+// Create a new contact form submission (public, rate-limited per IP)
+router.post('/', contactRateLimit, async (req: Request, res: Response) => {
   const { name, email, phone, subject, message } = req.body;
 
   try {
@@ -24,7 +26,7 @@ router.post('/', async (req: Request, res: Response) => {
 });
 
 // Get all contact submissions (admin only)
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', requireAuth, async (req: Request, res: Response) => {
   try {
     const submissions = await ContactSubmission.find()
       .sort({ createdAt: -1 })

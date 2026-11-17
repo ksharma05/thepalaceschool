@@ -1,11 +1,17 @@
 import { Router, Request, Response } from 'express';
 import User from '../models/User';
 import jwt from 'jsonwebtoken';
+import { env } from '../config/env';
+import { loginRateLimit } from '../middleware/rateLimit';
 
 const router = Router();
 
-router.post('/login', async (req: Request, res: Response) => {
-  const { email, password } = req.body;
+router.post('/login', loginRateLimit, async (req: Request, res: Response) => {
+  const { email, password } = req.body ?? {};
+
+  if (typeof email !== 'string' || typeof password !== 'string') {
+    return res.status(400).json({ message: 'Email and password are required' });
+  }
 
   try {
     const user = await User.findOne({ email });
@@ -24,7 +30,8 @@ router.post('/login', async (req: Request, res: Response) => {
       name: user.name,
     };
 
-    const token = jwt.sign(payload, process.env.JWT_SECRET || 'secret', {
+    const token = jwt.sign(payload, env.jwtSecret, {
+      algorithm: 'HS256',
       expiresIn: '1h',
     });
 

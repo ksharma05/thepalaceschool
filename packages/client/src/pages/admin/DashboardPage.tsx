@@ -12,7 +12,7 @@ import {
   PencilIcon
 } from '@heroicons/react/24/outline';
 import ThemeToggle from '../../components/ThemeToggle';
-import { API_ENDPOINTS, apiRequest } from '../../config/api';
+import { API_ENDPOINTS, authRequest } from '../../config/api';
 import schoolLogo from '../../assets/WhatsApp_Image_2025-11-04_at_09.59.04-removebg-preview.png';
 
 interface ContactSubmission {
@@ -57,6 +57,7 @@ const DashboardPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [editingContent, setEditingContent] = useState<string | null>(null);
   const [editContent, setEditContent] = useState('');
+  const [saveError, setSaveError] = useState('');
 
   useEffect(() => {
     fetchData();
@@ -65,14 +66,14 @@ const DashboardPage: React.FC = () => {
   const fetchData = async () => {
     try {
       // Fetch contact submissions
-      const contactResponse = await apiRequest(API_ENDPOINTS.CONTACT);
+      const contactResponse = await authRequest(API_ENDPOINTS.CONTACT);
       if (contactResponse.ok) {
         const contactData = await contactResponse.json();
         setContactSubmissions(contactData);
       }
 
       // Fetch static content
-      const contentResponse = await apiRequest(API_ENDPOINTS.CONTENT);
+      const contentResponse = await authRequest(API_ENDPOINTS.CONTENT);
       if (contentResponse.ok) {
         const contentData = await contentResponse.json();
         setStaticContent(contentData);
@@ -85,17 +86,16 @@ const DashboardPage: React.FC = () => {
   };
 
   const handleEditContent = (page: string, content: string) => {
+    setSaveError('');
     setEditingContent(page);
     setEditContent(content);
   };
 
   const handleSaveContent = async (page: string) => {
     try {
-      const response = await apiRequest(API_ENDPOINTS.CONTENT, {
+      setSaveError('');
+      const response = await authRequest(API_ENDPOINTS.CONTENT, {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        },
         body: JSON.stringify({
           page,
           content: editContent
@@ -106,13 +106,18 @@ const DashboardPage: React.FC = () => {
         await fetchData(); // Refresh data
         setEditingContent(null);
         setEditContent('');
+      } else if (response.status !== 401) {
+        const data = await response.json().catch(() => ({}));
+        setSaveError(data.message || 'Could not save the changes. Please try again.');
       }
     } catch (error) {
       console.error('Error saving content:', error);
+      setSaveError('Could not reach the server. Check your connection and try again.');
     }
   };
 
   const handleCancelEdit = () => {
+    setSaveError('');
     setEditingContent(null);
     setEditContent('');
   };
@@ -514,6 +519,11 @@ const DashboardPage: React.FC = () => {
                     className="w-full h-64 p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent bg-white dark:bg-gray-700 text-text-primary"
                     placeholder="Enter content..."
                   />
+                  {saveError && (
+                    <p role="alert" className="mt-3 text-sm text-error-500">
+                      {saveError}
+                    </p>
+                  )}
                 </div>
                 <div className="p-6 border-t border-border-primary flex justify-end space-x-3">
                   <button
