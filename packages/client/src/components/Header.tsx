@@ -52,7 +52,7 @@ const Header: React.FC = () => {
         <div className="container mx-auto px-4 2xl:px-8">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center space-x-6">
-              <span className="font-medium">📢 Admission Open for Session 2026-27</span>
+              <span className="font-medium">📢 Admission Open for Session 2027-28</span>
             </div>
             <div className="hidden md:flex items-center space-x-4">
               <PhoneIcon className="h-4 w-4" />
